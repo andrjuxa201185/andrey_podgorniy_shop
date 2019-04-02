@@ -1,6 +1,65 @@
 /******/ (function(modules) { // webpackBootstrap
+/******/ 	// install a JSONP callback for chunk loading
+/******/ 	function webpackJsonpCallback(data) {
+/******/ 		var chunkIds = data[0];
+/******/ 		var moreModules = data[1];
+/******/ 		var executeModules = data[2];
+/******/
+/******/ 		// add "moreModules" to the modules object,
+/******/ 		// then flag all "chunkIds" as loaded and fire callback
+/******/ 		var moduleId, chunkId, i = 0, resolves = [];
+/******/ 		for(;i < chunkIds.length; i++) {
+/******/ 			chunkId = chunkIds[i];
+/******/ 			if(installedChunks[chunkId]) {
+/******/ 				resolves.push(installedChunks[chunkId][0]);
+/******/ 			}
+/******/ 			installedChunks[chunkId] = 0;
+/******/ 		}
+/******/ 		for(moduleId in moreModules) {
+/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+/******/ 				modules[moduleId] = moreModules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if(parentJsonpFunction) parentJsonpFunction(data);
+/******/
+/******/ 		while(resolves.length) {
+/******/ 			resolves.shift()();
+/******/ 		}
+/******/
+/******/ 		// add entry modules from loaded chunk to deferred list
+/******/ 		deferredModules.push.apply(deferredModules, executeModules || []);
+/******/
+/******/ 		// run deferred modules when all chunks ready
+/******/ 		return checkDeferredModules();
+/******/ 	};
+/******/ 	function checkDeferredModules() {
+/******/ 		var result;
+/******/ 		for(var i = 0; i < deferredModules.length; i++) {
+/******/ 			var deferredModule = deferredModules[i];
+/******/ 			var fulfilled = true;
+/******/ 			for(var j = 1; j < deferredModule.length; j++) {
+/******/ 				var depId = deferredModule[j];
+/******/ 				if(installedChunks[depId] !== 0) fulfilled = false;
+/******/ 			}
+/******/ 			if(fulfilled) {
+/******/ 				deferredModules.splice(i--, 1);
+/******/ 				result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
+/******/ 			}
+/******/ 		}
+/******/ 		return result;
+/******/ 	}
+/******/
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
+/******/
+/******/ 	// object to store loaded and loading chunks
+/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 	// Promise = chunk loading, 0 = chunk loaded
+/******/ 	var installedChunks = {
+/******/ 		"main": 0
+/******/ 	};
+/******/
+/******/ 	var deferredModules = [];
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -79,34 +138,21 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/ 	var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
+/******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
+/******/ 	jsonpArray.push = webpackJsonpCallback;
+/******/ 	jsonpArray = jsonpArray.slice();
+/******/ 	for(var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
+/******/ 	var parentJsonpFunction = oldJsonpFunction;
 /******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./index.js");
+/******/
+/******/ 	// add entry module to deferred list
+/******/ 	deferredModules.push(["./index.js","vendors~main"]);
+/******/ 	// run deferred modules when ready
+/******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
 /******/ ({
-
-/***/ "./footer.js":
-/*!*******************!*\
-  !*** ./footer.js ***!
-  \*******************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = function () {\n  var footer = document.createElement('footer');\n  footer.className = 'footer';\n  footer.innerHTML = '<p>Easycode 2019 (c)</p>';\n  return footer;\n};\n\n//# sourceURL=webpack:///./footer.js?");
-
-/***/ }),
-
-/***/ "./header.js":
-/*!*******************!*\
-  !*** ./header.js ***!
-  \*******************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = function () {\n  var header = document.createElement('header');\n  header.className = 'header';\n  header.innerHTML = '<a href=\"/\">Logo</a>';\n  return header;\n};\n\n//# sourceURL=webpack:///./header.js?");
-
-/***/ }),
 
 /***/ "./index.js":
 /*!******************!*\
@@ -115,7 +161,40 @@ eval("module.exports = function () {\n  var header = document.createElement('hea
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var header = __webpack_require__(/*! ./header */ \"./header.js\")();\n\nvar footer = __webpack_require__(/*! ./footer */ \"./footer.js\")();\n\ndocument.body.appendChild(header);\ndocument.body.appendChild(footer);\n\n//# sourceURL=webpack:///./index.js?");
+eval("var $ = __webpack_require__(/*! jquery */ \"../node_modules/jquery/dist/jquery.js\");\n\nvar header = __webpack_require__(/*! ./scripts/header */ \"./scripts/header.js\")();\n\nvar footer = __webpack_require__(/*! ./scripts/footer */ \"./scripts/footer.js\")();\n\n$('body').append(header, footer);\ndocument.body.appendChild(header);\ndocument.body.appendChild(footer);\n\n//# sourceURL=webpack:///./index.js?");
+
+/***/ }),
+
+/***/ "./scripts/builder.js":
+/*!****************************!*\
+  !*** ./scripts/builder.js ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = function () {\n  var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';\n  var content = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';\n  var className = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'box';\n  var element = document.createElement(tag);\n  element.className = className;\n  element.innerHTML = content;\n  return element;\n};\n\n//# sourceURL=webpack:///./scripts/builder.js?");
+
+/***/ }),
+
+/***/ "./scripts/footer.js":
+/*!***************************!*\
+  !*** ./scripts/footer.js ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var builder = __webpack_require__(/*! ./builder */ \"./scripts/builder.js\");\n\nmodule.exports = function () {\n  var content = '<a href=\"/\">footer</a>';\n  return builder('footer', content, 'footer');\n};\n\n//# sourceURL=webpack:///./scripts/footer.js?");
+
+/***/ }),
+
+/***/ "./scripts/header.js":
+/*!***************************!*\
+  !*** ./scripts/header.js ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var builder = __webpack_require__(/*! ./builder */ \"./scripts/builder.js\");\n\nmodule.exports = function () {\n  var content = '<a href=\"/\">Logo</a>';\n  return builder('header', content, 'header');\n};\n\n//# sourceURL=webpack:///./scripts/header.js?");
 
 /***/ })
 

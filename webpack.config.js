@@ -1,4 +1,6 @@
 const path = require('path');
+const HTMLPlugin = require('html-webpack-plugin');
+const package = require('./package');
 
 module.exports = {
     entry: './index.js',
@@ -23,5 +25,17 @@ module.exports = {
         ]
     },
 
-    
+    plugins: [
+        new HTMLPlugin({
+            title: package.name,
+            template: './index.html',
+            version: package.version,
+        }),
+    ],
+
+    optimization: {
+        splitChunks: {
+          chunks: 'all'
+        },
+    },
 };

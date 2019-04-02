@@ -17,7 +17,9 @@
     "url": "https://github.com/andrjuxa201185/andrey_podgorniy_shop/issues"
   },
   "homepage": "https://github.com/andrjuxa201185/andrey_podgorniy_shop#readme",
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.3.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
