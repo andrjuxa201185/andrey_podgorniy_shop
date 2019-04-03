@@ -2,7 +2,7 @@ const $ = require('jquery')
 
 module.exports = (tag = 'div', content = '', className = 'box') => {
     return $(`<${tag}/>`, {
-        "class": className,
+        class: className,
         html: content
     });
 };

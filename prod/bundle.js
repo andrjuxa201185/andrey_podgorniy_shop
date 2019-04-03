@@ -172,7 +172,7 @@ eval("var $ = __webpack_require__(/*! jquery */ \"../node_modules/jquery/dist/jq
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var $ = __webpack_require__(/*! jquery */ \"../node_modules/jquery/dist/jquery.js\");\n\nmodule.exports = function () {\n  var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';\n  var content = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';\n  var className = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'box';\n  return $(\"<\".concat(tag, \"/>\"), {\n    \"class\": className,\n    html: content\n  });\n};\n\n//# sourceURL=webpack:///./scripts/builder.js?");
+eval("var $ = __webpack_require__(/*! jquery */ \"../node_modules/jquery/dist/jquery.js\");\n\nmodule.exports = function () {\n  var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';\n  var content = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';\n  var className = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'box';\n  return $(\"<\".concat(tag, \"/>\"), {\n    class: className,\n    html: content\n  });\n};\n\n//# sourceURL=webpack:///./scripts/builder.js?");
 
 /***/ }),
 
