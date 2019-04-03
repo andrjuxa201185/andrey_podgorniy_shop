@@ -2,8 +2,6 @@ const $ = require('jquery');
 
 const header = require('./scripts/header')();
 const footer = require('./scripts/footer')();
+const main = require('./scripts/main')();
 
-$('body').append(header, footer);
-
-document.body.appendChild(header);
-document.body.appendChild(footer);
+$('body').append(header, main, footer);
