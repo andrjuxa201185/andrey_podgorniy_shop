@@ -183,7 +183,7 @@ eval("module.exports = function () {\n  var tag = arguments.length > 0 && argume
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var builder = __webpack_require__(/*! ./builder */ \"./scripts/builder.js\");\n\nmodule.exports = function () {\n  var content = '<a href=\"/\">footer</a>';\n  return builder('footer', content, 'footer');\n};\n\n//# sourceURL=webpack:///./scripts/footer.js?");
+eval("var builder = __webpack_require__(/*! ./builder */ \"./scripts/builder.js\");\n\nmodule.exports = function () {\n  var content = '<p>Easy Code 2019</p>';\n  return builder('footer', content, 'footer');\n};\n\n//# sourceURL=webpack:///./scripts/footer.js?");
 
 /***/ }),
 
@@ -194,7 +194,7 @@ eval("var builder = __webpack_require__(/*! ./builder */ \"./scripts/builder.js\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var builder = __webpack_require__(/*! ./builder */ \"./scripts/builder.js\");\n\nmodule.exports = function () {\n  var content = '<a href=\"/\">Logo</a>';\n  return builder('header', content, 'header');\n};\n\n//# sourceURL=webpack:///./scripts/header.js?");
+eval("var builder = __webpack_require__(/*! ./builder */ \"./scripts/builder.js\");\n\nmodule.exports = function () {\n  var content = '<h2>Header</h2>';\n  return builder('header', content, 'header');\n};\n\n//# sourceURL=webpack:///./scripts/header.js?");
 
 /***/ })
 
