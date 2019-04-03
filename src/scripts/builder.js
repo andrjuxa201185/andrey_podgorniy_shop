@@ -1,10 +1,8 @@
 const $ = require('jquery')
 
 module.exports = (tag = 'div', content = '', className = 'box') => {
-    const element = $(`<${tag}/>`, {
+    return $(`<${tag}/>`, {
         "class": className,
         html: content
     });
-
-    return element;
 };

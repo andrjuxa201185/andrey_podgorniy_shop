@@ -161,7 +161,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var $ = __webpack_require__(/*! jquery */ \"../node_modules/jquery/dist/jquery.js\");\n\nvar header = __webpack_require__(/*! ./scripts/header */ \"./scripts/header.js\")();\n\nvar footer = __webpack_require__(/*! ./scripts/footer */ \"./scripts/footer.js\")();\n\n$('body').append(header, footer);\n\n//# sourceURL=webpack:///./index.js?");
+eval("var $ = __webpack_require__(/*! jquery */ \"../node_modules/jquery/dist/jquery.js\");\n\nvar header = __webpack_require__(/*! ./scripts/header */ \"./scripts/header.js\")();\n\nvar footer = __webpack_require__(/*! ./scripts/footer */ \"./scripts/footer.js\")();\n\nvar main = __webpack_require__(/*! ./scripts/main */ \"./scripts/main.js\")();\n\n$('body').append(header, main, footer);\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ }),
 
@@ -172,7 +172,7 @@ eval("var $ = __webpack_require__(/*! jquery */ \"../node_modules/jquery/dist/jq
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var $ = __webpack_require__(/*! jquery */ \"../node_modules/jquery/dist/jquery.js\");\n\nmodule.exports = function () {\n  var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';\n  var content = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';\n  var className = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'box';\n  var element = $(\"<\".concat(tag, \"/>\"), {\n    \"class\": className,\n    html: content\n  });\n  return element;\n};\n\n//# sourceURL=webpack:///./scripts/builder.js?");
+eval("var $ = __webpack_require__(/*! jquery */ \"../node_modules/jquery/dist/jquery.js\");\n\nmodule.exports = function () {\n  var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';\n  var content = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';\n  var className = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'box';\n  return $(\"<\".concat(tag, \"/>\"), {\n    \"class\": className,\n    html: content\n  });\n};\n\n//# sourceURL=webpack:///./scripts/builder.js?");
 
 /***/ }),
 
@@ -195,6 +195,17 @@ eval("var builder = __webpack_require__(/*! ./builder */ \"./scripts/builder.js\
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("var builder = __webpack_require__(/*! ./builder */ \"./scripts/builder.js\");\n\nmodule.exports = function () {\n  var content = '<h2>Header</h2>';\n  return builder('header', content, 'header');\n};\n\n//# sourceURL=webpack:///./scripts/header.js?");
+
+/***/ }),
+
+/***/ "./scripts/main.js":
+/*!*************************!*\
+  !*** ./scripts/main.js ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var builder = __webpack_require__(/*! ./builder */ \"./scripts/builder.js\");\n\nmodule.exports = function () {\n  var content = '<a href=\"#\">GO TO MAIN ==></a>';\n  return builder('main', content, 'main');\n};\n\n//# sourceURL=webpack:///./scripts/main.js?");
 
 /***/ })
 
