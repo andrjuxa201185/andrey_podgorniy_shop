@@ -205,7 +205,7 @@ eval("var builder = __webpack_require__(/*! ./builder */ \"./scripts/builder.js\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var builder = __webpack_require__(/*! ./builder */ \"./scripts/builder.js\");\n\nmodule.exports = function () {\n  var content = '<a href=\"#\">GO TO MAIN ==></a>';\n  return builder('main', content, 'main');\n};\n\n//# sourceURL=webpack:///./scripts/main.js?");
+eval("var builder = __webpack_require__(/*! ./builder */ \"./scripts/builder.js\");\n\nmodule.exports = function () {\n  var date = new Date();\n  var content = \"<h2>This is Main! Now: \".concat(date.getDay(), \"/\").concat(date.getMonth(), \"/\").concat(date.getFullYear(), \"</h2>\");\n  return builder('main', content, 'main');\n};\n\n//# sourceURL=webpack:///./scripts/main.js?");
 
 /***/ })
 
