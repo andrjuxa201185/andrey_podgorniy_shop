@@ -169,20 +169,24 @@
 /*!******************!*\
   !*** ./index.js ***!
   \******************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var $ = __webpack_require__(/*! jquery */ "../node_modules/jquery/dist/jquery.js");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "../node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _app_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.scss */ "./app.scss");
+/* harmony import */ var _app_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_app_scss__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _scripts_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scripts/header */ "./scripts/header.js");
+/* harmony import */ var _scripts_footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scripts/footer */ "./scripts/footer.js");
+/* harmony import */ var _scripts_main__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scripts/main */ "./scripts/main.js");
 
-__webpack_require__(/*! ./app.scss */ "./app.scss");
 
-var header = __webpack_require__(/*! ./scripts/header */ "./scripts/header.js")();
 
-var footer = __webpack_require__(/*! ./scripts/footer */ "./scripts/footer.js")();
 
-var main = __webpack_require__(/*! ./scripts/main */ "./scripts/main.js")();
 
-$('body').append(header, main, footer);
+jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').append(Object(_scripts_header__WEBPACK_IMPORTED_MODULE_2__["header"])(), Object(_scripts_main__WEBPACK_IMPORTED_MODULE_4__["main"])(), Object(_scripts_footer__WEBPACK_IMPORTED_MODULE_3__["footer"])());
 
 /***/ }),
 
@@ -190,20 +194,27 @@ $('body').append(header, main, footer);
 /*!****************************!*\
   !*** ./scripts/builder.js ***!
   \****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: builder */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var $ = __webpack_require__(/*! jquery */ "../node_modules/jquery/dist/jquery.js");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "builder", function() { return builder; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "../node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 
-module.exports = function () {
+
+var builder = function builder() {
   var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
   var content = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
   var className = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'box';
-  return $("<".concat(tag, "/>"), {
+  return jquery__WEBPACK_IMPORTED_MODULE_0___default()("<".concat(tag, "/>"), {
     class: className,
     html: content
   });
 };
+
+
 
 /***/ }),
 
@@ -222,17 +233,24 @@ module.exports = function () {
 /*!***************************!*\
   !*** ./scripts/footer.js ***!
   \***************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: footer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var builder = __webpack_require__(/*! ./builder */ "./scripts/builder.js");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "footer", function() { return footer; });
+/* harmony import */ var _builder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./builder */ "./scripts/builder.js");
+/* harmony import */ var _footer_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./footer.css */ "./scripts/footer.css");
+/* harmony import */ var _footer_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_footer_css__WEBPACK_IMPORTED_MODULE_1__);
 
-__webpack_require__(/*! ./footer.css */ "./scripts/footer.css");
 
-module.exports = function () {
+
+var footer = function footer() {
   var content = '<p>Easy Code 2019</p>';
-  return builder('footer', content, 'footer');
+  return Object(_builder__WEBPACK_IMPORTED_MODULE_0__["builder"])('footer', content, 'footer');
 };
+
+
 
 /***/ }),
 
@@ -251,17 +269,24 @@ module.exports = function () {
 /*!***************************!*\
   !*** ./scripts/header.js ***!
   \***************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: header */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var builder = __webpack_require__(/*! ./builder */ "./scripts/builder.js");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "header", function() { return header; });
+/* harmony import */ var _builder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./builder */ "./scripts/builder.js");
+/* harmony import */ var _header_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header.css */ "./scripts/header.css");
+/* harmony import */ var _header_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_header_css__WEBPACK_IMPORTED_MODULE_1__);
 
-__webpack_require__(/*! ./header.css */ "./scripts/header.css");
 
-module.exports = function () {
+
+var header = function header() {
   var content = '<h2>Header</h2>';
-  return builder('header', content, 'header');
+  return Object(_builder__WEBPACK_IMPORTED_MODULE_0__["builder"])('header', content, 'header');
 };
+
+
 
 /***/ }),
 
@@ -269,16 +294,22 @@ module.exports = function () {
 /*!*************************!*\
   !*** ./scripts/main.js ***!
   \*************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: main */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var builder = __webpack_require__(/*! ./builder */ "./scripts/builder.js");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "main", function() { return main; });
+/* harmony import */ var _builder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./builder */ "./scripts/builder.js");
 
-module.exports = function () {
+
+var main = function main() {
   var date = new Date();
   var content = "<h2>This is Main! Now: ".concat(date.getDay(), "/").concat(date.getMonth(), "/").concat(date.getFullYear(), "</h2>");
-  return builder('main', content, 'main');
+  return Object(_builder__WEBPACK_IMPORTED_MODULE_0__["builder"])('main', content, 'main');
 };
+
+
 
 /***/ })
 

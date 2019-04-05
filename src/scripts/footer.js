@@ -1,9 +1,10 @@
-const builder = require('./builder');
-require('./footer.css');
+import { builder } from './builder';
+import './footer.css';
 
-module.exports = () => {
+const footer = () => {
     const content = '<p>Easy Code 2019</p>';
     
     return builder('footer', content, 'footer');
 };
  
+export { footer };
