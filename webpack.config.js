@@ -1,6 +1,10 @@
 const path = require('path');
 const HTMLPlugin = require('html-webpack-plugin');
+const CssPlugin = require('mini-css-extract-plugin'); 
+
 const package = require('./package');
+const isProduction = process.env.NODE_ENV === 'production';
+
 
 module.exports = {
     entry: './index.js',
@@ -12,16 +16,31 @@ module.exports = {
     mode: 'development',
 
     module: {
-        rules: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/preset-env']
-                }
-            } 
-        }]
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                } 
+            },
+            {
+                test: /\.s?css$/,
+                use: [
+                    // 'style-loader',
+                    // {
+                    //     loader: 'style-loader',
+                    //     options: { attrs: {id: 'testme'}, singleton: true }
+                    // },
+                    CssPlugin.loader,
+                    'css-loader',
+                    'sass-loader'
+                ]
+            }
+        ]   
     },
 
     plugins: [
@@ -30,6 +49,8 @@ module.exports = {
             template: './index.html',
             version: package.version,
         }),
+
+        new CssPlugin({ filename: 'main.css'})
     ],
 
     optimization: {
@@ -37,4 +58,6 @@ module.exports = {
           chunks: 'all'
         },
     },
+
+    devtool: isProduction ? undefined : 'source-map'
 };

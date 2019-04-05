@@ -1,4 +1,5 @@
 const $ = require('jquery');
+require('./app.scss');
 
 const header = require('./scripts/header')();
 const footer = require('./scripts/footer')();
