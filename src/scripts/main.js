@@ -1,5 +1,5 @@
 import { builder } from './builder';
-import './main.css';
+import './main.scss';
 
 const main = () => {
     const date = new Date();

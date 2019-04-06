@@ -1,0 +1,12 @@
+main{
+    background-color: coral;
+    color: cadetblue;
+}
+ul {
+    @for $i from 1 through 20 {
+        li:nth-child(#{$i}) {
+            background-color: rgb(random(255),random(255),random(255));
+        }
+    }
+}
+   
