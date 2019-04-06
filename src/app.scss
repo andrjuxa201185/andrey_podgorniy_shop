@@ -1,5 +1,9 @@
 $bgColor: #ccc;
+@import 'scripts/func.scss';
 
-body{
-    background-color: $bgColor;
+h1 {
+    font-size: getPart(100, 50) + px;
+}
+body {
+    background-color: getDarken(rgb(199, 236, 245));
 }
