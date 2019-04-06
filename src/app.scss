@@ -1,5 +1,6 @@
 $bgColor: #ccc;
 @import 'scripts/func.scss';
+@import 'scripts/class-width.scss';
 
 h1 {
     font-size: getPart(100, 50) + px;
