@@ -1,4 +1,5 @@
 import { builder } from './builder';
+import './main.css';
 
 const main = () => {
     const date = new Date();

@@ -290,6 +290,17 @@ var header = function header() {
 
 /***/ }),
 
+/***/ "./scripts/main.css":
+/*!**************************!*\
+  !*** ./scripts/main.css ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "./scripts/main.js":
 /*!*************************!*\
   !*** ./scripts/main.js ***!
@@ -301,6 +312,9 @@ var header = function header() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "main", function() { return main; });
 /* harmony import */ var _builder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./builder */ "./scripts/builder.js");
+/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./main.css */ "./scripts/main.css");
+/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_main_css__WEBPACK_IMPORTED_MODULE_1__);
+
 
 
 var main = function main() {
