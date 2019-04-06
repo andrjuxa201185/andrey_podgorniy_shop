@@ -1,0 +1,10 @@
+@import 'mixin.scss';
+@import 'func.scss';
+
+header {
+    position: relative;
+    background-color: yellow;
+    @include round(7);
+    padding: getPart(100, 40)+px 0;
+    @include triangle(right);
+}
