@@ -50,7 +50,7 @@ module.exports = {
             version: package.version,
         }),
 
-        new CssPlugin({ filename: 'main.css'})
+        new CssPlugin({ filename: 'main-[hash].css'})
     ],
 
     optimization: {
