@@ -1,5 +1,5 @@
 import { builder } from './builder';
-import './header.css';
+import './header.scss';
 
 const header = () => {
     const content = '<h2>Header</h2>';
