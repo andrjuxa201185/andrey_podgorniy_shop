@@ -1,1 +1,3 @@
-export const sum = (a, b) => a + b;
+export const sum = (a = 0, b = 0) => a + b;
+
+export const foo = (a = 0, b = 0) => a + b;

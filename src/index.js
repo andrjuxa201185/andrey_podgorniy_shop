@@ -13,3 +13,7 @@ $('body').append(header(), main());
     //         $('body').append(module.footer());
     //     });
 // });
+
+if (module.hot) {
+    module.hot.accept();
+}
