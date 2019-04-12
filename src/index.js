@@ -8,8 +8,8 @@ import { main } from './scripts/main';
 $('body').append(header(), main());
 
 // $('h1').one('click', () => {
-    import('./scripts/footer')
-        .then(module => {
-            $('body').append(module.footer());
-        });
+    // import('./scripts/footer')
+    //     .then(module => {
+    //         $('body').append(module.footer());
+    //     });
 // });
