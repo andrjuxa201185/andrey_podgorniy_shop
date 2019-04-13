@@ -28,11 +28,18 @@ describe('main', () => {
     expect(fakeAlert.getCall(0).args[0]).to.equal(name);
     window.alert.restore();
   });
-// -------- getDay -----------//
-it('should return days[day] on getDay()', () => {
-  let day = new Date().getDay();
-  getDay().should.equal(days[day]);
-});
-
+  // -------- getDay -----------//
+  it('should return days[day] on getDay()', () => {
+    let day = new Date().getDay();
+    getDay().should.equal(days[day]);
+  });
+  // -------- getAdultUsers --------//
+  it('should return Array on getAdultUsers()', () => {
+    getAdultUsers().should.instanceOf(Array);
+  });
+  
+  it('should return empty [] on getAdultUsers([{age: 17}])', () => {
+    getAdultUsers([{age: 17}]).length.should.equal(0);
+  });
 
 });
