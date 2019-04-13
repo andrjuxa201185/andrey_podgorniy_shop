@@ -2,6 +2,7 @@ import chai from 'chai';
 import sinon from 'sinon';
 import faker from 'faker';
 import { showMessage, getDay, getAdultUsers, getRandomUsers, Product } from './main';
+import { days, defaultProduct, money, users } from './constants';
 
 const { assert, expect } = chai;
 chai.should();
@@ -27,5 +28,11 @@ describe('main', () => {
     expect(fakeAlert.getCall(0).args[0]).to.equal(name);
     window.alert.restore();
   });
+// -------- getDay -----------//
+it('should return days[day] on getDay()', () => {
+  let day = new Date().getDay();
+  getDay().should.equal(days[day]);
+});
+
 
 });
