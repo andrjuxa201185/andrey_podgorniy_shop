@@ -87,9 +87,9 @@ describe('main', () => {
     product.value.should.equal(12);
   });
 
-  it('should product.value == undefined if on setPrice(val) val < 10', () => {
+  it('should product.value !== val if on setPrice(val) val < 10', () => {
     product.setPrice(9);
-    expect(product.value).to.be.undefined;
+    expect(product.value).not.to.equal(9);
   });
 
   it('should throw new Error on setPrice()', () => {
