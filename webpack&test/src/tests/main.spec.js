@@ -93,6 +93,6 @@ describe('main', () => {
   });
 
   it('should throw new Error on setPrice()', () => {
-    expect(product.setPrice.bind(this, false)).to.throw();
+    expect(product.setPrice).to.throw();
   });
 });
