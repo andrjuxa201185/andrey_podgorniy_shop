@@ -38,7 +38,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
+            presets: ['@babel/preset-env', '@babel/preset-react'],
             plugins: ['syntax-dynamic-import'],
           }
         }
@@ -49,7 +49,7 @@ module.exports = {
         use: [
           isStylesExternal ? CssPlugin.loader : 'style-loader',
           'css-loader',
-          'sass-loader'
+          // 'sass-loader'
         ]
       }
     ]
@@ -66,7 +66,7 @@ module.exports = {
   devtool: isProduction ? undefined : 'source-map',
 
   devServer: {
-    contentBase: path.resolve(__dirname, 'prod'),
+    contentBase: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     port: 9000,
     hot: true
