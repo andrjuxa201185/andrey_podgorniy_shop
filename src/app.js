@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import { Navigation } from './navigation/Navigation';
+import { Navigation } from './components/navigation/Navigation';
 
 const Time = () => <time>{ new Date().toLocaleString() }</time>;
 const header = (
