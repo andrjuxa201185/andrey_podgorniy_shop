@@ -1,8 +1,13 @@
-.nav ul{
-  display: flex;
-  list-style: none;
-}
-.nav li{
-  margin: 0 15px 0 0;
-  background-color: red;
+@import '../style/_variables';
+
+.nav{
+  &.nav_appearance {
+    flex-grow: 1;
+    margin-left: 100px;
+    padding: $indent;
+    background-color: $lightBlue;
+  }
+  .nav__title {
+    @include title;
+  }
 }

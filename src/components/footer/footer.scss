@@ -1,0 +1,13 @@
+@import '../style/_variables';
+
+.footer {
+  &.footer_appearence {
+    margin-top: $indent;
+    padding: $indent;
+    background-color: $lightGrey;
+  }
+  .footer__title {
+    @include title;
+    text-align: center;
+  }
+}

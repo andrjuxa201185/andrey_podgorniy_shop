@@ -1,0 +1,11 @@
+$darkGrey: #989898;
+$middleGrey: #d8d8d8;
+$lightGrey: #eeeeee;
+$lightBlue: #cee1f2;
+$indent: 20px;
+
+@mixin title {
+  font-size: 40px;
+  text-transform: uppercase;
+  color: rgb(25, 25, 25);
+}
