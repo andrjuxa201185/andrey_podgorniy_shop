@@ -1,0 +1,10 @@
+@import '../style/_variables';
+
+.main {
+  &.main_appearence {
+    display: flex;
+    margin-top: $indent;
+    padding: $indent;
+    background-color: $lightGrey;
+  }
+}

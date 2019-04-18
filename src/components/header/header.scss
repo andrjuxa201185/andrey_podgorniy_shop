@@ -1,0 +1,13 @@
+@import '../style/_variables';
+
+.header{
+  .header__title {
+    @include title;
+  }
+  &.header_appearance {
+    display: flex;
+    align-items: center;
+    padding: $indent;
+    background-color: $lightGrey;
+  }
+}

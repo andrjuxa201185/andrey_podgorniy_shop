@@ -1,0 +1,13 @@
+@import '../style/_variables';
+
+.nav{
+  &.nav_appearance {
+    flex-grow: 1;
+    margin-left: 100px;
+    padding: $indent;
+    background-color: $lightBlue;
+  }
+  .nav__title {
+    @include title;
+  }
+}
