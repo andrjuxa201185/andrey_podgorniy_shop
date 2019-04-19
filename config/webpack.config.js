@@ -15,7 +15,12 @@ const plugins = [
     version: package.version
   }),
 
-  new webpack.HotModuleReplacementPlugin()
+  new webpack.HotModuleReplacementPlugin(),
+
+  new webpack.ProvidePlugin({ 
+    React: 'react',
+    // $: 'jquery'
+  })
 ];
 
 if (isStylesExternal) {
@@ -26,12 +31,21 @@ module.exports = {
   entry: '../src/app.js',
   context: path.resolve(__dirname, '../src'),
   output: {
-      filename: '[name].js'
+    filename: '[name].js'
   },
   mode: isProduction ? 'production' : 'development',
 
   module: {
     rules: [
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: { 
+          emitWarning: true
+        },
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -43,7 +57,6 @@ module.exports = {
           }
         }
       },
-
       {
         test: /\.s?css$/,
         use: [

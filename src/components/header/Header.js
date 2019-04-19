@@ -1,4 +1,3 @@
-import React from 'react';
 import './header.scss';
 import { Navigation } from '../navigation/Navigation';
 
@@ -7,4 +6,4 @@ export const Header = () => (
     <h1 className="header__title">Header</h1>
     <Navigation />
   </header>
-)
+);

@@ -5,12 +5,12 @@ import { Header } from './components/header/Header';
 import { Main } from './components/main/Main';
 import { Footer } from './components/footer/Footer';
 
-const root = (
+const App = () => (
   <>
     <Header />
     <Main />
     <Footer />
   </>
-)
+);
 
-ReactDom.render(root, document.getElementById('app'));
+ReactDom.render(<App />, document.getElementById('app'));
