@@ -1,10 +1,11 @@
-@import '../style/_variables';
-
 .main {
   &.main_appearence {
     display: flex;
-    margin-top: $indent;
-    padding: $indent;
-    background-color: $lightGrey;
+    margin-top: var(--indent);
+    padding: var(--indent);
+    background-color: var(--lightGrey);
+  }
+  .red {
+    color: red;
   }
 }

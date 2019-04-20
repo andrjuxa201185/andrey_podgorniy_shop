@@ -5,8 +5,7 @@ export const Content = () => (
     <h2 className="content__title">main</h2>
     <div className="content__desc">
 
-
-      Lorem ipsum dolor sit amet consectetur,
+      Lorem ipsum dolor sit amet consectetur
     </div>
   </section>
 );

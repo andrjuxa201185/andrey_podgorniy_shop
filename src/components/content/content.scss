@@ -1,17 +1,14 @@
-@import '../style/_variables';
-
 .content {
   &.content_appearence {
     flex-grow: 1;
-    margin-left: $indent;
+    margin-left: var(--indent);
   }
   .content__title {
-    @include title;
     text-align: center;
   }
   .content__desc {
     padding: 20px 20px 100px 20px;
     font-size: 20px;
-    background-color: $darkGrey;
+    background-color: var(--darkGrey);
   }
 }

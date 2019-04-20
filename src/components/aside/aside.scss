@@ -1,14 +1,9 @@
-@import '../style/_variables';
-
 .aside {
   &.aside_appearence {
     align-self: stretch;
     display: flex;
     align-items: center;
-    padding: $indent;
-    background-color: $darkGrey;
-  }
-  .aside__title {
-    @include title;
+    padding: var(--indent);
+    background-color: var(--darkGrey);
   }
 }
