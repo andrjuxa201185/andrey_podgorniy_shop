@@ -17,14 +17,18 @@ if (now >= 18 && now < 22) {
 }
 
 const Greeting = ({ text, name }) => (
-  <p>{text}{name && `, ${name}`}!</p>
+  <p>
+    {text}
+    {name && `, ${name}`}
+!
+  </p>
 );
 
 export const Content = () => (
   <section className="content content_appearence">
     <h2 className="content__title">main</h2>
     <div className="content__desc">
-      <Greeting text={text} name="Andrey"/>
+      <Greeting text={text} name="Andrey" />
     </div>
   </section>
 );
