@@ -16,30 +16,15 @@ if (now >= 18 && now < 22) {
   text = 'Good evening';
 }
 
-const Greeting = ({ text, name }) => {
-  if (name) {
-    return (
-      <p>
-        {`${text}, ${name}`}
-
-!
-      </p>
-    );
-  }
-  return (
-    <p>
-      {text}
-
-!
-    </p>
-  );
-};
+const Greeting = ({ text, name }) => (
+  <p>{text}{name && `, ${name}`}!</p>
+);
 
 export const Content = () => (
   <section className="content content_appearence">
     <h2 className="content__title">main</h2>
     <div className="content__desc">
-      <Greeting text={text} />
+      <Greeting text={text} name="Andrey"/>
     </div>
   </section>
 );
