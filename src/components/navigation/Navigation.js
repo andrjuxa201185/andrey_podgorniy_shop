@@ -6,7 +6,7 @@ const Nav = ({ list }) => (
   <ul>
     {list.map((item, i) => (
       <li key={i}>
-        <a href={`./${item.toLowerCase()}`}>{item}</a>
+        <a href={item.toLowerCase()}>{item}</a>
       </li>
     ))}
   </ul>
