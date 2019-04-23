@@ -5,4 +5,12 @@
     padding: var(--indent);
     background-color: var(--lightBlue);
   }
+  ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    a {
+      padding: var(--indent);
+    }
+  }
 }
