@@ -3,20 +3,20 @@ import './button.scss';
 export class Button extends Component {
   constructor(prop) {
     super(prop);
-    
+
     this.state = {
-      classes: 'button'
-    }
+      classActive: ''
+    };
   }
 
-
-  toggleClass() {
-    
+  toggleClass = () => {
+    const { classActive } = this.state;
+    this.setState({ classActive: classActive === 'active' ? '' : 'active' });
   }
 
   render() {
     return (
-      <button className={this.state.classes} onClick={this.toggleClass}>Click me</button>
+      <button className={this.state.classActive} onClick={this.toggleClass}>Active</button>
     );
   }
 }
