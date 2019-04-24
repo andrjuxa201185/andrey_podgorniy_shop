@@ -1,13 +1,9 @@
 import './button.scss';
 
 export class Button extends Component {
-  constructor(prop) {
-    super(prop);
-
-    this.state = {
-      classActive: ''
-    };
-  }
+  state = {
+    classActive: ''
+  };
 
   toggleClass = () => {
     const { classActive } = this.state;
