@@ -19,7 +19,7 @@ const plugins = [
 
   new webpack.ProvidePlugin({ 
     React: 'react',
-    // $: 'jquery'
+    Component: ['react', 'Component']
   })
 ];
 
@@ -53,7 +53,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: ['syntax-dynamic-import'],
+            plugins: ['syntax-dynamic-import', '@babel/plugin-proposal-class-properties'],
           }
         }
       },

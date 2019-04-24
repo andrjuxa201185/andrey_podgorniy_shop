@@ -19,7 +19,7 @@ const Nums = () => (
 
 const App = () => (
   <>
-    <Header />
+    <Header user="aaaaaaa" />
     <Main />
     <Nums />
     <Footer />

@@ -1,4 +1,14 @@
-import { User } from '../user/User';
+const User = ({
+  firstName, lastName, age
+}) => (
+  <li>
+    {firstName}
+    {' '}
+    {lastName}
+    {' '}
+    {age}
+  </li>
+);
 
 export const ListUsers = ({ users }) => (
   <ul>
