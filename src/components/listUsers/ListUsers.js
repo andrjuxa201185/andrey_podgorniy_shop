@@ -1,12 +1,18 @@
-import { User } from '../user/User';
+const User = ({
+  id, name, email
+}) => (
+  <li key={id}>
+    {name + email}
+  </li>
+);
 
 export const ListUsers = ({ users }) => (
   <ul>
     {
       users.map(({
-        firstName, lastName, age
+        id, name, email
       }) => (
-        <User firstName={firstName} lastName={lastName} age={age} />
+        <User id={id} name={name} email={email} key={id} />
       ))
     }
   </ul>
