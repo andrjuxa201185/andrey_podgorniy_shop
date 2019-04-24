@@ -1,20 +1,29 @@
 import { ListUsers } from '../listUsers/ListUsers';
 import './footer.scss';
 
-const users = [
-  {
-    firstName: 'Ivan', lastName: 'Ivanov', age: 23
-  },
-  {
-    firstName: 'Petr', lastName: 'Petrov', age: 45
-  },
-  {
-    firstName: 'Pavel', lastName: 'Pavlov', age: 35
-  },
-];
+export class Footer extends Component {
+  constructor(prop) {
+    super(prop);
+    this.state = {
+      users: []
+    };
+    this.getUsers();
+  }
 
-export const Footer = () => (
-  <footer className="footer footer_appearence">
-    <ListUsers users={users} />
-  </footer>
-);
+  getUsers() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(data => data.json())
+      .then(users => this.setState({ users }));
+  }
+
+  render() {
+    const { users } = this.state;
+
+    return (
+      <footer className="footer footer_appearence">
+        <h2>List of users:</h2>
+        <ListUsers users={users} />
+      </footer>
+    );
+  }
+}
