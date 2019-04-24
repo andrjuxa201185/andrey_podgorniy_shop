@@ -42,9 +42,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'eslint-loader',
-        options: { 
-          emitWarning: true
-        },
+        options: { emitWarning: true }
       },
       {
         test: /\.js$/,
