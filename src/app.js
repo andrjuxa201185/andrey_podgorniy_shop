@@ -8,7 +8,7 @@ import './components/style/__variables.scss';
 
 const App = () => (
   <>
-    <Header />
+    <Header user="aaaaaaa" />
     <Main />
     <Footer />
   </>

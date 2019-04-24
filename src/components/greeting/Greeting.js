@@ -20,6 +20,7 @@ export const Greeting = ({ name }) => {
       {text}
       {name && `, ${name}`}
 
+
   !
     </p>
   );
