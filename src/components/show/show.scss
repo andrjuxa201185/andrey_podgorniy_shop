@@ -13,11 +13,14 @@
     left: 0;
     top: 110%;
     width: 100%;
+    height: 0;
+    overflow: hidden;
     border: solid 1px grey;
-    opacity: 0.5;
-    transition: all 1s;
-    &.show {
+    opacity: 0;
+    transition: all .3s;
+    &.show-content {
       opacity: 1;
+      height: 150px;
     }
   }
 }
