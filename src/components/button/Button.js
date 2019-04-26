@@ -2,17 +2,18 @@ import './button.scss';
 
 export class Button extends Component {
   state = {
-    classActive: ''
+    isActive: false
   };
 
   toggleClass = () => {
-    const { classActive } = this.state;
-    this.setState({ classActive: classActive === 'active' ? '' : 'active' });
+    const { isActive } = this.state;
+    this.setState({ isActive: !isActive });
   }
 
   render() {
+    const { isActive } = this.state;
     return (
-      <button className={this.state.classActive} onClick={this.toggleClass}>Active</button>
+      <button className={isActive ? 'active' : ''} onClick={this.toggleClass}>Active</button>
     );
   }
 }

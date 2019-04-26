@@ -10,16 +10,17 @@ export class Show extends Component {
     const { btnText, show } = this.state;
 
     this.setState({
-      btnText: btnText === 'Show' ? 'Hide' : 'Show',
-      show: show === '' ? 'show-content' : ''
+      btnText: !btnText,
+      show: !show
     });
   }
 
   render() {
+    const { show, btnText } = this.state;
     return (
       <div className="b-show">
-        <button className={this.state.show} onClick={this.showContent}>{this.state.btnText}</button>
-        <div className={`content ${this.state.show}`}>
+        <button onClick={this.showContent}>{btnText ? 'Show' : 'Hide'}</button>
+        <div className={`content ${show ? 'show-content' : ''}`}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Lorem ipsum dolor sit amet consectetur adipisicing elit
         </div>

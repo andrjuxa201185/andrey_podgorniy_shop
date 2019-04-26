@@ -10,13 +10,17 @@ export class Tasklist extends Component {
   }
 
   render() {
+    const {
+      userName, tasks, doneTasks, progressTasks, waitingTasks
+    } = this.state;
+
     return (
       <div className="tasklist">
-        <h3>Hello, {this.state.userName}</h3>
-        <p>You have {this.state.tasks} tasks</p>
-        <p>Done: {this.state.doneTasks}</p>
-        <p>In progress: {this.state.progressTasks}</p>
-        <p>Waiting: {this.state.waitingTasks}</p>
+        <h3>Hello, {userName}</h3>
+        <p>You have {tasks} tasks</p>
+        <p>Done: {doneTasks}</p>
+        <p>In progress: {progressTasks}</p>
+        <p>Waiting: {waitingTasks}</p>
         <a href="/">Go to the task list</a>
       </div>
     );
