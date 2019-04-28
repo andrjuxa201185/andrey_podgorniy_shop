@@ -21,8 +21,10 @@ export class Footer extends Component {
 
     return (
       <footer className="footer footer_appearence">
-        <h2>List of users:</h2>
-        <ListUsers users={users} />
+        <div>
+          <h2>List of users:</h2>
+          <ListUsers users={users} click={this.getPosts} />
+        </div>
       </footer>
     );
   }
