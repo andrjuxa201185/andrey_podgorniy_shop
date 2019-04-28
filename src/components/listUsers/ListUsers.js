@@ -1,18 +1,18 @@
 const User = ({
-  id, name, email
+  id, name, email, onClick
 }) => (
-  <li key={id}>
+  <li key={id} onClick={() => onClick(id)}>
     {name + email}
   </li>
 );
 
-export const ListUsers = ({ users }) => (
+export const ListUsers = ({ users, click }) => (
   <ul>
     {
       users.map(({
         id, name, email
       }) => (
-        <User id={id} name={name} email={email} key={id} />
+        <User id={id} name={name} email={email} key={id} onClick={click} />
       ))
     }
   </ul>
