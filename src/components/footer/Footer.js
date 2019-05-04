@@ -1,5 +1,4 @@
-import { ListUsers } from '../listUsers/ListUsers';
-import { PostsUser } from '../postsUser/PostsUser';
+import { ListUsers, PostsUser } from '../listUsers/ListUsers';
 import './footer.scss';
 
 export class Footer extends Component {
