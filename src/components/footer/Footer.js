@@ -1,11 +1,12 @@
-import { ListUsers } from '../listUsers/ListUsers';
+import { ListUsers, PostsUser } from '../listUsers/ListUsers';
 import './footer.scss';
 
 export class Footer extends Component {
   constructor(prop) {
     super(prop);
     this.state = {
-      users: []
+      users: [],
+      posts: []
     };
     this.getUsers();
   }
@@ -16,8 +17,14 @@ export class Footer extends Component {
       .then(users => this.setState({ users }));
   }
 
+  getPosts = (id) => {
+    fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`)
+      .then(data => data.json())
+      .then(posts => this.setState({ posts }));
+  }
+
   render() {
-    const { users } = this.state;
+    const { users, posts } = this.state;
 
     return (
       <footer className="footer footer_appearence">
@@ -25,6 +32,7 @@ export class Footer extends Component {
           <h2>List of users:</h2>
           <ListUsers users={users} click={this.getPosts} />
         </div>
+        <PostsUser posts={posts} />
       </footer>
     );
   }

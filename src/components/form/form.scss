@@ -1,0 +1,15 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  margin: 20px;
+  input{
+    margin: 20px;
+  }
+  .correct{
+    box-shadow: 0 0 3px green;
+  }
+  .error {
+    box-shadow: 0 0 3px red;
+  }
+}
