@@ -27,6 +27,7 @@ export class EditableField extends Component {
         <input
           className={isHidden ? 'hidden' : 'show'}
           type="text"
+          value={value}
           onChange={this.changeField}
           onBlur={this.changeHidden}
         />
