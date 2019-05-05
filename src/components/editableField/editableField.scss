@@ -1,0 +1,15 @@
+.editable-field {
+  align-self: flex-start;
+  width: 30%;
+  box-shadow: 0 0 1px 1px rgb(212, 209, 209);
+  span, input {
+    background-color: rgb(238, 200, 186);
+    font-size: 24px;
+  }
+  .hidden {
+    display: none;
+  }
+  .show {
+    display: block;
+  }
+}
