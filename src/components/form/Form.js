@@ -51,29 +51,32 @@ export class Form extends Component {
 
     return (
       <form className="form" onSubmit={this.onSubmit}>
-        {
-          this.fields.map(({ label, secure }, index) => {
-            // eslint-disable-next-line react/destructuring-assignment
-            const state = this.state[label];
+        <fieldset>
+          <legend>Class work 19</legend>
+          {
+            this.fields.map(({ label, secure }, index) => {
+              // eslint-disable-next-line react/destructuring-assignment
+              const state = this.state[label];
 
-            return (
-              <p key={label}>
-                <input
-                  type={secure ? 'password' : 'text'}
-                  name={label}
-                  placeholder={`Enter a ${label}`}
-                  value={state.value}
-                  onChange={this.changeField}
-                  onBlur={() => this.validateField(index)}
-                  className={state.error ? 'error' : 'correct'}
-                  disabled={disabledFields.includes(label)}
-                />
-                {state.error && <mark>{state.error}</mark>}
-              </p>
-            );
-          })
-        }
-        <input type="submit" value="Save" disabled={this.getDisabledState()} />
+              return (
+                <p key={label}>
+                  <input
+                    type={secure ? 'password' : 'text'}
+                    name={label}
+                    placeholder={`Enter a ${label}`}
+                    value={state.value}
+                    onChange={this.changeField}
+                    onBlur={() => this.validateField(index)}
+                    className={state.error ? 'error' : 'correct'}
+                    disabled={disabledFields.includes(label)}
+                  />
+                  {state.error && <mark>{state.error}</mark>}
+                </p>
+              );
+            })
+          }
+          <input type="submit" value="Save" disabled={this.getDisabledState()} />
+        </fieldset>
       </form>
     );
   }
