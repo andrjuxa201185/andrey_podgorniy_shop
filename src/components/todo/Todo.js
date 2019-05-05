@@ -4,24 +4,42 @@ import './todo.scss';
 export class Todo extends Component {
   state = {
     todos: [],
+    filter: ''
   }
 
   getPosts = () => {
     fetch('https://jsonplaceholder.typicode.com/todos')
       .then(data => data.json())
-      .then(posts => this.setState({ todos: posts }));
+      .then((posts) => {
+        this.originTodos = posts;
+        this.setState({ todos: this.originTodos });
+      });
   }
 
   componentDidMount() {
     this.getPosts();
   }
 
+  filterTodos = ({ target }) => {
+    if (true) {
+      this.setState({ todos: this.originTodos.filter(({ title }) => title.includes(target.value)) });
+    }
+
+    this.setState({ filter: target.value });
+  }
+
   render() {
-    const { todos } = this.state;
+    const { todos, filter } = this.state;
 
     return (
       <div className="todo">
         <h3>ToDo</h3>
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={this.filterTodos}
+          value={filter}
+        />
         <ul>
           {
             todos.map(({ title, completed, id }) => (
