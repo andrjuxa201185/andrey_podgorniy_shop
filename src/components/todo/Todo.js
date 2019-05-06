@@ -21,8 +21,10 @@ export class Todo extends Component {
   }
 
   filterTodos = ({ target }) => {
-    if (true) {
+    if (target.value.length > 1) {
       this.setState({ todos: this.originTodos.filter(({ title }) => title.includes(target.value)) });
+    } else {
+      this.setState({ todos: this.originTodos });
     }
 
     this.setState({ filter: target.value });
