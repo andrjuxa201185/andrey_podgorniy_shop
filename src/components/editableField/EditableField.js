@@ -4,7 +4,7 @@ import './editableField.scss';
 export class EditableField extends Component {
   state = {
     isHidden: true,
-    value: 'input value...',
+    value: '',
   }
 
   changeField = ({ target }) => {
@@ -14,7 +14,9 @@ export class EditableField extends Component {
   changeHidden = () => {
     const { isHidden, value } = this.state;
     const { fn } = this.props;
-    fn && fn(value);
+    if (fn) {
+      fn(value);
+    }
     this.setState({ isHidden: !isHidden });
   }
 
@@ -24,18 +26,21 @@ export class EditableField extends Component {
     return (
       <div className="editable-field">
         <h3>EditableField</h3>
-        <input
-          className={isHidden ? 'hidden' : 'show'}
-          type="text"
-          value={value}
-          onChange={this.changeField}
-          onBlur={this.changeHidden}
-        />
-        <span
-          className={isHidden ? 'show' : 'hidden'}
-          onClick={this.changeHidden}
-        >{value}
-        </span>
+        { isHidden ? (
+          <input
+            type="text"
+            placeholder="input value..."
+            value={value}
+            onChange={this.changeField}
+            onBlur={this.changeHidden}
+          />
+        ) : (
+          <span
+            onClick={this.changeHidden}
+          >{value}
+          </span>
+        )
+        }
       </div>
     );
   }

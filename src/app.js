@@ -5,7 +5,7 @@ import { Header } from './components/header/Header';
 import { Main } from './components/main/Main';
 import { Footer } from './components/footer/Footer';
 import { Tasklist } from './components/tasklist/Tasklist';
-import { Usercabinet } from './components/usercabinet/Usercabinet';
+import { Usercabinet } from './components/usercabinet';
 import './components/style/__variables.scss';
 
 const App = () => (

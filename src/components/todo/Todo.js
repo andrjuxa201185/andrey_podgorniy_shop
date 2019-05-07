@@ -22,12 +22,13 @@ export class Todo extends Component {
 
   filterTodos = ({ target }) => {
     if (target.value.length > 1) {
-      this.setState({ todos: this.originTodos.filter(({ title }) => title.includes(target.value)) });
+      this.setState({
+        todos: this.originTodos.filter(({ title }) => title.includes(target.value)),
+        filter: target.value
+      });
     } else {
-      this.setState({ todos: this.originTodos });
+      this.setState({ todos: this.originTodos, filter: target.value });
     }
-
-    this.setState({ filter: target.value });
   }
 
   render() {

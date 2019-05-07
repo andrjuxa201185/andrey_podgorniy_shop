@@ -5,11 +5,8 @@
   span, input {
     background-color: rgb(238, 200, 186);
     font-size: 24px;
-  }
-  .hidden {
-    display: none;
-  }
-  .show {
-    display: block;
+    min-height: 20px;
+    min-width: 100px;
+    display: inline-block;
   }
 }

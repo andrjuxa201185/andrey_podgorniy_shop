@@ -1,9 +1,8 @@
 import { Component } from 'react';
 import './usercabinet.scss';
 
+// eslint-disable-next-line react/prefer-stateless-function
 export class Usercabinet extends Component {
-  state = {}
-
   render() {
     const {
       name, numCategories, numPublished, numProducts
