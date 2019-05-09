@@ -1,16 +1,13 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import { Header } from './components/header/Header';
 import { Main } from './components/main/Main';
-import { Footer } from './components/footer/Footer';
-import { Tasklist } from './components/tasklist/Tasklist';
+import { Tasklist } from './components/tasklist';
 import { Usercabinet } from './components/usercabinet';
 import './components/style/__variables.scss';
 
 const App = () => (
   <>
-    <Header user="aaaaaaa" />
     <Main />
     <Tasklist />
     <Usercabinet
@@ -19,7 +16,6 @@ const App = () => (
       numPublished={3}
       numProducts={5}
     />
-    <Footer />
   </>
 );
 

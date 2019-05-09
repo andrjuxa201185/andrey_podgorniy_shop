@@ -1,19 +1,22 @@
-/* eslint-disable no-console */
+/* eslint-disable padded-blocks */
 import './main.scss';
-import { Form } from '../form';
-import { EditableField } from '../editableField/EditableField';
-import { Todo } from '../todo/Todo';
+import { Tabs, Tab } from '../tabs';
 
+// eslint-disable-next-line arrow-body-style
 export const Main = () => {
-  const fn = (text) => {
-    console.log(text);
-  };
 
   return (
     <main className="main main_appearence">
-      <Form />
-      <EditableField fn={fn} />
-      <Todo />
+      <Tabs>
+        <Tab title="One">
+          <h2>title1</h2>
+          <p>Lorem ipsum dolor sit ame</p>
+        </Tab>
+        <Tab title="Two">
+          <h2>title2</h2>
+          <p>Lorem ipsumrehsr dolor sit ame</p>
+        </Tab>
+      </Tabs>
     </main>
   );
 };
