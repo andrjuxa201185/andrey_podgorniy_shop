@@ -1,4 +1,11 @@
+.tabs {
+  width: 50%;
+  padding: 20px;
+  box-shadow: 0 0 3px 3px grey;
+  background-color: #eee;
+}
 .nav-tab {
+  border-bottom: solid 1px gray;
   ul {
     margin: 0;
     padding: 0;
