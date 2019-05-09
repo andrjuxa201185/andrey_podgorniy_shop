@@ -1,9 +1,27 @@
+import PropTypes from 'prop-types';
 import { TabNav } from './TabNav';
 
 export const Tab = () => null;
 
 export class Tabs extends Component {
-  state = { id: 0 }
+  // eslint-disable-next-line react/destructuring-assignment
+  state = { id: this.props.selectedIndex } // <-- please tell me, how I can this destructuring???
+
+  static getDerivedStateFromProps(nextProps, state) {
+    if (nextProps.selectedIndex.length !== state.id.length) {
+      return { id: nextProps.selectedIndex };
+    }
+
+    return null;
+  }
+
+  static propTypes = {
+    selectedIndex: PropTypes.number
+  }
+
+  static defaultProps = {
+    selectedIndex: 1
+  }
 
   clickTab = (id) => {
     this.setState({ id });
