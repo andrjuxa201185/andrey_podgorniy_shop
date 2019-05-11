@@ -10,7 +10,7 @@ export const Main = () => {
 
   return (
     <main className="main main_appearence">
-      <Tabs selectedIndex={1}>
+      <Tabs>
         <Tab title="One">
           <Users />
         </Tab>
