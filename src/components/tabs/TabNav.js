@@ -6,7 +6,6 @@ export const TabNav = ({ list, select, id }) => {
     e.preventDefault();
   };
 
-
   return (
     <nav className="nav-tab">
       <ul>{list.map((title, index) => (
