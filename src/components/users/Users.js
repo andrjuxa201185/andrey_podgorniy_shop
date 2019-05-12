@@ -38,7 +38,7 @@ export const Users = () => {
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(resp => resp.json())
-      .then(users => setUsers(users));
+      .then(setUsers);
   }, []);
 
   return (
