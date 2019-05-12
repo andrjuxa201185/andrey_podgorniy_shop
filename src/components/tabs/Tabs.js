@@ -1,9 +1,33 @@
+/* eslint-disable react/destructuring-assignment */
+import PropTypes from 'prop-types';
 import { TabNav } from './TabNav';
 
 export const Tab = () => null;
 
 export class Tabs extends Component {
-  state = { id: 0 }
+  state = { id: undefined }
+
+  componentDidUpdate(prevProps) {
+    const { selectedIndex } = this.props;
+    if (prevProps.selectedIndex !== selectedIndex) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ id: selectedIndex });
+    }
+
+    return null;
+  }
+
+  componentDidMount() {
+    this.setState({ id: this.props.selectedIndex });
+  }
+
+  static propTypes = {
+    selectedIndex: PropTypes.number
+  }
+
+  static defaultProps = {
+    selectedIndex: 1
+  }
 
   clickTab = (id) => {
     this.setState({ id });

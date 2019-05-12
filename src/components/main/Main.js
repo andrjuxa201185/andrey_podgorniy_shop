@@ -1,20 +1,21 @@
-/* eslint-disable padded-blocks */
+/* eslint-disable arrow-body-style */
 import './main.scss';
 import { Tabs, Tab } from '../tabs';
+import { Users } from '../users';
+import { Images } from '../images';
 
-// eslint-disable-next-line arrow-body-style
+// eslint-disable-next-line padded-blocks
 export const Main = () => {
+
 
   return (
     <main className="main main_appearence">
       <Tabs>
         <Tab title="One">
-          <h2>title1</h2>
-          <p>Lorem ipsum dolor sit ame</p>
+          <Users />
         </Tab>
         <Tab title="Two">
-          <h2>title2</h2>
-          <p>Lorem ipsumrehsr dolor sit ame</p>
+          <Images />
         </Tab>
       </Tabs>
     </main>
