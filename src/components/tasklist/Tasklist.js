@@ -1,9 +1,22 @@
 import './tasklist.scss';
-import { useState, useEffect } from 'react';
 import { Tabs, Tab } from '../tabs';
+import { Todolist } from '../todolist';
 
-export const Tasklist = () => {
+export const Tasklist = ({ list }) => {
+  const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+
   return (
-    <div>tasklist</div>
+    <Tabs>
+      {
+        list.map((item, index) => (
+          <Tab
+            key={index}
+            title={days[index]}
+          >
+            <Todolist list={item} />
+          </Tab>
+        ))
+      }
+    </Tabs>
   );
 };
