@@ -1,12 +1,19 @@
+import { useState, useEffect } from 'react';
 import './tasklist.scss';
 import { Tabs, Tab } from '../tabs';
 import { Todolist } from '../todolist';
 
 export const Tasklist = ({ list }) => {
+  const [day, setDay] = useState(new Date().getDay() + 6);
+
+  useEffect(() => {
+    setDay(new Date().getDay() + 6);
+  }, [new Date().getDay()]);
+
   const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
   return (
-    <Tabs>
+    <Tabs selectedIndex={day}>
       {
         list.map((item, index) => (
           <Tab

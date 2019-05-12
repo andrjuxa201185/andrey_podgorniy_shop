@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TabNav } from './TabNav';
 
 export const Tab = () => null;
 
 export const Tabs = ({ selectedIndex = 1, children }) => {
   const [id, setId] = useState(selectedIndex);
+
+  useEffect(() => {
+    setId(selectedIndex);
+  }, [selectedIndex]);
 
   const clickTab = id => setId(id);
 
