@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './editableField.scss';
 
-export const EditableField = () => {
+export const EditableField = ({ type }) => {
   const [isHidden, setIsHidden] = useState(true);
   const [value, setValue] = useState('');
 
@@ -17,8 +17,7 @@ export const EditableField = () => {
     <div className="editablefield">
       { isHidden ? (
         <input
-          type="text"
-          placeholder="input value..."
+          type={type}
           value={value}
           onChange={changeField}
           onBlur={changeHidden}
@@ -33,24 +32,3 @@ export const EditableField = () => {
     </div>
   );
 };
-
-
-// export class EditableField extends Component {
-//   state = {
-//     isHidden: true,
-//     value: '',
-//   }
-
-//   changeField = ({ target }) => {
-//     this.setState({ value: target.value });
-//   }
-
-//   changeHidden = () => {
-//     const { isHidden, value } = this.state;
-//     const { fn } = this.props;
-//     if (fn) {
-//       fn(value);
-//     }
-//     this.setState({ isHidden: !isHidden });
-//   }
-// }

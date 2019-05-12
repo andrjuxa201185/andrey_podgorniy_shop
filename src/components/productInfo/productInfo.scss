@@ -1,1 +1,15 @@
-.productinfo {}
+.productinfo {
+  width: 300px;
+  border: solid 1px grey;
+  padding: 20px;
+  margin: 20px;
+  &>div {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    &>span {
+      display: inline-block;
+      width: 100px;
+    }
+  }
+}
