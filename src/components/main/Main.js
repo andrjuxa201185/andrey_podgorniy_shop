@@ -6,7 +6,6 @@ import { Images } from '../images';
 // eslint-disable-next-line padded-blocks
 export const Main = () => {
 
-
   return (
     <main className="main main_appearence">
       <Tabs>
