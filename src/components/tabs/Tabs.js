@@ -24,6 +24,7 @@ export const Tabs = ({ selectedIndex = 1, children }) => {
         list={links}
       />
       <div className="tab-content">{currentTab}</div>
+      <button className="add-new">Добавить новый</button>
     </div>
   );
 };
