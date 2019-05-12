@@ -3,6 +3,7 @@ import './main.scss';
 import { Tabs, Tab } from '../tabs';
 import { Users } from '../users';
 import { Images } from '../images';
+import { EditableField } from '../editableField';
 // eslint-disable-next-line padded-blocks
 export const Main = () => {
 
@@ -16,6 +17,7 @@ export const Main = () => {
           <Images />
         </Tab>
       </Tabs>
+      <EditableField />
     </main>
   );
 };
