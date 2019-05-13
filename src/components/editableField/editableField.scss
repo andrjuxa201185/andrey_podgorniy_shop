@@ -2,9 +2,11 @@
   flex-grow: 1;
   align-self: flex-start;
   span, input {
+    padding: 3px;
     background-color: rgb(238, 200, 186);
     font-size: 18px;
-    height: 20px;
+    min-height: 20px;
+    height: auto;
     box-sizing: border-box;
     width: 100%;
     display: inline-block;

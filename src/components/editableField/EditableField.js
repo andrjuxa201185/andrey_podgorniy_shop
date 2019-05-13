@@ -13,16 +13,27 @@ export const EditableField = ({ type }) => {
     setIsHidden(!isHidden);
   };
 
+  const whatInput = type => (type === 'textarea' ? (
+    <textarea
+      cols="26"
+      rows="5"
+      value={value}
+      onChange={changeField}
+      onBlur={changeHidden}
+    >{value}
+    </textarea>
+  ) : (
+    <input
+      type={type}
+      value={value}
+      onChange={changeField}
+      onBlur={changeHidden}
+    />
+  ));
+
   return (
     <div className="editablefield">
-      { isHidden ? (
-        <input
-          type={type}
-          value={value}
-          onChange={changeField}
-          onBlur={changeHidden}
-        />
-      ) : (
+      { isHidden ? whatInput(type) : (
         <span
           onClick={changeHidden}
         >{value}

@@ -20,7 +20,7 @@ export const ProductInfo = () => {
 
       <div className="description">
         <span>Description:</span>
-        <EditableField type="text" />
+        <EditableField type="textarea" />
       </div>
 
       <button>SAVE</button>
