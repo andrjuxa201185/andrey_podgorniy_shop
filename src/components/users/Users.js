@@ -1,32 +1,22 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import './users.scss';
 
-export class Users extends Component {
-  state = {
-    users: []
-  }
+export const Users = () => {
+  const [users, setUsers] = useState([]);
 
-  getUsers = () => {
+  useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(resp => resp.json())
-      .then(users => this.setState({ users }));
-  }
+      .then(setUsers);
+  }, []);
 
-  componentDidMount() {
-    this.getUsers();
-  }
-
-  render() {
-    const { users } = this.state;
-
-    return (
-      <ul className="users">
-        {
-          users.map(({ name, id }) => (
-            <li key={id}>{name}</li>
-          ))
-        }
-      </ul>
-    );
-  }
-}
+  return (
+    <ul className="users">
+      {
+        users.map(({ name, id }) => (
+          <li key={id}>{name}</li>
+        ))
+      }
+    </ul>
+  );
+};

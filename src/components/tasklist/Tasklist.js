@@ -1,28 +1,29 @@
+import { useState, useEffect } from 'react';
 import './tasklist.scss';
+import { Tabs, Tab } from '../tabs';
+import { Todolist } from '../todolist';
 
-export class Tasklist extends Component {
-  state = {
-    userName: 'userName',
-    tasks: 10,
-    doneTasks: 3,
-    progressTasks: 5,
-    waitingTasks: 1,
-  }
+export const Tasklist = ({ list }) => {
+  const [day, setDay] = useState((new Date().getDay() + 6) % 7);
 
-  render() {
-    const {
-      userName, tasks, doneTasks, progressTasks, waitingTasks
-    } = this.state;
+  useEffect(() => {
+    setDay((new Date().getDay() + 6) % 7);
+  }, [new Date().getDay()]);
 
-    return (
-      <div className="tasklist">
-        <h3>Hello, {userName}</h3>
-        <p>You have {tasks} tasks</p>
-        <p>Done: {doneTasks}</p>
-        <p>In progress: {progressTasks}</p>
-        <p>Waiting: {waitingTasks}</p>
-        <a href="/">Go to the task list</a>
-      </div>
-    );
-  }
-}
+  const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+
+  return (
+    <Tabs selectedIndex={day}>
+      {
+        list.map((item, index) => (
+          <Tab
+            key={index}
+            title={days[index]}
+          >
+            <Todolist list={item} />
+          </Tab>
+        ))
+      }
+    </Tabs>
+  );
+};

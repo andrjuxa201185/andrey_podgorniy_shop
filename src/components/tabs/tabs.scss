@@ -1,23 +1,36 @@
 .tabs {
-  width: 50%;
+  margin: 20px;
+  width: fit-content;
   padding: 20px;
   box-shadow: 0 0 3px 3px grey;
   background-color: #eee;
-}
-.nav-tab {
-  border-bottom: solid 1px gray;
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    li {
-      margin: 0 20px;
+  .nav-tab {
+    border-bottom: solid 1px gray;
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      li {
+        border: solid 1px lightgray;
+        &.active {
+          border: solid 1px grey;
+        }
+        a {
+          padding: 10px 20px;
+          display: block;
+          text-decoration: none;
+          color: inherit;
+        }
+      }
+      padding: 10px 15px;
+      background-color: #eee;
     }
-    a {
-      display: block;
-    }
-    padding: 10px 15px;
-    background-color: #eee;
+  }
+  .add-new {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }
 }
