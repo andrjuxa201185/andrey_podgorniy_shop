@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import { Header } from './components/header';
 import { Pages } from './pages';
-
 import { Main } from './components/main/Main';
-import './components/style/__variables.scss';
+
 
 class App extends Component {
   state = {
@@ -16,11 +16,16 @@ class App extends Component {
     this.setState({ user });
   }
 
+  onLogout = () => {
+    this.setState({ user: null });
+  }
+
   render() {
     const { user } = this.state;
 
     return (
       <>
+        <Header user={user} onLogout={this.onLogout} />
         <Main>
           <Pages onLogin={this.onLogin} user={user} />
         </Main>

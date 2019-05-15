@@ -1,27 +1,41 @@
-/* eslint-disable padded-blocks */
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
-import { Users } from './users';
+// import { HomeAuth } from './homeAuth';
+import { Usercabinet } from './usercabinet';
 import { Login } from './login';
 
-// eslint-disable-next-line arrow-body-style
-export const Pages = ({ onLogin }) => {
-
-  return (
-    <Switch>
-      <Route
-        path="/"
-        exact
-        component={() => <Link to="/login">link</Link>}
-      />
-      <Route
-        path="/users"
-        component={Users}
-      />
-      <Route
-        path="/login"
-        component={() => <Login onLogin={onLogin} />}
-      />
-    </Switch>
-  );
-};
+export const Pages = ({ onLogin, user }) => (
+  user
+    ? (
+      <Switch>
+        <Route
+          path="/"
+          exact
+          component={Usercabinet}
+        />
+        <Redirect
+          from="/login"
+          to="/"
+        />
+        <Route
+          render={({ location }) => <h1>Requested url <mark>{location.pathname}</mark> not found</h1>}
+        />
+      </Switch>
+    )
+    : (
+      <Switch>
+        <Route
+          path="/"
+          exact
+          component={Usercabinet}
+        />
+        <Route
+          path="/login"
+          render={props => <Login onLogin={onLogin} {...props} />}
+        />
+        <Route
+          render={({ location }) => <h1>Requested url <mark>{location.pathname}</mark> not found</h1>}
+        />
+      </Switch>
+    )
+);

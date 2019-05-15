@@ -2,9 +2,6 @@
   &.main_appearence {
     display: flex;
     flex-wrap: wrap;
-    margin-top: var(--indent);
-    padding: var(--indent);
-    background-color: var(--lightGrey);
   }
   .red {
     color: red;

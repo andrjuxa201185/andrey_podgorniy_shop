@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 export const Login = ({ onLogin }) => {
   const onSubmit = (e) => {
     e.preventDefault();
@@ -14,20 +12,21 @@ export const Login = ({ onLogin }) => {
   };
 
   return (
-    <form action="" onSubmit={onSubmit}>
+    <form action="#" onSubmit={onSubmit}>
       <input
+        required
         type="text"
         name="email"
-        required
-        defaultValue="admin.com"
-      /><br />
-
+        defaultValue="admin@a.com"
+      />
+      <br /><br />
       <input
+        required
         type="password"
         name="password"
-        required
         defaultValue="admin"
-      /><br />
+      />
+      <br /><br />
 
       <input type="submit" value="Login" />
     </form>
