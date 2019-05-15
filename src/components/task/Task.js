@@ -19,5 +19,4 @@ export const Task = () => {
       <a href="/">Go to the task list</a>
     </div>
   );
-  
-}
+};
