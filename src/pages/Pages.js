@@ -10,6 +10,6 @@ export const Pages = ({ onLogin, user }) => (
       <Userlogin />
     )
     : (
-      <Userlogout onLogin={onLogin} />
+      <Userlogout onLogin={onLogin} user={user} />
     )
 );

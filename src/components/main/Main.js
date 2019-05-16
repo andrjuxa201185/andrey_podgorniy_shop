@@ -5,7 +5,7 @@ import './main.scss';
 export const Main = ({ children }) => {
 
   return (
-    <main className="main main_appearence">
+    <main className="main">
       <section className="main-box">
         {children}
       </section>
