@@ -16,9 +16,18 @@ export const Login = ({ onLogin, user }) => {
       password: e.target.password.value,
     };
 
-    setTimeout(() => {
-      onLogin(data);
-    }, 3000);
+    fetch('http://localhost:8086/public/login', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-type': 'application/json; charset=utf-8'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(r => r.json())
+      .then((user) => {
+        onLogin(user);
+      });
   };
 
   return (

@@ -37,7 +37,8 @@ module.exports = {
   entry: '../src/app.js',
   context: path.resolve(__dirname, '../src'),
   output: {
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: '/'
   },
   mode: isProduction ? 'production' : 'development',
 

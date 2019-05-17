@@ -7,7 +7,7 @@ import { Userlogout } from './userLogout';
 export const Pages = ({ onLogin, user }) => (
   user
     ? (
-      <Userlogin />
+      <Userlogin user={user} />
     )
     : (
       <Userlogout onLogin={onLogin} user={user} />
