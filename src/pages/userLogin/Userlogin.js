@@ -8,7 +8,7 @@ export const Userlogin = () => (
     <Route
       path="/"
       exact
-      component={() => <Usercabinet />}
+      component={Usercabinet}
     />
     <Redirect
       from="/login"
