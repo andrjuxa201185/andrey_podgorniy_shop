@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Loader } from '../../components/loader';
+import { server } from '../../services';
 
 export const Login = ({ onLogin, user }) => {
   const [loader, setLoader] = useState(false);
@@ -16,18 +17,8 @@ export const Login = ({ onLogin, user }) => {
       password: e.target.password.value,
     };
 
-    fetch('http://localhost:8086/public/login', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-type': 'application/json; charset=utf-8'
-      },
-      body: JSON.stringify(data)
-    })
-      .then(r => r.json())
-      .then((user) => {
-        onLogin(user);
-      });
+    server.post('public/login', data)
+      .then(onLogin);
   };
 
   return (
