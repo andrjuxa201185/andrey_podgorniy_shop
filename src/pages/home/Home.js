@@ -1,15 +1,10 @@
-import { Button } from '../../components/button';
+import './home.scss';
 
-// eslint-disable-next-line arrow-body-style
-export const Home = ({ history }) => {
-  return (
-    <div className="home">
-      <h1>home</h1>
-      <button
-        onClick={() => history.push('/categories')}
-      >GO to categories
-      </button>
-      <Button to="/categories" />
-    </div>
-  );
-};
+export const Home = () => (
+  <article>
+    <h1>Welcome to the Toy market</h1>
+    <p>We are pleased to announce the launch of our brand new website!</p>
+    <p>From the 1st December our company starts to deliver online order.</p>
+    <p>First hundred customers gets a 10% discount!</p>
+  </article>
+);

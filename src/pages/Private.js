@@ -1,26 +1,27 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Notfound } from '../notfound';
-import { Usercabinet } from '../usercabinet';
-import { Home } from '../home/Home';
-import { Category } from '../category';
+import { Notfound } from './notfound';
 
+import { HomeAuth } from './homeAuth';
+import { Categories } from './categories';
+import { Category } from './category';
+// import { User } from './user';
 
-export const Userlogin = ({ user }) => (
+export const Private = ({ user }) => (
   <Switch>
     <Route
       path="/"
       exact
-      component={props => <Home {...props} />}
+      render={() => <HomeAuth user={user} />}
     />
     <Route
       path="/categories"
       exact
-      component={() => <Usercabinet user={user} />}
+      render={Categories}
     />
     <Route
       path="/categories/:id"
       exact
-      component={Category}
+      render={Category}
     />
     <Redirect
       from="/login"

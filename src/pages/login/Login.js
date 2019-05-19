@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useState, useEffect } from 'react';
 import { Loader } from '../../components/loader';
 import { server } from '../../services';

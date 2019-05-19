@@ -1,19 +1,24 @@
-import { Redirect } from 'react-router-dom';
-import { useState } from 'react';
+import './button.scss';
 
-export const Button = ({ to }) => {
-  const [goTo, setGoTo] = useState(false);
-  const onClick = () => setGoTo(true);
-
+export const Button = ({ callback, text, disabled, className }) => {
+  const onClick = (e) => {
+    e.preventDefault();
+    callback();
+  };
 
   return (
-    goTo
-      ? <Redirect to={to} />
-      : (
-        <button
-          onClick={onClick}
-        >Go to ...
-        </button>
-      )
+    <a
+      href="#"
+      className={`button ${disabled ? 'button-disabled' : ''} ${className}`}
+      onClick={onClick}
+    >
+      {text}
+    </a>
   );
+};
+
+Button.defaultProps = {
+  callback: _ => _,
+  text: 'Ok',
+  className: ''
 };

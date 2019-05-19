@@ -1,20 +1,20 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import { Login } from '../login';
-// import { Usercabinet } from '../usercabinet';
-import { Category } from '../category';
+import { Login } from './login';
+import { Home } from './home';
+import { Category } from './category';
 
-export const Userlogout = ({ onLogin, user }) => (
+export const Public = ({ onLogin, user }) => (
   <Switch>
+    <Route
+      exact
+      path="/"
+      render={Home}
+    />
     <Route
       path="/login"
       render={props => <Login onLogin={onLogin} user={user} {...props} />}
     />
-    {/* <Route
-      path="/categories"
-      exact
-      component={() => <Usercabinet user={user} />}
-    /> */}
     <Route
       path="/categories/:id"
       exact

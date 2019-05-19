@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import './usercabinet.scss';
+import { Link } from 'react-router-dom';
+import './homeAuth.scss';
 
-export const Usercabinet = ({ user }) => {
+export const HomeAuth = ({ user }) => {
   const [name, setName] = useState('');
   const [numCategories, setNumCategories] = useState(0);
   const [numPublished, setNumPublished] = useState(0);
@@ -21,11 +22,11 @@ export const Usercabinet = ({ user }) => {
   }, []);
 
   return (
-    <div className="usercabinet">
+    <div className="home-auth">
       <p>Hello, {name}</p>
       <p>You have {numCategories} categories ({numPublished} published)</p>
       <p>You have {numProducts} products</p>
-      <a href="/">Go to categories</a>
+      <Link to="/categories">to categories</Link>
     </div>
   );
 };

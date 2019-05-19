@@ -1,15 +1,15 @@
 // import { Route, Switch, Redirect } from 'react-router-dom';
 
-import { Userlogin } from './userLogin';
-import { Userlogout } from './userLogout';
+import { Private } from './Private';
+import { Public } from './Public';
 
 
 export const Pages = ({ onLogin, user }) => (
   user
     ? (
-      <Userlogin user={user} />
+      <Private user={user} />
     )
     : (
-      <Userlogout onLogin={onLogin} user={user} />
+      <Public onLogin={onLogin} />
     )
 );
