@@ -26,7 +26,7 @@ export const HomeAuth = ({ user }) => {
       <p>Hello, {name}</p>
       <p>You have {numCategories} categories ({numPublished} published)</p>
       <p>You have {numProducts} products</p>
-      <Link to="/categories">to categories</Link>
+      <Link to="/categories">go to categories</Link>
     </div>
   );
 };

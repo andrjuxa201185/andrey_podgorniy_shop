@@ -19,6 +19,10 @@ export const Header = ({ user, onLogout }) => {
           ? (
             <div>
               <mark>{user.email}</mark>
+              <Link
+                to="/user"
+              >Profil
+              </Link>
               <a
                 href="/"
                 onClick={logoutHandler}
