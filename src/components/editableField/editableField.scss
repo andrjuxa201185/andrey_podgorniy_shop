@@ -3,13 +3,18 @@
   align-self: flex-start;
   span, input {
     padding: 3px;
-    background-color: rgb(238, 200, 186);
-    font-size: 18px;
-    min-height: 20px;
+    font-size: 14px;
+    min-height: 35px;
+    background-color: white;
     height: auto;
     box-sizing: border-box;
-    width: 100%;
+    min-width: 100%;
     display: inline-block;
     border: none;
+  }
+  textarea {
+    resize: none;
+    width: 100%;
+    box-sizing: border-box;
   }
 }

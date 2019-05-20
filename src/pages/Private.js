@@ -6,6 +6,7 @@ import { Categories } from './categories';
 import { Category } from './category';
 import { User } from './user';
 import { Products } from './products';
+import { Product } from './product';
 
 export const Private = ({ user }) => (
   <Switch>
@@ -23,6 +24,11 @@ export const Private = ({ user }) => (
       path="/products"
       exact
       component={Products}
+    />
+    <Route
+      path="/products/:id"
+      exact
+      component={Product}
     />
     <Route
       path="/categories"

@@ -1,10 +1,32 @@
 .products {
   display: flex;
   flex-wrap: wrap;
+  list-style: none;
   .product {
-    width: 15%;
-    border: solid 1px grey;
-    padding: 20px;
+    position: relative;
+    width: 25%;    
     margin: 20px;
+    .description {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: stretch;
+      border: solid 1px grey;
+      .img{
+        height: 100px;
+        width: 70px;
+        margin: 0 auto;
+        background-color: aquamarine;
+      }
+      .setting {
+        display: flex;
+        justify-content: space-between;
+        span{
+          border: solid 1px grey;
+          cursor: pointer;
+          background-color: white;
+        }
+      }
+    }
   }
 }

@@ -1,17 +1,23 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { EditableField } from '../../components/editableField';
 import { server } from '../../services';
 import './products.scss';
 
-
 const Product = (title, id) => (
-  <div key={id} className="product">
-    <div>
-      <span>edit</span>
-      <span>X</span>
-      <div>image</div>
+  <li
+    key={id}
+    className="product"
+  >
+    <div className="description">
+      <div className="setting">
+        <span>edit</span>
+        <span>X</span>
+      </div>
+      <Link to={`/products/:${id}`} className="img">To Product</Link>
     </div>
-    <h6>{title}</h6>
-  </div>
+    <EditableField type="textarea" val={title} />
+  </li>
 );
 
 export const Products = () => {
@@ -19,25 +25,20 @@ export const Products = () => {
 
   useEffect(() => {
     server.get('public/products')
-      // .then(console.log);
       .then(setProducts);
   }, []);
 
   return (
     <div>
       <h3>Products</h3>
-      <div className="products">
+      <ul className="products">
         {
           products.map(({ title, id }) => (
             Product(title, id)
           ))
         }
-      </div>
+      </ul>
       <button>ADD NEW</button>
     </div>
   );
 };
-
-// {title: "Marvel Avengers Titan Hero Series Hulk"
-// price: "9.7"
-// id: 8}
