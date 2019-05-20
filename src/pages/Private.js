@@ -21,7 +21,7 @@ export const Private = ({ user }) => (
     <Route
       path="/categories"
       exact
-      render={Categories}
+      component={Categories}
     />
     <Route
       path="/categories/:id"
