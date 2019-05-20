@@ -5,6 +5,7 @@ import { HomeAuth } from './homeAuth';
 import { Categories } from './categories';
 import { Category } from './category';
 import { User } from './user';
+import { Products } from './products';
 
 export const Private = ({ user }) => (
   <Switch>
@@ -17,6 +18,11 @@ export const Private = ({ user }) => (
       path="/user"
       exact
       render={() => <User user={user} />}
+    />
+    <Route
+      path="/products"
+      exact
+      component={Products}
     />
     <Route
       path="/categories"

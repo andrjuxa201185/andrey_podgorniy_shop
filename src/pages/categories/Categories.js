@@ -6,7 +6,7 @@ export const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    server.get('public/products')
+    server.get('public/categories')
       .then(setCategories);
   }, []);
 
