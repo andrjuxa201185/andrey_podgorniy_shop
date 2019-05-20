@@ -1,30 +1,26 @@
+import { useState, useEffect } from 'react';
 import { server } from '../../services';
 import './categories.scss';
 
-export class Categories extends Component {
-  state = {
-    categories: []
-  }
+export const Categories = () => {
+  const [categories, setCategories] = useState([]);
 
-  componentDidMount = () => {
+  useEffect(() => {
     server.get('public/products')
-      .then(console.log);
-  }
+      .then(setCategories);
+  }, []);
 
-  render() {
-    const categories = this.state;
-
-    return (
-      <div className="categories">
-        <ul>
-          {/* {
-            categories.map(({ title, id }) => (
-              <li key={id}>{title}</li>
-            ))
-          } */}
-          thd
-        </ul>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="page-categories">
+      <h3>Categories</h3>
+      <ul>
+        {
+          categories.map(({ title, id }) => (
+            <li key={id}>{title}</li>
+          ))
+        }
+      </ul>
+      <button>ADD NEW</button>
+    </div>
+  );
+};
