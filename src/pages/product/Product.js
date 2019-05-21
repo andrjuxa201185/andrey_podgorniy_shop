@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { server } from '../../services';
 import { EditableField } from '../../components/editableField';
+import './product.scss';
 
 export const Product = ({ match }) => {
   const [product, setProduct] = useState({});
@@ -12,7 +13,7 @@ export const Product = ({ match }) => {
   return (
     <div className="product-info">
       <h3>{product.title}</h3>
-      <p>Price: ${product.price}</p>
+      <p>Price: <span>${product.price}</span></p>
       <EditableField type="textarea" val="description" />
       <button>SAVE</button>
     </div>
