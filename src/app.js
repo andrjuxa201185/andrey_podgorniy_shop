@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Header } from './components/header';
 import { Pages } from './pages';
 import { Main } from './components/main/Main';
+import './main.scss';
 
 
 class App extends Component {

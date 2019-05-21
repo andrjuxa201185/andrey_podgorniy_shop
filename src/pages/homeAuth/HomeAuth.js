@@ -4,24 +4,18 @@ import './homeAuth.scss';
 import { server } from '../../services';
 
 export const HomeAuth = ({ user }) => {
-  const [numCategories, setNumCategories] = useState(0);
-  const [numPublished, setNumPublished] = useState(0);
-  const [numProducts, setNumProducts] = useState(0);
+  const [categories, setCategories] = useState({});
 
   useEffect(() => {
     server.get('shop_info')
-      .then((info) => {
-        setNumCategories(info.categories);
-        setNumPublished(info.publishedCategories);
-        setNumProducts(info.products);
-      });
+      .then(setCategories);
   }, []);
 
   return (
     <div className="home-auth">
       <p>Hello, {user.firstName}</p>
-      <p>You have {numCategories} categories ({numPublished} published)</p>
-      <p>You have {numProducts} products</p>
+      <p>You have {categories.categories} categories ({categories.publishedCategories} published)</p>
+      <p>You have {categories.products} products</p>
       <Link to="/categories">go to categories</Link>
     </div>
   );
