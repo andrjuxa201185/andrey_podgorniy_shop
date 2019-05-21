@@ -1,24 +1,24 @@
 /* eslint-disable no-console */
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import { Loader } from '../../components/loader';
-import { server } from '../../services';
+import { loginUserService } from '../../services/userService';
 
-export const Login = ({ onLogin, user }) => {
-  const [loader, setLoader] = useState(false);
+export const Login = ({ onLogin, user, isLoading }) => {
+  // const [loader, setLoader] = useState(false);
 
-  useEffect(() => {
-    setLoader(false);
-  }, [user]);
+  // useEffect(() => {
+  //   setLoader(false);
+  // }, [user]);
 
   const onSubmit = (e) => {
-    setLoader(true);
+    // setLoader(true);
     e.preventDefault();
     const data = {
       email: e.target.email.value,
       password: e.target.password.value,
     };
 
-    server.post('public/login', data)
+    loginUserService(data)
       .then(onLogin);
   };
 
@@ -42,7 +42,7 @@ export const Login = ({ onLogin, user }) => {
 
         <input type="submit" value="Login" />
       </form>
-      {loader && <Loader />}
+      {isLoading && <Loader />}
     </>
   );
 };

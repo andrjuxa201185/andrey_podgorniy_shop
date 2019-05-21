@@ -1,9 +1,9 @@
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
 /* eslint-disable object-curly-newline */
-import { NavLink, Link } from 'react-router-dom';
+
+import { NavLink } from 'react-router-dom';
 
 import './navigation.scss';
+// import { server } from '../../services';
 
 const items = [
   { label: 'Home', id: '', icon: 'home', auth: false },
@@ -14,12 +14,20 @@ const items = [
   { label: 'Contacts', id: 'contacts', icon: 'map-signs' }
 ];
 
-export const Navigation = ({ user, info }) => {
+// const [isLogout, setLogoutState] = React.useState(false);
+
+
+export const Navigation = ({ user, info, onLogout }) => {
   let filteredItems = items.filter(item => !item.auth);
   const amount = info ? ` (${info.categories}/${info.products})` : '';
+
   const logoutHandler = (e) => {
     e.preventDefault();
-    console.log('Logout');
+    // server.get('logout')
+    //   .then(() => {
+    //     setLogoutState(true);
+    //     onLogout(null);
+    //   });
   };
 
   if (user) {

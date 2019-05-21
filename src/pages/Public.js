@@ -4,7 +4,7 @@ import { Login } from './login';
 import { Home } from './home';
 import { Category } from './category';
 
-export const Public = ({ onLogin, user }) => (
+export const Public = ({ onLogin, user, isLoading }) => (
   <Switch>
     <Route
       exact
@@ -13,7 +13,7 @@ export const Public = ({ onLogin, user }) => (
     />
     <Route
       path="/login"
-      render={props => <Login onLogin={onLogin} user={user} {...props} />}
+      render={props => <Login onLogin={onLogin} user={user} isLoading={isLoading} {...props} />}
     />
     <Route
       path="/categories/:id"
