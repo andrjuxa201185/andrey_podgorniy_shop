@@ -8,12 +8,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
     .description {
       flex-grow: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      border: solid 1px maroon;
+      border: solid 1px gray;
+      border-radius: 3px;
+      overflow: hidden;
       .img{
         overflow: hidden;
         img {
@@ -32,7 +35,8 @@
         span{
           color: lightgrey;
           cursor: pointer;
-          background-color: maroon;
+          background-color: grey;
+          border-radius: 3px;
         }
       }
     }

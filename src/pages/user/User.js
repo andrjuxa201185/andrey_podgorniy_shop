@@ -1,18 +1,20 @@
-// import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './user.scss';
 
 export const User = ({ user }) => {
-  // const [userInfo, setUserInfo] = useState(user);
-  const { email, firstName, lastName } = user;
+  const [userInfo, setUserInfo] = useState(user);
 
+  useEffect(() => {
+    setUserInfo(user);
+  }, [user]);
 
   return (
     <form className="form">
-      <input type="text" value={email} readOnly />
-      <input type="text" value={firstName} />
-      <input type="text" value={lastName} />
-      <input type="text" placeholder="PASSWORD" />
-      <input type="text" placeholder="REPEAT PASSWORD" />
+      <input type="text" value={userInfo.email} readOnly />
+      <input type="text" defaultValue={userInfo.firstName} />
+      <input type="text" defaultValue={userInfo.lastName} />
+      <input type="password" placeholder="PASSWORD" />
+      <input type="password" placeholder="REPEAT PASSWORD" />
       <button className="sbt" type="submit">SAVE</button>
     </form>
   );
