@@ -3,5 +3,21 @@
   justify-content: space-between; 
   align-items: center; 
   padding: 20px;
-  background-color: coral;
+  background-color: darkslategray;
+  color: lightgrey;
+  a {
+    color: lightgray;
+    text-decoration: none;
+
+  }
+  .user-info {
+    span {
+      font-size: 20px;
+      margin-right: 20px;
+    }
+    a {
+      font-size: 14px;
+      margin-right: 10px;
+    }
+  }
 }

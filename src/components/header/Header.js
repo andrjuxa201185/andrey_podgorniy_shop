@@ -11,14 +11,18 @@ export const Header = ({ user, onLogout }) => {
 
   return (
     <header className="header">
-      <Link to="/" className="header-logo">HOME</Link>
+      <Link to="/" className="header-logo" title="home"><img src="./images/logo.png" alt="" /></Link>
 
       <Navigation user={user} onLogout={onLogout} />
       {
         user
           ? (
-            <div>
-              <mark>{user.email}</mark>
+            <div className="user-info">
+              <span>{user.email}</span>
+              <Link
+                to="/user"
+              >Profile
+              </Link>
               <a
                 href="/"
                 onClick={logoutHandler}

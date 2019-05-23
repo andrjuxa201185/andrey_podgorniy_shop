@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Loader } from '../../components/loader';
 import { server } from '../../services';
+import './login.scss';
 
 export const Login = ({ onLogin, user }) => {
   const [loader, setLoader] = useState(false);
@@ -24,23 +25,22 @@ export const Login = ({ onLogin, user }) => {
 
   return (
     <>
-      <form action="#" onSubmit={onSubmit}>
+      <form action="#" onSubmit={onSubmit} className="login">
         <input
           required
           type="text"
           name="email"
           defaultValue="admin@a.com"
         />
-        <br /><br />
+
         <input
           required
           type="password"
           name="password"
           defaultValue="admin"
         />
-        <br /><br />
 
-        <input type="submit" value="Login" />
+        <button type="submit" value="Login">login</button>
       </form>
       {loader && <Loader />}
     </>

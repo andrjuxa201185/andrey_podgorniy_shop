@@ -28,7 +28,7 @@ export const Navigation = ({ user, info }) => {
 
   return (
     <nav className="main-nav">
-      <ul className="main-nav__pages">
+      <ul>
         {
           filteredItems
             .map(item => (

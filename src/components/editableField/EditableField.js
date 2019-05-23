@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './editableField.scss';
 
-export const EditableField = ({ type }) => {
+export const EditableField = ({ type = 'text', val = '' }) => {
   const [isHidden, setIsHidden] = useState(true);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(val);
 
   const changeField = ({ target }) => {
     setValue(target.value);
@@ -16,7 +16,7 @@ export const EditableField = ({ type }) => {
   const whatInput = type => (type === 'textarea' ? (
     <textarea
       cols="26"
-      rows="5"
+      rows="2"
       value={value}
       onChange={changeField}
       onBlur={changeHidden}
