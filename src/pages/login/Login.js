@@ -24,23 +24,22 @@ export const Login = ({ onLogin, user, isLoading }) => {
 
   return (
     <>
-      <form action="#" onSubmit={onSubmit}>
+      <form action="#" onSubmit={onSubmit} className="login">
         <input
           required
           type="text"
           name="email"
           defaultValue="admin@a.com"
         />
-        <br /><br />
+
         <input
           required
           type="password"
           name="password"
           defaultValue="admin"
         />
-        <br /><br />
 
-        <input type="submit" value="Login" />
+        <button type="submit" value="Login">login</button>
       </form>
       {isLoading && <Loader />}
     </>

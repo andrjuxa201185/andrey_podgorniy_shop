@@ -1,19 +1,21 @@
-/* eslint-disable padded-blocks */
+import { useState, useEffect } from 'react';
 import './user.scss';
 
 export const User = ({ user }) => {
+  const [userInfo, setUserInfo] = useState(user);
 
-  const { email, firstName, lastName } = user;
+  useEffect(() => {
+    setUserInfo(user);
+  }, [user]);
+
   return (
-    <div className="user">
-      <ul className="user">
-        <li key={email}>{email}</li>
-        <li key={firstName}>{firstName}</li>
-        <li key={lastName}>{lastName}</li>
-        <li key="password">password</li>
-        <li key="passwordAgain">password again</li>
-      </ul>
-      <button>SAVE</button>
-    </div>
+    <form className="form">
+      <input type="text" value={userInfo.email} readOnly />
+      <input type="text" defaultValue={userInfo.firstName} />
+      <input type="text" defaultValue={userInfo.lastName} />
+      <input type="password" placeholder="PASSWORD" />
+      <input type="password" placeholder="REPEAT PASSWORD" />
+      <button className="sbt" type="submit">SAVE</button>
+    </form>
   );
 };

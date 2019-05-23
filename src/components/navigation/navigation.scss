@@ -1,13 +1,12 @@
 .main-nav {
-  .main-nav__pages{
+  ul {
     display: flex;
-    list-style: none;
-  }  
+  }
   li {
     margin-left: 50px;
     font-size: 26px;
   }
   .active {
-    color: green;
+    color: maroon;
   }
 }

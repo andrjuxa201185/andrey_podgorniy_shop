@@ -4,22 +4,6 @@ import { EditableField } from '../../components/editableField';
 import { server } from '../../services';
 import './products.scss';
 
-const Product = (title, id) => (
-  <li
-    key={id}
-    className="product"
-  >
-    <div className="description">
-      <div className="setting">
-        <span>edit</span>
-        <span>X</span>
-      </div>
-      <Link to={`/products/:${id}`} className="img">To Product</Link>
-    </div>
-    <EditableField type="textarea" val={title} />
-  </li>
-);
-
 export const Products = () => {
   const [products, setProducts] = useState([]);
 
@@ -33,8 +17,17 @@ export const Products = () => {
       <h3>Products</h3>
       <ul className="products">
         {
-          products.map(({ title, id }) => (
-            Product(title, id)
+          products.map(({ title, id, image }) => (
+            <li key={id} className="product">
+              <div className="description">
+                <div className="setting">
+                  <span>edit</span>
+                  <span>X</span>
+                </div>
+                <Link to={`/products/:${id}`} className="img"><img src={image || './images/bag.png'} alt="" /></Link>
+              </div>
+              <EditableField type="textarea" val={title} />
+            </li>
           ))
         }
       </ul>
