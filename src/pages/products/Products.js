@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { EditableField } from '../../components/editableField';
-import { server } from '../../services';
+import { getProductsService } from '../../services/productService';
 import './products.scss';
 
 export const Products = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    server.get('public/products')
+    getProductsService()
       .then(setProducts);
   }, []);
 
@@ -24,7 +24,7 @@ export const Products = () => {
                   <span>edit</span>
                   <span>X</span>
                 </div>
-                <Link to={`/products/:${id}`} className="img"><img src={image || './images/bag.png'} alt="" /></Link>
+                <Link to={`/products/${id}`} className="img"><img src={image || './images/bag.png'} alt="" /></Link>
               </div>
               <EditableField type="textarea" val={title} />
             </li>

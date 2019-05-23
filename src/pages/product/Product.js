@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { server } from '../../services';
 import { EditableField } from '../../components/editableField';
+import { getProductService } from '../../services/productService';
 import './product.scss';
 
 export const Product = ({ match }) => {
   const [product, setProduct] = useState({});
   useEffect(() => {
-    server.get(`public/products/${match.params.id.slice(1)}`)
+    getProductService(match.params.id)
       .then(setProduct);
   }, []);
 

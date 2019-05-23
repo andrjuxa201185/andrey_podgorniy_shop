@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { server } from '../../services';
+import { getCategoriesService } from '../../services/categoriesService';
 import './categories.scss';
 
 export const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    server.get('public/categories')
+    getCategoriesService()
       .then(setCategories);
   }, []);
 
