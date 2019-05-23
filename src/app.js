@@ -9,10 +9,8 @@ import { checkUserService } from './services/userService';
 import { Header } from './components/header';
 import { Pages } from './pages';
 import { Main } from './components/main/Main';
-import './main.scss';
-
 import { Loader } from './components/loader';
-
+import './main.scss';
 
 class App extends Component {
   state = {
@@ -41,13 +39,14 @@ class App extends Component {
   }
 
   checkUser() {
+    this.setState({ isLoading: true });
     checkUserService()
       .then((user) => {
         this.onLogin(user);
         this.setState({ isLoading: false });
       })
       .catch(() => {
-        this.setState({ isLoading: true });
+        this.setState({ isLoading: false });
       });
   }
 

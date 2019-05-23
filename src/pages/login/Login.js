@@ -1,25 +1,26 @@
 /* eslint-disable no-console */
-// import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Loader } from '../../components/loader';
 import { loginUserService } from '../../services/userService';
+import './login.scss';
 
-export const Login = ({ onLogin, user, isLoading }) => {
-  // const [loader, setLoader] = useState(false);
-
-  // useEffect(() => {
-  //   setLoader(false);
-  // }, [user]);
+export const Login = ({ onLogin }) => {
+  const [loading, setLoadState] = useState(false);
 
   const onSubmit = (e) => {
-    // setLoader(true);
     e.preventDefault();
     const data = {
       email: e.target.email.value,
       password: e.target.password.value,
     };
 
+    setLoadState(true);
+
     loginUserService(data)
-      .then(onLogin);
+      .then((user) => {
+        setLoadState(false);
+        onLogin(user);
+      });
   };
 
   return (
@@ -41,7 +42,7 @@ export const Login = ({ onLogin, user, isLoading }) => {
 
         <button type="submit" value="Login">login</button>
       </form>
-      {isLoading && <Loader />}
+      <Loader shown={loading} />
     </>
   );
 };

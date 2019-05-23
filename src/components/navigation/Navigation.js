@@ -17,18 +17,18 @@ const items = [
 // const [isLogout, setLogoutState] = React.useState(false);
 
 
-export const Navigation = ({ user, info, onLogout }) => {
+export const Navigation = ({ user }) => {
   let filteredItems = items.filter(item => !item.auth);
-  const amount = info ? ` (${info.categories}/${info.products})` : '';
+  // const amount = info ? ` (${info.categories}/${info.products})` : '';
 
-  const logoutHandler = (e) => {
-    e.preventDefault();
-    // server.get('logout')
-    //   .then(() => {
-    //     setLogoutState(true);
-    //     onLogout(null);
-    //   });
-  };
+  // const logoutHandler = (e) => {
+  //   e.preventDefault();
+  //   server.get('logout')
+  //     .then(() => {
+  //       setLogoutState(true);
+  //       onLogout(null);
+  //     });
+  // };
 
   if (user) {
     filteredItems = items.filter(item => item.auth);

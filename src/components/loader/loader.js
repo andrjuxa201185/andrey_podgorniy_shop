@@ -1,9 +1,9 @@
 import './loader.scss';
 
-export const Loader = isLoading => (
+export const Loader = ({ shown }) => (
   <>
     {
-      !isLoading && <div className="loader" />
+      shown && <div className="loader" />
     }
   </>
 );
