@@ -1,9 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable object-curly-newline */
 
 import { NavLink } from 'react-router-dom';
 
 import './navigation.scss';
-// import { server } from '../../services';
 
 const items = [
   { label: 'Home', id: '', icon: 'home', auth: false },
@@ -17,18 +17,9 @@ const items = [
 // const [isLogout, setLogoutState] = React.useState(false);
 
 
-export const Navigation = ({ user }) => {
+export const Navigation = ({ user, info }) => {
   let filteredItems = items.filter(item => !item.auth);
-  // const amount = info ? ` (${info.categories}/${info.products})` : '';
-
-  // const logoutHandler = (e) => {
-  //   e.preventDefault();
-  //   server.get('logout')
-  //     .then(() => {
-  //       setLogoutState(true);
-  //       onLogout(null);
-  //     });
-  // };
+  const amount = info ? ` (${info.categories}/${info.products})` : '';
 
   if (user) {
     filteredItems = items.filter(item => item.auth);

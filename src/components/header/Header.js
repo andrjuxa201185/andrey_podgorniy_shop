@@ -1,12 +1,17 @@
+import { connect } from 'react-redux';
 import './header.scss';
 import { Link } from 'react-router-dom';
 import { Navigation } from '../navigation';
-import { server } from '../../services';
+import { checkUserService } from '../../services/userService';
+import { removeUser } from '../../store/user';
 
-export const Header = ({ user, onLogout }) => {
+export const HeaderComponent = ({ user, dispatch }) => {
+  const onLogout = () => dispatch(removeUser());
+
   const logoutHandler = (e) => {
     e.preventDefault();
-    server.get('logout').then(() => onLogout(null));
+    checkUserService()
+      .then(() => onLogout(null));
   };
 
   return (
@@ -19,10 +24,7 @@ export const Header = ({ user, onLogout }) => {
           ? (
             <div className="user-info">
               <span>{user.email}</span>
-              <Link
-                to="/user"
-              >Profile
-              </Link>
+              <Link to="/user">Profile</Link>
               <a
                 href="/"
                 onClick={logoutHandler}
@@ -35,3 +37,9 @@ export const Header = ({ user, onLogout }) => {
     </header>
   );
 };
+
+const mapToProps = state => ({
+  user: state.user
+});
+
+export const Header = connect(mapToProps)(HeaderComponent);

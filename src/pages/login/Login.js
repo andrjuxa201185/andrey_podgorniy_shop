@@ -1,10 +1,14 @@
 /* eslint-disable no-console */
 import { useState } from 'react';
+import { connect } from 'react-redux';
 import { Loader } from '../../components/loader';
 import { loginUserService } from '../../services/userService';
-import './login.scss';
+import { setUser } from '../../store/user';
 
-export const Login = ({ onLogin }) => {
+import './login.scss';
+// import { store } from '../../store';
+
+export const LoginComponent = ({ dispatch }) => {
   const [loading, setLoadState] = useState(false);
 
   const onSubmit = (e) => {
@@ -19,7 +23,7 @@ export const Login = ({ onLogin }) => {
     loginUserService(data)
       .then((user) => {
         setLoadState(false);
-        onLogin(user);
+        dispatch(setUser(user));
       });
   };
 
@@ -46,3 +50,5 @@ export const Login = ({ onLogin }) => {
     </>
   );
 };
+
+export const Login = connect()(LoginComponent);
