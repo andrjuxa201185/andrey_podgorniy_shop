@@ -5,6 +5,7 @@ import './product.scss';
 
 export const Product = ({ match }) => {
   const [product, setProduct] = useState({});
+
   useEffect(() => {
     getProductService(match.params.id)
       .then(setProduct);
