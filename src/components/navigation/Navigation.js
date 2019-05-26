@@ -2,7 +2,6 @@
 /* eslint-disable object-curly-newline */
 
 import { NavLink } from 'react-router-dom';
-
 import './navigation.scss';
 
 const items = [

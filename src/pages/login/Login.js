@@ -1,12 +1,9 @@
-/* eslint-disable no-console */
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import { Loader } from '../../components/loader';
 import { loginUserService } from '../../services/userService';
 import { setUser } from '../../store/user';
-
 import './login.scss';
-// import { store } from '../../store';
 
 export const LoginComponent = ({ dispatch }) => {
   const [loading, setLoadState] = useState(false);

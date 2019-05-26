@@ -1,19 +1,11 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
-// import { Provider } from 'react-redux';
-// import ReactDom from 'react-dom';
-// import { BrowserRouter as Router, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { checkUserService } from './services/userService';
-
 import { Header } from './components/header';
 import { Pages } from './pages';
 import { Main } from './components/main/Main';
 import { Loader } from './components/loader';
 import { setUser } from './store/user/actions';
-// import { store } from './store';
-
 import './main.scss';
 
 export class AppComponent extends Component {
@@ -27,18 +19,21 @@ export class AppComponent extends Component {
 
   componentDidUpdate(prevProp, prevState) {
     const { user } = this.state;
+    const history = this.props;
 
     if (prevState.user && !user) {
-      this.props.history.push('/');
+      history.push('/');
     }
   }
 
 
   checkUser() {
+    const dispatch = this.props;
+
     this.setState({ isLoading: true });
     checkUserService()
       .then((user) => {
-        this.props.dispatch(setUser(user));
+        dispatch(setUser(user));
         this.setState({ isLoading: false });
       })
       .catch(() => {
@@ -48,7 +43,6 @@ export class AppComponent extends Component {
 
   render() {
     const { isLoading } = this.state;
-    const { user } = this.props;
 
     return (
       <>

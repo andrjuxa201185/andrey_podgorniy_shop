@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { EditableField } from '../../components/editableField';
 import { getProductsService } from '../../services/productService';
 import './products.scss';
+import { setProducts } from '../../store/products';
 
-export const Products = () => {
-  const [products, setProducts] = useState([]);
-
+export const ProductsComponent = ({ products, dispatch }) => {
   useEffect(() => {
     getProductsService()
-      .then(setProducts);
+      .then(products => dispatch(setProducts(products)));
   }, []);
 
   return (
@@ -35,3 +35,9 @@ export const Products = () => {
     </div>
   );
 };
+
+const mapStateToProps = state => ({
+  products: state.products
+});
+
+export const Products = connect(mapStateToProps)(ProductsComponent);
