@@ -1,25 +1,26 @@
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
-import { Login } from './login';
 import { Home } from './home';
-import { Category } from './category';
+import { Login } from './login';
+import { Categories } from './categories';
 
-export const Public = ({ onLogin, user, isLoading }) => (
-  <Switch>
-    <Route
-      exact
-      path="/"
-      render={Home}
-    />
-    <Route
-      path="/login"
-      render={props => <Login onLogin={onLogin} user={user} isLoading={isLoading} {...props} />}
-    />
-    <Route
-      path="/categories/:id"
-      exact
-      component={Category}
-    />
-    <Redirect to="/login" />
-  </Switch>
-);
+export const Public = [
+  <Route
+    path="/"
+    exact
+    component={Home}
+    key="home"
+  />,
+
+  <Route
+    path="/login"
+    component={Login}
+    key="login"
+  />,
+
+  <Route
+    path="/categories"
+    component={Categories}
+    key="categories"
+  />
+];

@@ -1,7 +1,8 @@
+import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
 import './user.scss';
 
-export const User = ({ user }) => {
+export const UserComponent = ({ user }) => {
   const [userInfo, setUserInfo] = useState(user);
 
   useEffect(() => {
@@ -19,3 +20,9 @@ export const User = ({ user }) => {
     </form>
   );
 };
+
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+export const User = connect(mapStateToProps)(UserComponent);

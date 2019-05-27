@@ -9,7 +9,7 @@ import { setProducts } from '../../store/products';
 export const ProductsComponent = ({ products, dispatch }) => {
   useEffect(() => {
     getProductsService()
-      .then(products => dispatch(setProducts(products)));
+      .then(resp => dispatch(setProducts(resp)));
   }, []);
 
   return (

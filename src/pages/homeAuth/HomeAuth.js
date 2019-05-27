@@ -1,9 +1,10 @@
+import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './homeAuth.scss';
 import { server } from '../../services';
 
-export const HomeAuth = ({ user }) => {
+export const HomeAuthComponent = ({ user }) => {
   const [categories, setCategories] = useState({});
 
   useEffect(() => {
@@ -20,3 +21,9 @@ export const HomeAuth = ({ user }) => {
     </div>
   );
 };
+
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+export const HomeAuth = connect(mapStateToProps)(HomeAuthComponent);

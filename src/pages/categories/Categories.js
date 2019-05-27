@@ -7,7 +7,7 @@ import './categories.scss';
 export const CategoriesComponent = ({ categories, dispatch }) => {
   useEffect(() => {
     getCategoriesService()
-      .then(categories => dispatch(setCategories(categories)));
+      .then(resp => dispatch(setCategories(resp)));
   }, []);
 
   return (

@@ -23,7 +23,7 @@ export const HeaderComponent = ({ user, dispatch }) => {
         user
           ? (
             <div className="user-info">
-              <span>{user.email}</span>
+              <span>{user.firstName}</span>
               <Link to="/user">Profile</Link>
               <a
                 href="/"
