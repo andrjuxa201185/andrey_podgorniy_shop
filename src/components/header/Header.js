@@ -5,7 +5,7 @@ import { Navigation } from '../navigation';
 import { checkUserService } from '../../services/userService';
 import { removeUser } from '../../store/user';
 
-export const HeaderComponent = ({ user, dispatch }) => {
+export const HeaderComponent = ({ user, dispatch, info }) => {
   const onLogout = () => dispatch(removeUser());
 
   const logoutHandler = (e) => {
@@ -18,7 +18,7 @@ export const HeaderComponent = ({ user, dispatch }) => {
     <header className="header">
       <Link to="/" className="header-logo" title="home"><img src="./images/logo.png" alt="" /></Link>
 
-      <Navigation user={user} onLogout={onLogout} />
+      <Navigation user={user} onLogout={onLogout} info={info} />
       {
         user
           ? (
@@ -39,7 +39,8 @@ export const HeaderComponent = ({ user, dispatch }) => {
 };
 
 const mapToProps = state => ({
-  user: state.user
+  user: state.user,
+  info: state.info
 });
 
 export const Header = connect(mapToProps)(HeaderComponent);

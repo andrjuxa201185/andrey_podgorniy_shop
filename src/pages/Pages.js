@@ -1,5 +1,3 @@
-import { connect } from 'react-redux';
-
 import { Route, Switch } from 'react-router-dom';
 
 import { Notfound } from './notfound';
@@ -9,7 +7,7 @@ import { Categories } from './categories';
 import { Category } from './category';
 import { Product } from './product';
 
-export const PagesComponent = ({ user }) => (
+export const Pages = ({ user }) => (
   <Switch>
     <Route
       path="/categories"
@@ -36,7 +34,3 @@ export const PagesComponent = ({ user }) => (
     />
   </Switch>
 );
-
-const mapState = state => ({ user: state.user });
-
-export const Pages = connect(mapState)(PagesComponent);

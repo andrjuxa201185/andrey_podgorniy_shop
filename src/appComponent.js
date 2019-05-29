@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastr';
 import { connect } from 'react-redux';
 import { checkUserService } from './services/userService';
 import { Header } from './components/header';
@@ -6,7 +7,10 @@ import { Pages } from './pages';
 import { Main } from './components/main/Main';
 import { Loader } from './components/loader';
 import { setUser } from './store/user/actions';
+import { getShopInfoService } from './services/categoriesService';
 import './main.scss';
+import { setInfo } from './store/categories';
+import { setError } from './store/status';
 
 export class AppComponent extends Component {
   state = {
@@ -17,15 +21,32 @@ export class AppComponent extends Component {
     this.checkUser();
   }
 
-  componentDidUpdate(prevProp, prevState) {
-    const { user } = this.state;
-    const history = this.props;
+  componentDidUpdate(prevProp) {
+    const { user, history, status, dispatch } = this.props;
 
-    if (prevState.user && !user) {
+    if (prevProp.user && !user) {
       history.push('/');
+    }
+
+    if (!prevProp.user && user) {
+      this.getInfo();
+    }
+
+    if (!prevProp.status && status) {
+      this.container.error(
+        <strong>{status}</strong>,
+        <em>Error!</em>
+      );
+      dispatch(setError(''));
     }
   }
 
+  getInfo() {
+    const { dispatch } = this.props;
+
+    getShopInfoService()
+      .then(data => dispatch(setInfo(data)));
+  }
 
   checkUser() {
     const dispatch = this.props;
@@ -43,6 +64,7 @@ export class AppComponent extends Component {
 
   render() {
     const { isLoading } = this.state;
+    const { user } = this.props;
 
     return (
       <>
@@ -50,12 +72,18 @@ export class AppComponent extends Component {
         <Main>
           <Loader shown={isLoading} />
           {
-            !isLoading && <Pages onLogin={this.onLogin} />
+            !isLoading && <Pages user={user} />
           }
         </Main>
+        <ToastContainer
+          ref={ref => this.container = ref}
+          className="toast-top-right"
+        />
       </>
     );
   }
 }
 
-export const App = connect()(AppComponent);
+const mapState = state => ({ user: state.user, status: state.status });
+
+export const App = connect(mapState)(AppComponent);

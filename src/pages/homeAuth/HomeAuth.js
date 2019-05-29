@@ -2,14 +2,16 @@ import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './homeAuth.scss';
-import { server } from '../../services';
+import { getShopInfoService } from '../../services/categoriesService';
 
 export const HomeAuthComponent = ({ user }) => {
   const [categories, setCategories] = useState({});
 
   useEffect(() => {
-    server.get('shop_info')
-      .then(setCategories);
+    getShopInfoService()
+      .then((r) => {
+        setCategories(r);
+      });
   }, []);
 
   return (

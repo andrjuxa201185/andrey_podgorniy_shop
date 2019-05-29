@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -5,6 +6,7 @@ import { EditableField } from '../../components/editableField';
 import { getProductsService } from '../../services/productService';
 import './products.scss';
 import { setProducts } from '../../store/products';
+import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
 
 export const ProductsComponent = ({ products, dispatch }) => {
   useEffect(() => {
@@ -21,8 +23,8 @@ export const ProductsComponent = ({ products, dispatch }) => {
             <li key={id} className="product">
               <div className="description">
                 <div className="setting">
-                  <span>edit</span>
-                  <span>X</span>
+                  <span><FaEdit /></span>
+                  <span><FaRegTrashAlt /></span>
                 </div>
                 <Link to={`/products/${id}`} className="img"><img src={image || './images/bag.png'} alt="" /></Link>
               </div>

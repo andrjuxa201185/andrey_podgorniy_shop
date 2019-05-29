@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import { Loader } from '../../components/loader';
@@ -21,7 +22,8 @@ export const LoginComponent = ({ dispatch }) => {
       .then((user) => {
         setLoadState(false);
         dispatch(setUser(user));
-      });
+      })
+      .catch(console.log);
   };
 
   return (
