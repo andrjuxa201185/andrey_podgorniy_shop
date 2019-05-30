@@ -1,9 +1,22 @@
 .main-nav {
+  display: flex;
+  align-items: center;
+  .user-box {
+    display: flex;
+    align-items: center;
+    ul {
+      li {
+        font-size: 14px;
+        margin-right: 5px;
+      }
+    }
+  }
   ul {
     display: flex;
+    margin-right: 50px;
   }
   li {
-    margin-left: 50px;
+    margin-left: 25px;
     font-size: 26px;
   }
   .active {

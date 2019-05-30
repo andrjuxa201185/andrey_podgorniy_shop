@@ -2,6 +2,7 @@ import { Route } from 'react-router-dom';
 
 import { Home } from './home';
 import { Login } from './login';
+import { NewUser } from './newUser';
 import { Categories } from './categories';
 
 export const Public = [
@@ -16,6 +17,12 @@ export const Public = [
     path="/login"
     component={Login}
     key="login"
+  />,
+
+  <Route
+    path="/newuser"
+    component={NewUser}
+    key="newuser"
   />,
 
   <Route

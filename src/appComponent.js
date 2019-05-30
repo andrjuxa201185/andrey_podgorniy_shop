@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 import React from 'react';
 import { ToastContainer } from 'react-toastr';
 import { connect } from 'react-redux';

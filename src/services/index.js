@@ -19,31 +19,17 @@ export const request = (url, method = 'get', data, settings = {}) => {
 
   if (data) options.body = JSON.stringify(data);
 
-  // const promise = fetch(`${BASE_URL}/${url}`, options)
-  //   .then((r) => {
-  //     if (r.status < 200 || r.status > 299) {
-  //       throw new Error(r.status.text);
-  //     }
-
-  //     return r.json();
-  //   });
-
-  // return promise;
-
   const promise = fetch(`${BASE_URL}/${url}`, options)
-    .then(r => r.json())
+    .then(response => response.json())
     .then((data) => {
       if (!data.error) return data;
 
-      store.dispatch(setError(data.error));
-
-      throw String(data.error);
+      throw data.error;
     })
-    .catch((error) => {
-      if (!isCheckingUser) {
-        store.dispatch(setError(error));
-      }
+    .catch((err) => {
+      const error = String(err);
 
+      if (!isCheckingUser) store.dispatch(setError(error));
       throw error;
     });
 

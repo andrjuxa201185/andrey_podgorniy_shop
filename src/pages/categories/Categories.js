@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getCategoriesService } from '../../services/categoriesService';
 import { setCategories } from '../../store/categories';
@@ -16,7 +17,7 @@ export const CategoriesComponent = ({ categories, dispatch }) => {
       <ul>
         {
           categories.map(({ title, id }) => (
-            <li key={id}>{title}</li>
+            <li key={id}><Link to={`/categories/${id}`}>{title}</Link></li>
           ))
         }
       </ul>

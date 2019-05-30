@@ -1,15 +1,23 @@
 .page-categories{
   h3 {
     text-align: center;
+    margin-bottom: 10px;
   }
-  .all-categories {
-    display: flex;
-    justify-content: space-between;
-    ul {
-      list-style: none;
-      li {
-        margin: 10px 0;
+  ul {
+    list-style: none;
+    li {
+      font-size: 18px;
+      margin-bottom: 5px;
+      a {
+        text-decoration: none;
+        color: black;
       }
     }
+  }
+  button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    border-radius: 30px;
+    outline: none;
   }
 }

@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable object-curly-newline */
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './navigation.scss';
+import { server } from '../../services';
 
 const items = [
   { label: 'Home', id: '', icon: 'home', auth: false },
@@ -12,12 +13,15 @@ const items = [
   { label: 'Contacts', id: 'contacts', icon: 'map-signs' }
 ];
 
-// const [isLogout, setLogoutState] = React.useState(false);
-
-
-export const Navigation = ({ user, info }) => {
+export const Navigation = ({ user, info, onLogout }) => {
   let filteredItems = items.filter(item => !item.auth);
   const amount = info ? ` (${info.categories}/${info.products})` : '';
+
+  const logoutHandler = (e) => {
+    e.preventDefault();
+    server.get('logout')
+      .then(() => onLogout());
+  };
 
   if (user) {
     filteredItems = items.filter(item => item.auth);
@@ -25,7 +29,7 @@ export const Navigation = ({ user, info }) => {
 
   return (
     <nav className="main-nav">
-      <ul>
+      <ul className="main-nav__pages">
         {
           filteredItems
             .map(item => (
@@ -44,6 +48,46 @@ export const Navigation = ({ user, info }) => {
             ))
         }
       </ul>
+
+      <div className="user-box">
+        {
+          user
+            ? (
+              <>
+                <span>
+                  {user.firstName}
+                  {amount}
+                </span>
+                <ul>
+                  <li><Link to="/user">Profile</Link></li>
+                  <li>
+                    <a
+                      href="/"
+                      onClick={logoutHandler}
+                    >
+                  Logout
+                    </a>
+                  </li>
+                </ul>
+              </>
+            )
+            : (
+              <>
+                <Link
+                  to="/login"
+                >
+                Sign in
+                </Link>
+              /&nbsp;
+                <a
+                  href="/newuser"
+                >
+                Sign up
+                </a>
+              </>
+            )
+        }
+      </div>
     </nav>
   );
 };

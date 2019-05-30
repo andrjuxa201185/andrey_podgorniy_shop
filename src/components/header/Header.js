@@ -1,46 +1,30 @@
+/* eslint-disable padded-blocks */
 import { connect } from 'react-redux';
 import './header.scss';
 import { Link } from 'react-router-dom';
 import { Navigation } from '../navigation';
-import { checkUserService } from '../../services/userService';
 import { removeUser } from '../../store/user';
 
-export const HeaderComponent = ({ user, dispatch, info }) => {
-  const onLogout = () => dispatch(removeUser());
-
-  const logoutHandler = (e) => {
-    e.preventDefault();
-    checkUserService()
-      .then(() => onLogout(null));
-  };
+// eslint-disable-next-line arrow-body-style
+export const HeaderComponent = ({ user, removeUser, info }) => {
 
   return (
     <header className="header">
-      <Link to="/" className="header-logo" title="home"><img src="./images/logo.png" alt="" /></Link>
-
-      <Navigation user={user} onLogout={onLogout} info={info} />
-      {
-        user
-          ? (
-            <div className="user-info">
-              <span>{user.firstName}</span>
-              <Link to="/user">Profile</Link>
-              <a
-                href="/"
-                onClick={logoutHandler}
-              >Logout
-              </a>
-            </div>
-          )
-          : <Link to="/login">Sign in</Link>
-      }
+      <Link to="/" className="header-logo"><img src="/images/logo.png" alt="todo" /></Link>
+      <Navigation user={user} info={info} onLogout={removeUser} />
     </header>
   );
 };
+
+const mapDispatchToProps = dispatch => ({
+  removeUser() {
+    dispatch(removeUser());
+  },
+});
 
 const mapToProps = state => ({
   user: state.user,
   info: state.info
 });
 
-export const Header = connect(mapToProps)(HeaderComponent);
+export const Header = connect(mapToProps, mapDispatchToProps)(HeaderComponent);
