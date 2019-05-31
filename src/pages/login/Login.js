@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 import { useState } from 'react';
 import { connect } from 'react-redux';
@@ -8,6 +9,25 @@ import './login.scss';
 
 export const LoginComponent = ({ dispatch }) => {
   const [loading, setLoadState] = useState(false);
+  const [error, setError] = useState('');
+
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  //   const data = {
+  //     email: e.target.email.value,
+  //     password: e.target.password.value,
+  //   };
+
+  //   setLoadState(true);
+
+  //   loginUserService(data)
+  //     .then((user) => {
+  //       dispatch(setUser(user));
+  //     })
+  //     .catch(console.log);
+
+  //   setLoadState(false);
+  // };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -23,7 +43,10 @@ export const LoginComponent = ({ dispatch }) => {
         setLoadState(false);
         dispatch(setUser(user));
       })
-      .catch(console.log);
+      .catch((err) => {
+        setLoadState(false);
+        setError(err);
+      });
   };
 
   return (

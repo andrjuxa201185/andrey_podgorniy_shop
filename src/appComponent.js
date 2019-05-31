@@ -53,6 +53,7 @@ export class AppComponent extends Component {
     const dispatch = this.props;
 
     this.setState({ isLoading: true });
+
     checkUserService()
       .then((user) => {
         dispatch(setUser(user));
@@ -69,13 +70,14 @@ export class AppComponent extends Component {
 
     return (
       <>
-        <Header onLogout={this.onLogout} />
+        <Header />
         <Main>
           <Loader shown={isLoading} />
           {
             !isLoading && <Pages user={user} />
           }
         </Main>
+
         <ToastContainer
           ref={ref => this.container = ref}
           className="toast-top-right"

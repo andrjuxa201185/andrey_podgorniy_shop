@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-prototype-builtins */
 /* eslint-disable no-console */
 /* eslint-disable react/destructuring-assignment */
@@ -18,7 +19,6 @@ export class Form extends Component {
   {})
 
   // state = { email: { value: '', error: '' } } }
-
 
   changeField = ({ target }) => {
     const value = target.hasOwnProperty('checked') ? target.checked : target.value;
@@ -73,7 +73,7 @@ export class Form extends Component {
                   placeholder={`Enter a ${label}`}
                   value={state.value}
                   onChange={this.changeField}
-                  onBlur={e => this.validateField(e, index)}
+                  // onBlur={e => this.validateField(e, index)}
                   className={state.error ? 'error' : 'correct'}
                   disabled={disabledFields.includes(label)}
                 />

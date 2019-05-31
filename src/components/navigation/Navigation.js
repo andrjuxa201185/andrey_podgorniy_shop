@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable object-curly-newline */
 import { NavLink, Link } from 'react-router-dom';
+import { useState } from 'react';
 import './navigation.scss';
 import { server } from '../../services';
 
@@ -14,6 +15,8 @@ const items = [
 ];
 
 export const Navigation = ({ user, info, onLogout }) => {
+  const [isShowUserMenu, setisShowUserMenu] = useState(false);
+
   let filteredItems = items.filter(item => !item.auth);
   const amount = info ? ` (${info.categories}/${info.products})` : '';
 
@@ -54,36 +57,28 @@ export const Navigation = ({ user, info, onLogout }) => {
           user
             ? (
               <>
-                <span>
+                <div onClick={() => setisShowUserMenu(!isShowUserMenu)}>
                   {user.firstName}
                   {amount}
-                </span>
-                <ul>
-                  <li><Link to="/user">Profile</Link></li>
-                  <li>
-                    <a
-                      href="/"
-                      onClick={logoutHandler}
-                    >
-                  Logout
-                    </a>
-                  </li>
-                </ul>
+                  {
+                    isShowUserMenu && (
+                      <ul>
+                        <li><Link to="/user">Profile</Link></li>
+                        <li>
+                          <a href="/" onClick={logoutHandler}>Logout</a>
+                        </li>
+                      </ul>
+                    )
+                  }
+                </div>
+
               </>
             )
             : (
               <>
-                <Link
-                  to="/login"
-                >
-                Sign in
-                </Link>
-              /&nbsp;
-                <a
-                  href="/newuser"
-                >
-                Sign up
-                </a>
+                <Link to="/login">Sign in</Link>
+                /
+                <a href="/newuser">Sign up</a>
               </>
             )
         }
