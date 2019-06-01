@@ -1,19 +1,28 @@
 /* eslint-disable no-underscore-dangle */
-import { createStore, combineReducers } from 'redux';
+/* eslint-disable no-undef */
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import { user } from './user';
+import { products, product } from './products';
 import { categories, info } from './categories';
-import { products } from './products';
 import { status } from './status';
+// import { rootSaga } from './rootSaga';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const sagaMiddleware = createSagaMiddleware();
 
 const rootReducers = combineReducers({
   user,
-  categories,
   products,
+  product,
+  categories,
   info,
-  status
+  status,
 });
 
 export const store = createStore(
   rootReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancers(applyMiddleware(sagaMiddleware))
 );
+
+// sagaMiddleware.run(rootSaga);

@@ -3,5 +3,6 @@ export default {
   info: null,
   categories: [],
   products: [],
+  product: null,
   status: ''
 };

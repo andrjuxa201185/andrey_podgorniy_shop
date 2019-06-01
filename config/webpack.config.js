@@ -24,9 +24,11 @@ const plugins = [
     React: 'react',
     Component: ['react', 'Component']
   }),
+
   new copyPlugin(
     images.map(ext => ({ from: `**/*/*.${ext}`, to: 'images/[name].[ext]' }))
-  )
+  ),
+
 ];
 
 if (isStylesExternal) {
@@ -34,7 +36,7 @@ if (isStylesExternal) {
 }
 
 module.exports = {
-  entry: '../src/app.js',
+  entry: ['babel-polyfill', '../src/app.js'],
   context: path.resolve(__dirname, '../src'),
   output: {
     filename: '[name].js',
@@ -58,7 +60,11 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: ['syntax-dynamic-import', '@babel/plugin-proposal-class-properties'],
+            plugins: [
+              'syntax-dynamic-import', 
+              '@babel/plugin-proposal-class-properties', 
+              '@babel/plugin-transform-regenerator'
+            ],
           }
         }
       },

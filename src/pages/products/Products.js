@@ -1,6 +1,6 @@
 /* eslint-disable import/order */
 import { connect } from 'react-redux';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { EditableField } from '../../components/editableField';
 import { getProductsService } from '../../services/productService';
@@ -8,11 +8,19 @@ import './products.scss';
 import { setProducts } from '../../store/products';
 import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
 
+
 export const ProductsComponent = ({ products, dispatch }) => {
+  const [editId, setEditId] = useState();
+
   useEffect(() => {
     getProductsService()
       .then(resp => dispatch(setProducts(resp)));
   }, []);
+
+  const setEditTitle = (e, id) => {
+    e.stopPropagation();
+    editId ? setEditId(undefined) : setEditId(id);
+  };
 
   return (
     <div>
@@ -23,12 +31,12 @@ export const ProductsComponent = ({ products, dispatch }) => {
             <li key={id} className="product">
               <div className="description">
                 <div className="setting">
-                  <span><FaEdit /></span>
-                  <span><FaRegTrashAlt /></span>
+                  <span className="edit" onClick={e => setEditTitle(e, id)}><FaEdit /></span>
+                  <span className="del"><FaRegTrashAlt /></span>
                 </div>
                 <Link to={`/products/${id}`} className="img"><img src={image || './images/bag.png'} alt="" /></Link>
               </div>
-              <EditableField type="textarea" val={title} />
+              <EditableField type="textarea" val={title} editState={id === editId} />
             </li>
           ))
         }
