@@ -1,23 +1,29 @@
+import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { setCategory } from '../../store/categories';
 import { getCategoryService } from '../../services/categoriesService';
 import './category.scss';
 
-
-export const Category = ({ match }) => {
-  const [category, setCategory] = useState({});
+export const CategoryComponent = ({ match, dispatch }) => {
+  const [categoryState, setCategoryState] = useState({});
 
   useEffect(() => {
     getCategoryService(match.params.id)
-      .then(setCategory);
+      .then((respCategory) => {
+        setCategoryState(respCategory);
+        dispatch(setCategory(respCategory));
+      });
+
+    return () => dispatch(setCategory(null));
   }, []);
 
   return (
     <div className="category">
-      <h2>{category.title}</h2>
+      <h2>{categoryState.title}</h2>
       <ul>
         {
-          category.products
-            ? category.products.map(({ id, title }) => (
+          categoryState.products
+            ? categoryState.products.map(({ id, title }) => (
               <li key={id}>{title}</li>
             ))
             : (<li>No products</li>)
@@ -26,3 +32,5 @@ export const Category = ({ match }) => {
     </div>
   );
 };
+
+export const Category = connect()(CategoryComponent);

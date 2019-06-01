@@ -21,8 +21,8 @@ export const ProductComponent = ({ match, dispatch }) => {
   return (
     <div className="product-info">
       <h3>{productState.title}</h3>
-      <p>Price: <span>${productState.price}</span></p>
-      <EditableField type="textarea" val={productState.description} />
+      <div className="price">Price: <span><EditableField val={productState.price} /></span></div>
+      <div className="description">Description:<EditableField type="textarea" val={productState.description} /></div>
       <button>SAVE</button>
     </div>
   );

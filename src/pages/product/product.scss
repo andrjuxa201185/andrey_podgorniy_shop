@@ -3,11 +3,20 @@
     font-size: 43px;
     margin-bottom: 50px;
   }
-  p {
+  .price {
+    display: flex;
     font-size: 24px;
     margin-bottom: 20px;
     span {
       font-size: 26px;
+    }
+    input {
+      font-size: 26px;
+    }
+  }
+  .description {
+    &>div {
+      border: solid 1px gray;
     }
   }
   textarea {
