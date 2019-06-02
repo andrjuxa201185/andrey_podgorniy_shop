@@ -7,14 +7,15 @@ import { Link } from 'react-router-dom';
 import { EditableField } from '../../components/editableField';
 import {
   getProductsService,
-  deleteProductService
+  deleteProductService,
+  updateProductsService
 } from '../../services/productService';
 import './products.scss';
 import { setProducts } from '../../store/products';
 import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
 
 
-export const ProductsComponent = ({ products, dispatch }) => {
+export const ProductsComponent = ({ products, dispatch, history }) => {
   const [editId, setEditId] = useState();
 
   useEffect(() => {
@@ -33,8 +34,19 @@ export const ProductsComponent = ({ products, dispatch }) => {
       .then(console.log);
   };
 
-  const onBlurHandler = (value) => {
-    console.log(value);
+  const onBlurHandler = (id, value) => {
+    const product = products.find(item => item.id === id);
+    product.title = value;
+
+    updateProductsService(id, product)
+      .then(() => {
+        getProductsService()
+          .then(resp => dispatch(setProducts(resp)));
+      });
+  };
+
+  const onClickHandler = (id) => {
+    history.push(`/products/${id}`);
   };
 
   return (
@@ -51,7 +63,13 @@ export const ProductsComponent = ({ products, dispatch }) => {
                 </div>
                 <Link to={`/products/${id}`} className="img"><img src={image || './images/bag.png'} alt="" /></Link>
               </div>
-              <EditableField type="textarea" val={title} editState={id === editId} onBlurHandler={onBlurHandler} notOnClick />
+              <EditableField
+                type="textarea"
+                val={title}
+                editState={id === editId}
+                onBlurHandler={title => onBlurHandler(id, title)}
+                onClickHandler={() => onClickHandler(id)}
+              />
             </li>
           ))
         }

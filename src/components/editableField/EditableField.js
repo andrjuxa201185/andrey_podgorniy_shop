@@ -7,7 +7,7 @@ export const EditableField = ({
   type = 'text',
   val = '',
   editState = false,
-  notOnClick = false,
+  onClickHandler = null,
   onBlurHandler = null
 }) => {
   const [isHidden, setIsHidden] = useState(editState);
@@ -57,9 +57,7 @@ export const EditableField = ({
     <div className="editablefield">
       { isHidden
         ? whatInput(type)
-        : notOnClick
-          ? <span>{value}</span>
-          : <span onClick={changeHidden}>{value}</span>
+        : <span onClick={onClickHandler || changeHidden}>{value}</span>
       }
     </div>
   );
