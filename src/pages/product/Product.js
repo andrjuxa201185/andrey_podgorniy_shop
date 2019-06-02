@@ -9,21 +9,24 @@ export const ProductComponent = ({ match, dispatch }) => {
   const [productState, setProductToState] = useState({});
 
   useEffect(() => {
-    getProductService(match.params.id)
-      .then((respProd) => {
-        setProductToState(respProd);
-        dispatch(setProduct(respProd));
-      });
-
+    if (match.params.id !== 'new') {
+      getProductService(match.params.id)
+        .then((respProd) => {
+          setProductToState(respProd);
+          dispatch(setProduct(respProd));
+        });
+    }
     return () => dispatch(setProduct(null));
   }, []);
 
   return (
     <div className="product-info">
-      <h3>{productState.title}</h3>
-      <div className="price">Price: <span><EditableField val={productState.price} /></span></div>
+      <h3><EditableField val={productState.title || 'New Product'} /></h3>
+      <div className="price">Price: <span><EditableField val={productState.price || 0} /></span></div>
       <div className="description">Description:<EditableField type="textarea" val={productState.description} /></div>
-      <button>SAVE</button>
+      {
+        match.params.id === 'new' && <button>SAVE</button>
+      }
     </div>
   );
 };

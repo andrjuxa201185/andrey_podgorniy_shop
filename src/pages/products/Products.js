@@ -74,7 +74,7 @@ export const ProductsComponent = ({ products, dispatch, history }) => {
           ))
         }
       </ul>
-      <button>ADD NEW</button>
+      <Link className="btn" to="/products/new">ADD NEW</Link>
     </div>
   );
 };

@@ -24,6 +24,10 @@ export const Pages = ({ user }) => (
       path="/products/:id"
       component={Product}
     />
+    <Route
+      path="/products/new"
+      component={Product}
+    />
 
     {
       user ? Private : Public
