@@ -8,7 +8,8 @@ export const EditableField = ({
   val = '',
   editState = false,
   onClickHandler = null,
-  onBlurHandler = null
+  onBlurHandler = null,
+  onChangeHandler
 }) => {
   const [isHidden, setIsHidden] = useState(editState);
   const [value, setValue] = useState(val);
@@ -23,6 +24,7 @@ export const EditableField = ({
 
   const changeField = ({ target }) => {
     setValue(target.value);
+    onChangeHandler(target.value);
   };
 
   const changeHidden = () => {
