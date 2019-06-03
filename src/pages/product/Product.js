@@ -5,34 +5,43 @@ import { getProductService, createProductsService } from '../../services/product
 import { setProduct } from '../../store/products';
 import './product.scss';
 
-export const ProductComponent = ({ match, dispatch, history }) => {
-  const [productState, setProductToState] = useState({});
+export const ProductComponent = ({
+  match,
+  dispatch,
+  history,
+  product
+}) => {
+  // const [productState, setProductToState] = useState({});
   const idNewProduct = new Date().getTime();
 
   useEffect(() => {
     if (match.params.id !== 'new') {
       getProductService(match.params.id)
         .then((respProd) => {
-          setProductToState(respProd);
+          // setProductToState(respProd);
           dispatch(setProduct(respProd));
         });
     }
-    return () => dispatch(setProduct(null));
+
+    return () => dispatch(setProduct({}));
   }, []);
 
   const getProductField = (field, value) => {
     switch (field) {
       case 'title':
-        return setProductToState(productState => ({ ...productState, title: value, id: idNewProduct }));
+        // return setProductToState(productState => ({ ...productState, title: value, id: idNewProduct }));
+        return dispatch(setProduct({ ...product, title: value, id: idNewProduct }));
       case 'price':
-        return setProductToState(productState => ({ ...productState, price: value, id: idNewProduct }));
+        // return setProductToState(productState => ({ ...productState, price: value, id: idNewProduct }));
+        return dispatch(setProduct({ ...product, price: value, id: idNewProduct }));
       case 'desc':
-        return setProductToState(productState => ({ ...productState, description: value, id: idNewProduct }));
+        // return setProductToState(productState => ({ ...productState, description: value, id: idNewProduct }));
+        return dispatch(setProduct({ ...product, desc: value, id: idNewProduct }));
     }
   };
 
   const saveNewProduct = () => {
-    createProductsService(productState)
+    createProductsService(product)
       .then(() => history.push(`/products/${idNewProduct}`));
   };
 
@@ -41,14 +50,14 @@ export const ProductComponent = ({ match, dispatch, history }) => {
       <h3>
         <EditableField
           onChangeHandler={newVal => getProductField('title', newVal)}
-          val={productState.title || 'New Product'}
+          val={product.title || 'New Product'}
         />
       </h3>
 
       <div className="price">
         Price:
         <span>
-          <EditableField onChangeHandler={newVal => getProductField('price', newVal)} val={productState.price || 0} />
+          <EditableField onChangeHandler={newVal => getProductField('price', newVal)} val={product.price || 0} />
         </span>
       </div>
 
@@ -57,7 +66,7 @@ export const ProductComponent = ({ match, dispatch, history }) => {
         <EditableField
           onChangeHandler={newVal => getProductField('desc', newVal)}
           type="textarea"
-          val={productState.description}
+          val={product.description}
         />
       </div>
 
@@ -68,4 +77,6 @@ export const ProductComponent = ({ match, dispatch, history }) => {
   );
 };
 
-export const Product = connect()(ProductComponent);
+const mapStateToProps = state => ({ product: state.product });
+
+export const Product = connect(mapStateToProps)(ProductComponent);

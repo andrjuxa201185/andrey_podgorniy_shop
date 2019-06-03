@@ -7,8 +7,8 @@ export const EditableField = ({
   type = 'text',
   val = '',
   editState = false,
-  onClickHandler = null,
-  onBlurHandler = null,
+  onClickHandler,
+  onBlurHandler,
   onChangeHandler
 }) => {
   const [isHidden, setIsHidden] = useState(editState);
@@ -24,7 +24,7 @@ export const EditableField = ({
 
   const changeField = ({ target }) => {
     setValue(target.value);
-    onChangeHandler(target.value);
+    onChangeHandler && onChangeHandler(target.value);
   };
 
   const changeHidden = () => {
@@ -43,8 +43,7 @@ export const EditableField = ({
       value={value}
       onChange={changeField}
       onBlur={changeHidden}
-    >{value}
-    </textarea>
+    />
   ) : (
     <input
       autoFocus
