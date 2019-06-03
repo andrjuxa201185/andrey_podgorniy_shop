@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { EditableField } from '../../components/editableField';
 import { getProductService, createProductsService } from '../../services/productService';
 import { setProduct } from '../../store/products';
@@ -11,16 +11,16 @@ export const ProductComponent = ({
   history,
   product
 }) => {
-  // const [productState, setProductToState] = useState({});
   const idNewProduct = new Date().getTime();
 
   useEffect(() => {
     if (match.params.id !== 'new') {
       getProductService(match.params.id)
         .then((respProd) => {
-          // setProductToState(respProd);
           dispatch(setProduct(respProd));
         });
+    } else {
+      dispatch(setProduct({ title: 'New Product', id: idNewProduct, price: 0 }));
     }
 
     return () => dispatch(setProduct({}));
@@ -29,13 +29,10 @@ export const ProductComponent = ({
   const getProductField = (field, value) => {
     switch (field) {
       case 'title':
-        // return setProductToState(productState => ({ ...productState, title: value, id: idNewProduct }));
         return dispatch(setProduct({ ...product, title: value, id: idNewProduct }));
       case 'price':
-        // return setProductToState(productState => ({ ...productState, price: value, id: idNewProduct }));
         return dispatch(setProduct({ ...product, price: value, id: idNewProduct }));
       case 'desc':
-        // return setProductToState(productState => ({ ...productState, description: value, id: idNewProduct }));
         return dispatch(setProduct({ ...product, desc: value, id: idNewProduct }));
     }
   };
