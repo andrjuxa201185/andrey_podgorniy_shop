@@ -5,19 +5,25 @@ export const CategoriesPublished = ({
   items,
   onEdit,
   onDelete,
-  hideEdit
+  hideEdit,
+  onClickHahdler
 }) => (
   <ul className="categories-list">
     {
       items.map(({ title, id }) => (
         <li
           key={id}
+          onClick={onClickHahdler}
         >
           <Link to={`/categories/${id}`}>
             {title}
           </Link>
-          {!hideEdit && <FaEdit onClick={onEdit} />}
-          <FaRegTrashAlt onClick={onDelete} />
+          {!hideEdit && (
+          <>
+            <FaEdit onClick={onEdit} />
+            <FaRegTrashAlt onClick={onDelete} />
+          </>
+          )}
         </li>
       ))
       }

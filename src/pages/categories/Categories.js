@@ -1,22 +1,16 @@
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getCategoriesService } from '../../services/categoriesService';
 import { setCategories } from '../../store/categories';
 import { CategoriesPublished } from '../../components/categoriesPublished';
+import { CategoriesUnpublished } from '../../components/categoriesUnpublished';
 import './categories.scss';
 
 export const CategoriesComponent = ({ categories, user, dispatch }) => {
-  const [filterWord, setFilterWord] = useState('');
-
   useEffect(() => {
     getCategoriesService()
       .then(resp => dispatch(setCategories(resp)));
   }, []);
-
-  const filter = ({ target }) => {
-    setFilterWord(target.value);
-  };
 
   return (
     <div className="page-categories">
@@ -30,21 +24,9 @@ export const CategoriesComponent = ({ categories, user, dispatch }) => {
         )
       }
       <div className="categories">
-        <CategoriesPublished items={categories.filter(({ published }) => published)} />
+        <CategoriesPublished items={categories.filter(({ published }) => published)} hideEdit={!user} />
         {
-          user && (
-            <div className="unpublished">
-              <input type="text" placeholder="Search" onChange={filter} />
-              <ul>
-                {
-                categories.filter(({ title }) => title.includes(filterWord))
-                  .map(({ title, id }) => (
-                    <li key={id}><Link to={`/categories/${id}`}>{title}</Link></li>
-                  ))
-              }
-              </ul>
-            </div>
-          )
+          user && <CategoriesUnpublished items={categories} />
         }
       </div>
       {user && <button>ADD NEW</button>}
