@@ -35,7 +35,7 @@ export const EditableField = ({
     }
   };
 
-  const whatInput = type => (type === 'textarea' ? (
+  const whatInput = () => (type === 'textarea' ? (
     <textarea
       autoFocus
       cols="26"
@@ -57,7 +57,7 @@ export const EditableField = ({
   return (
     <div className="editablefield">
       { isHidden
-        ? whatInput(type)
+        ? whatInput()
         : <span onClick={onClickHandler || changeHidden}>{value}</span>
       }
     </div>

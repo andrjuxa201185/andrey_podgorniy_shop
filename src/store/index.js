@@ -6,7 +6,7 @@ import { user } from './user';
 import { products, product } from './products';
 import { categories, info, category } from './categories';
 import { status } from './status';
-// import { rootSaga } from './rootSaga';
+import { rootSaga } from './rootSaga';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();
@@ -26,4 +26,4 @@ export const store = createStore(
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
-// sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga);
