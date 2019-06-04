@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useEffect } from 'react';
+import { setCategory } from '../../store/categories';
 import { getCategoryService } from '../../services/categoriesService';
 import './category.scss';
 
-
-export const Category = ({ match }) => {
-  const [category, setCategory] = useState({});
-
+export const CategoryComponent = ({ match, dispatch, category }) => {
   useEffect(() => {
     getCategoryService(match.params.id)
-      .then(setCategory);
+      .then((respCategory) => {
+        dispatch(setCategory(respCategory));
+      });
+
+    return () => dispatch(setCategory({}));
   }, []);
 
   return (
@@ -26,3 +29,9 @@ export const Category = ({ match }) => {
     </div>
   );
 };
+
+const mapStateToProps = state => ({
+  category: state.category
+});
+
+export const Category = connect(mapStateToProps)(CategoryComponent);

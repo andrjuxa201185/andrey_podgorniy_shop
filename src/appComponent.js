@@ -50,7 +50,7 @@ export class AppComponent extends Component {
   }
 
   checkUser() {
-    const dispatch = this.props;
+    const { dispatch } = this.props;
 
     this.setState({ isLoading: true });
 

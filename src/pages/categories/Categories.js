@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getCategoriesService } from '../../services/categoriesService';
 import { setCategories } from '../../store/categories';
+import { CategoriesPublished } from '../../components/categoriesPublished';
+import { CategoriesUnpublished } from '../../components/categoriesUnpublished';
 import './categories.scss';
 
-export const CategoriesComponent = ({ categories, dispatch }) => {
+export const CategoriesComponent = ({ categories, user, dispatch }) => {
   useEffect(() => {
     getCategoriesService()
       .then(resp => dispatch(setCategories(resp)));
@@ -14,20 +15,28 @@ export const CategoriesComponent = ({ categories, dispatch }) => {
   return (
     <div className="page-categories">
       <h3>Categories</h3>
-      <ul>
+      {
+        user && (
+          <div className="title-type-categories">
+            <span>Published</span>
+            <span>Unpublished</span>
+          </div>
+        )
+      }
+      <div className="categories">
+        <CategoriesPublished items={categories.filter(({ published }) => published)} hideEdit={!user} />
         {
-          categories.map(({ title, id }) => (
-            <li key={id}><Link to={`/categories/${id}`}>{title}</Link></li>
-          ))
+          user && <CategoriesUnpublished items={categories} />
         }
-      </ul>
-      <button>ADD NEW</button>
+      </div>
+      {user && <button>ADD NEW</button>}
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  categories: state.categories
+  categories: state.categories,
+  user: state.user
 });
 
 export const Categories = connect(mapStateToProps)(CategoriesComponent);

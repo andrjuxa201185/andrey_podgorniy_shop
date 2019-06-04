@@ -1,8 +1,16 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/no-autofocus */
 import { useState, useEffect } from 'react';
 import './editableField.scss';
 
-export const EditableField = ({ type = 'text', val = '', editState = false }) => {
+export const EditableField = ({
+  type = 'text',
+  val = '',
+  editState = false,
+  onClickHandler,
+  onBlurHandler,
+  onChangeHandler
+}) => {
   const [isHidden, setIsHidden] = useState(editState);
   const [value, setValue] = useState(val);
 
@@ -16,10 +24,15 @@ export const EditableField = ({ type = 'text', val = '', editState = false }) =>
 
   const changeField = ({ target }) => {
     setValue(target.value);
+    onChangeHandler && onChangeHandler(target.value);
   };
 
   const changeHidden = () => {
     setIsHidden(!isHidden);
+
+    if (onBlurHandler) {
+      onBlurHandler(value);
+    }
   };
 
   const whatInput = type => (type === 'textarea' ? (
@@ -30,8 +43,7 @@ export const EditableField = ({ type = 'text', val = '', editState = false }) =>
       value={value}
       onChange={changeField}
       onBlur={changeHidden}
-    >{value}
-    </textarea>
+    />
   ) : (
     <input
       autoFocus
@@ -44,12 +56,9 @@ export const EditableField = ({ type = 'text', val = '', editState = false }) =>
 
   return (
     <div className="editablefield">
-      { isHidden ? whatInput(type) : (
-        <span
-          onClick={changeHidden}
-        >{value}
-        </span>
-      )
+      { isHidden
+        ? whatInput(type)
+        : <span onClick={onClickHandler || changeHidden}>{value}</span>
       }
     </div>
   );

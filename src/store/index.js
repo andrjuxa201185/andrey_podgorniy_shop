@@ -4,7 +4,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { user } from './user';
 import { products, product } from './products';
-import { categories, info } from './categories';
+import { categories, info, category } from './categories';
 import { status } from './status';
 import { rootSaga } from './rootSaga';
 
@@ -16,6 +16,7 @@ const rootReducers = combineReducers({
   products,
   product,
   categories,
+  category,
   info,
   status,
 });

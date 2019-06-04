@@ -2,7 +2,33 @@
   h3 {
     text-align: center;
     margin-bottom: 10px;
+    font-size: 36px;
   }
+  .title-type-categories {
+    display: flex;
+    justify-content: space-between;
+    span {
+      margin: 20px 50px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+  }
+  .categories {
+    display: flex;
+    justify-content: space-between;
+    .published {
+      margin-right: 50px;
+    }
+    .unpublished {
+      margin-left: 50px;
+      input {
+        padding: 5px;
+        font-size: 18px;
+      }
+    }
+  }
+
+
   ul {
     list-style: none;
     li {
