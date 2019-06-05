@@ -13,10 +13,13 @@ import {
 import './products.scss';
 import { setProducts } from '../../store/products';
 import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
+import { Modal } from '../../components/modal';
 
 
 export const ProductsComponent = ({ products, dispatch, history }) => {
   const [editId, setEditId] = useState();
+  const [warning, setWarning] = useState('');
+  const [removeId, setRemoveId] = useState('');
 
   useEffect(() => {
     getProductsService()
@@ -28,10 +31,19 @@ export const ProductsComponent = ({ products, dispatch, history }) => {
     editId ? setEditId(undefined) : setEditId(id);
   };
 
-  const delProduct = (e, id) => {
-    e.stopPropagation();
-    deleteProductService(id)
+  const delProduct = () => {
+    deleteProductService(removeId)
       .then(console.log);
+  };
+
+  const showModal = (removeId, title) => {
+    setWarning(`You are going to remove product ${title}`);
+    setRemoveId(removeId);
+  };
+
+  const hideModal = () => {
+    setWarning('');
+    setRemoveId('');
   };
 
   const onBlurHandler = (id, value) => {
@@ -52,6 +64,13 @@ export const ProductsComponent = ({ products, dispatch, history }) => {
   return (
     <div>
       <h3>Products</h3>
+      <Modal
+        open={!!warning}
+        close={hideModal}
+        onConfirm={delProduct}
+      >
+        {warning}
+      </Modal>
       <ul className="products">
         {
           products.map(({ title, id, image }) => (
@@ -59,7 +78,8 @@ export const ProductsComponent = ({ products, dispatch, history }) => {
               <div className="description">
                 <div className="setting">
                   <span className="edit" onClick={e => setEditTitle(e, id)}><FaEdit /></span>
-                  <span className="del" onClick={e => delProduct(e, id)}><FaRegTrashAlt /></span>
+                  {/* <span className="del" onClick={e => delProduct(e, id)}><FaRegTrashAlt /></span> */}
+                  <span className="del" onClick={() => showModal(id, title)}><FaRegTrashAlt /></span>
                 </div>
                 <Link to={`/products/${id}`} className="img"><img src={image || './images/bag.png'} alt="" /></Link>
               </div>

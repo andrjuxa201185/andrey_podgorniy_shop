@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapToProps = state => ({
-  user: state.user,
+  user: state.user.data,
   info: state.info
 });
 
