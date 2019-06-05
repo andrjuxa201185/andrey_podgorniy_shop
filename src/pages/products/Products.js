@@ -22,7 +22,7 @@ export const ProductsComponent = ({ products, dispatch, history }) => {
   const [removeId, setRemoveId] = useState('');
 
   useEffect(() => {
-    dispatch(setProductsAsunc());
+    dispatch(setProductsAsunc()); // <=== add dispatch
   }, []);
 
   const setEditTitle = (e, id) => {

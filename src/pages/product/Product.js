@@ -15,7 +15,7 @@ export const ProductComponent = ({
 
   useEffect(() => {
     if (match.params.id !== 'new') {
-      dispatch(setProductAsunc(match.params.id));
+      dispatch(setProductAsunc(match.params.id)); // <== add dispatch
     } else {
       dispatch(setProduct({ title: 'New Product', id: idNewProduct, price: 0 }));
     }
