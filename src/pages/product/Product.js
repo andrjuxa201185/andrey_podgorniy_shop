@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { EditableField } from '../../components/editableField';
-import { getProductService, createProductsService } from '../../services/productService';
-import { setProduct } from '../../store/products';
+import { createProductsService } from '../../services/productService';
+import { setProduct, setProductAsunc } from '../../store/products';
 import './product.scss';
 
 export const ProductComponent = ({
@@ -15,10 +15,7 @@ export const ProductComponent = ({
 
   useEffect(() => {
     if (match.params.id !== 'new') {
-      getProductService(match.params.id)
-        .then((respProd) => {
-          dispatch(setProduct(respProd));
-        });
+      dispatch(setProductAsunc(match.params.id));
     } else {
       dispatch(setProduct({ title: 'New Product', id: idNewProduct, price: 0 }));
     }

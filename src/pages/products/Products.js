@@ -11,7 +11,7 @@ import {
   updateProductsService
 } from '../../services/productService';
 import './products.scss';
-import { setProducts } from '../../store/products';
+import { setProducts, setProductsAsunc } from '../../store/products';
 import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { Modal } from '../../components/modal';
 
@@ -22,8 +22,7 @@ export const ProductsComponent = ({ products, dispatch, history }) => {
   const [removeId, setRemoveId] = useState('');
 
   useEffect(() => {
-    getProductsService()
-      .then(resp => dispatch(setProducts(resp)));
+    dispatch(setProductsAsunc());
   }, []);
 
   const setEditTitle = (e, id) => {

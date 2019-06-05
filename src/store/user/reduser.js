@@ -1,5 +1,5 @@
 import store from '../state';
-import { SET_USER, REMOVE_USER } from './actions';
+import { SET_USER, REMOVE_USER, SET_USER_BEGIN } from './actions';
 
 export const user = (state = store.user, action) => {
   switch (action.type) {
@@ -7,6 +7,13 @@ export const user = (state = store.user, action) => {
       data: action.data,
       staus: {
         loading: false,
+        error: ''
+      }
+    };
+    case SET_USER_BEGIN: return {
+      ...state,
+      status: {
+        loading: true,
         error: ''
       }
     };
