@@ -25,7 +25,7 @@ export const HomeAuthComponent = ({ user }) => {
 };
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user.data
 });
 
 export const HomeAuth = connect(mapStateToProps)(HomeAuthComponent);

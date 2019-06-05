@@ -1,17 +1,19 @@
-/* eslint-disable object-curly-newline */
 import React from 'react';
 import { ToastContainer } from 'react-toastr';
 import { connect } from 'react-redux';
-import { checkUserService } from './services/userService';
+// import { checkUserService } from './services/userService';
 import { Header } from './components/header';
 import { Pages } from './pages';
 import { Main } from './components/main/Main';
 import { Loader } from './components/loader';
-import { setUser } from './store/user/actions';
+// import { Modal } from './components/modal';
+// import { setUser } from './store/user/actions';
 import { getShopInfoService } from './services/categoriesService';
 import './main.scss';
 import { setInfo } from './store/categories';
 import { setError } from './store/status';
+import { setUserAsync } from './store/user';
+
 
 export class AppComponent extends Component {
   state = {
@@ -52,16 +54,9 @@ export class AppComponent extends Component {
   checkUser() {
     const { dispatch } = this.props;
 
-    this.setState({ isLoading: true });
+    // this.setState({ isLoading: true });
 
-    checkUserService()
-      .then((user) => {
-        dispatch(setUser(user));
-        this.setState({ isLoading: false });
-      })
-      .catch(() => {
-        this.setState({ isLoading: false });
-      });
+    dispatch(setUserAsync());
   }
 
   render() {
@@ -87,6 +82,6 @@ export class AppComponent extends Component {
   }
 }
 
-const mapState = state => ({ user: state.user, status: state.status });
+const mapState = state => ({ user: state.user.data, status: state.status });
 
 export const App = connect(mapState)(AppComponent);

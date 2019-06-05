@@ -1,5 +1,8 @@
-/* eslint-disable require-yield */
-/* eslint-disable no-console */
+import { all } from 'redux-saga/effects';
+import { userWatcher } from './user/sagas';
+
 export function* rootSaga() {
-  console.log('test');
+  yield all([
+    userWatcher(),
+  ]);
 }
