@@ -1,23 +1,14 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable max-len */
-/* eslint-disable no-console */
-/* eslint-disable import/order */
 import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { EditableField } from '../../components/editableField';
-import {
-  getProductsService,
-  updateProductsService
-} from '../../services/productService';
 import './products.scss';
 import {
-  setProducts,
   updateProductAsync,
   setProductsAsunc,
   remProductAsync
 } from '../../store/products';
-import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { Modal } from '../../components/modal';
 
 
@@ -65,7 +56,7 @@ export const ProductsComponent = ({ products, dispatch, history }) => {
       <Modal
         open={!!warning}
         close={hideModal}
-        onConfirm={delProduct}
+        onConfirm={() => delProduct(removeId)}
       >
         {warning}
       </Modal>
@@ -76,8 +67,7 @@ export const ProductsComponent = ({ products, dispatch, history }) => {
               <div className="description">
                 <div className="setting">
                   <span className="edit" onClick={e => setEditTitle(e, id)}><FaEdit /></span>
-                  <span className="del" onClick={() => delProduct(id)}><FaRegTrashAlt /></span>
-                  {/* <span className="del" onClick={() => showModal(id, title)}><FaRegTrashAlt /></span> */}
+                  <span className="del" onClick={() => showModal(id, title)}><FaRegTrashAlt /></span>
                 </div>
                 <Link to={`/products/${id}`} className="img"><img src={image || './images/bag.png'} alt="" /></Link>
               </div>

@@ -1,15 +1,11 @@
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
-import { setCategory } from '../../store/categories';
-import { getCategoryService } from '../../services/categoriesService';
+import { setCategoryAsync, setCategory } from '../../store/categories';
 import './category.scss';
 
 export const CategoryComponent = ({ match, dispatch, category }) => {
   useEffect(() => {
-    getCategoryService(match.params.id)
-      .then((respCategory) => {
-        dispatch(setCategory(respCategory));
-      });
+    dispatch(setCategoryAsync(match.params.id));
 
     return () => dispatch(setCategory({}));
   }, []);

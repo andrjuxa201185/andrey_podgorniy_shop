@@ -37,10 +37,6 @@ export const ProductComponent = ({
     }
   };
 
-  // const historyPush = (id) => {
-  //   history.push(`/products/${id}`);
-  // };
-
   const saveNewProduct = () => {
     dispatch(createProductAsync(product));
   };
