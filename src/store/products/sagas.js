@@ -57,7 +57,7 @@ function* createNewProduct(action) {
 
 function* updateProduct(action) {
   try {
-    // yield updateProductsService(action.data.id, action.data.product);
+    yield updateProductsService(action.data.id, action.data);
     // const products = yield getProductsService();
     // yield put(setProducts(products));
   } catch (err) {

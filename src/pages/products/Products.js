@@ -52,12 +52,7 @@ export const ProductsComponent = ({ products, dispatch, history }) => {
   const onBlurHandler = (id, value) => {
     const product = products.find(item => item.id === id);
     product.title = value;
-    // updateProductAsync({ product, id });
-    // updateProductsService(id, product)
-    //   .then(() => {
-    //     getProductsService()
-    //       .then(resp => dispatch(setProducts(resp)));
-    //   });
+    dispatch(updateProductAsync(product));
   };
 
   const onClickHandler = (id) => {
