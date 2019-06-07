@@ -4,8 +4,8 @@ import { Loader } from '../../components/loader';
 import { loginUserAsync } from '../../store/user';
 import './login.scss';
 
-export const LoginComponent = ({ dispatch }) => {
-  const [loading, setLoadState] = useState(false);
+export const LoginComponent = ({ dispatch, status }) => {
+  // const [loading, setLoadState] = useState(false);
   // const [error, setError] = useState('');
 
   const onSubmit = (e) => {
@@ -15,8 +15,9 @@ export const LoginComponent = ({ dispatch }) => {
       password: e.target.password.value,
     };
 
-    setLoadState(true);
+    // setLoadState(true);
     dispatch(loginUserAsync(data));
+    // setLoadState(status);
   };
 
   return (
@@ -38,9 +39,14 @@ export const LoginComponent = ({ dispatch }) => {
 
         <button type="submit" value="Login">login</button>
       </form>
-      <Loader shown={loading} />
+      {/* <Loader shown={status} /> */}
     </>
   );
 };
 
-export const Login = connect()(LoginComponent);
+const mapStateToProps = state => ({
+  user: state.user.data,
+  status: state.user.status
+});
+
+export const Login = connect(mapStateToProps)(LoginComponent);

@@ -72,7 +72,6 @@ export const ProductsComponent = ({ products, dispatch, history }) => {
                 <Link to={`/products/${id}`} className="img"><img src={image || './images/bag.png'} alt="" /></Link>
               </div>
               <EditableField
-                type="textarea"
                 val={title}
                 editState={id === editId}
                 onBlurHandler={title => onBlurHandler(id, title)}
