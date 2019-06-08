@@ -8,9 +8,9 @@ export const CREATE_PRODUCT_ASYNC = 'Create product async';
 export const UPDATE_PRODUCT_ASYNC = 'Update product async';
 
 export const setProducts = data => ({ type: SET_PRODUCTS, data });
-export const setProductsAsunc = () => ({ type: SET_PRODUCTS_ASYNC });
+export const setProductsAsync = () => ({ type: SET_PRODUCTS_ASYNC });
 export const setProduct = data => ({ type: SET_PRODUCT, data });
-export const setProductAsunc = data => ({ type: SET_PRODUCT_ASYNC, data });
+export const setProductAsync = data => ({ type: SET_PRODUCT_ASYNC, data });
 export const remProduct = data => ({ type: REMOVE_PRODUCT, data });
 export const remProductAsync = data => ({ type: REMOVE_PRODUCT_ASYNC, data });
 export const createProductAsync = data => ({ type: CREATE_PRODUCT_ASYNC, data });
