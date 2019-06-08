@@ -24,7 +24,7 @@ export const CategoriesComponent = ({ categories, user, dispatch }) => {
       <div className="categories">
         <CategoriesPublished items={categories.filter(({ published }) => published)} hideEdit={!user} />
         {
-          user && <CategoriesUnpublished items={categories} />
+          user && <CategoriesUnpublished items={categories.filter(({ published }) => !published)} />
         }
       </div>
       {user && <button>ADD NEW</button>}

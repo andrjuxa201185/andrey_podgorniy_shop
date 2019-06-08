@@ -7,7 +7,7 @@ import { Form } from '../../components/form';
 import './user.scss';
 
 export const UserComponent = ({
-  dispatch, history, user, status
+  dispatch, history, user
 }) => {
   const handleSubmit = (info) => {
     const callback = () => history.push('/succes');
@@ -18,9 +18,9 @@ export const UserComponent = ({
     <>
       <h1>Update user</h1>
       <Form
-        // ignores={password}
         data={user}
         disabledFields={['email']}
+        ignored={['password']}
         handleSubmit={handleSubmit}
       />
     </>
@@ -28,7 +28,7 @@ export const UserComponent = ({
 };
 
 const mapStateToProps = state => ({
-  user: state.user,
+  user: state.user.data,
   status: state.user.status
 });
 

@@ -1,13 +1,12 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-prototype-builtins */
-/* eslint-disable no-console */
 /* eslint-disable react/destructuring-assignment */
 import './form.scss';
 
 export class Form extends Component {
-  static dafaultProps = {
+  static defaultProps = {
     data: {},
     disabledFields: [],
+    ignored: []
   }
 
   fields = [
@@ -32,6 +31,7 @@ export class Form extends Component {
 
   validateField = (index) => {
     const { ignored } = this.props;
+
     const field = this.fields[index];
     const stateField = this.state[field.label];
     const isEmpty = stateField.value.length === 0;
@@ -68,7 +68,7 @@ export class Form extends Component {
     const { ignored } = this.props;
 
     return Object.entries(this.state)
-      // .filter(([key, item]) => item.value || ignored.includes(key))
+      .filter(([key, item]) => item.value || !ignored.includes(key))
       .some(([key, item]) => !item.value || item.error);
   }
 
