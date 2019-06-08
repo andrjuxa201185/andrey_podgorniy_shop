@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 export const CategoriesUnpublished = ({
   items,
@@ -18,10 +17,8 @@ export const CategoriesUnpublished = ({
         {
         items.filter(({ title }) => title.includes(filterWord))
           .map(({ title, id }) => (
-            <li key={id} onDoubleClick={onDounleClick}>
-              <Link to={`/categories/${id}`}>
-                {title}
-              </Link>
+            <li key={id} onDoubleClick={() => onDounleClick(id)}>
+              {title}
             </li>
           ))
       }

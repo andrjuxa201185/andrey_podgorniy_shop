@@ -3,9 +3,14 @@ import {
   setCategories,
   SET_CATEGORIES_ASYNC,
   SET_CATEGORY_ASYNC,
+  UPDATE_CATEGORY_ASYNC,
   setCategory,
 } from './actions';
-import { getCategoriesService, getCategoryService } from '../../services/categoriesService';
+import {
+  getCategoriesService,
+  getCategoryService,
+  updateCategoryService,
+} from '../../services/categoriesService';
 
 function* getCategories() {
   try {
@@ -25,9 +30,20 @@ function* getCategory(action) {
   }
 }
 
+function* updateCategory(action) {
+  try {
+    yield updateCategoryService(action.data.id, action.data);
+    const categories = yield getCategoriesService();
+    yield put(setCategories(categories));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export function* categoriesWatcher() {
   yield all([
-    yield takeEvery(SET_CATEGORIES_ASYNC, getCategories),
-    yield takeEvery(SET_CATEGORY_ASYNC, getCategory),
+    takeEvery(SET_CATEGORIES_ASYNC, getCategories),
+    takeEvery(SET_CATEGORY_ASYNC, getCategory),
+    takeEvery(UPDATE_CATEGORY_ASYNC, updateCategory),
   ]);
 }

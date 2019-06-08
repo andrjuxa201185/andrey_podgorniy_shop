@@ -13,7 +13,7 @@ import {
   checkUserService,
   loginUserService,
   createUserService,
-  updateUserService,
+  // updateUserService,
 } from '../../services/userService';
 
 function* fetchUser() {

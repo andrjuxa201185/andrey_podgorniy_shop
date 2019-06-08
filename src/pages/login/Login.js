@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { connect } from 'react-redux';
 import { Loader } from '../../components/loader';
 import { loginUserAsync } from '../../store/user';
@@ -39,7 +38,7 @@ export const LoginComponent = ({ dispatch, status }) => {
 
         <button type="submit" value="Login">login</button>
       </form>
-      {/* <Loader shown={status} /> */}
+      <Loader shown={status} />
     </>
   );
 };
