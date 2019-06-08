@@ -1,39 +1,35 @@
+/* eslint-disable padded-blocks */
 /* eslint-disable arrow-body-style */
 import { connect } from 'react-redux';
+import { createUserAsync } from '../../store/user';
 // import { useState, useEffect } from 'react';
 import { Form } from '../../components/form';
 import './user.scss';
 
-export const UserComponent = ({ user }) => {
-  // const [userInfo, setUserInfo] = useState(user);
-  // useEffect(() => {
-  //   setUserInfo(user);
-  // }, [user]);
-  // return (
-  //   <form className="form">
-  //     <input type="text" value={userInfo.email} readOnly />
-  //     <input type="text" defaultValue={userInfo.firstName} />
-  //     <input type="text" defaultValue={userInfo.lastName} />
-  //     <input type="password" placeholder="PASSWORD" />
-  //     <input type="password" placeholder="REPEAT PASSWORD" />
-  //     <button className="sbt" type="submit">SAVE</button>
-  //   </form>
-  // );
+export const UserComponent = ({
+  dispatch, history, user, status
+}) => {
+  const handleSubmit = (info) => {
+    const callback = () => history.push('/succes');
+    dispatch(createUserAsync({ info, callback }));
+  };
 
   return (
     <>
       <h1>Update user</h1>
       <Form
-        disabledFields={['email']}
-        skipped={['password']}
+        // ignores={password}
         data={user}
+        disabledFields={['email']}
+        handleSubmit={handleSubmit}
       />
     </>
   );
 };
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  status: state.user.status
 });
 
 export const User = connect(mapStateToProps)(UserComponent);

@@ -5,9 +5,16 @@ import {
   setUser,
   SET_USER_ASYNC,
   LOGIN_USER_ASYNC,
-  setUserBegin
+  setUserBegin,
+  CREATE_USER_ASYNC,
+  removeUser,
 } from './actions';
-import { checkUserService, loginUserService } from '../../services/userService';
+import {
+  checkUserService,
+  loginUserService,
+  createUserService,
+  updateUserService,
+} from '../../services/userService';
 
 function* fetchUser() {
   yield put(setUserBegin());
@@ -28,9 +35,22 @@ function* loginUser(action) {
   }
 }
 
+function* createUser({ data }) {
+  yield put(setUserBegin());
+  try {
+    yield createUserService(data.info);
+    yield put(removeUser());
+    data.callback();
+  } catch (err) {
+    console.log(err);
+    // yield put(errorUser(err))
+  }
+}
+
 export function* userWatcher() {
   yield all([
-    yield takeEvery(SET_USER_ASYNC, fetchUser),
-    yield takeEvery(LOGIN_USER_ASYNC, loginUser),
+    takeEvery(SET_USER_ASYNC, fetchUser),
+    takeEvery(LOGIN_USER_ASYNC, loginUser),
+    takeEvery(CREATE_USER_ASYNC, createUser),
   ]);
 }

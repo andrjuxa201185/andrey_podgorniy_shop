@@ -14,6 +14,7 @@ const NewUserComponent = ({ dispatch, history }) => {
     <>
       <h1>Update user</h1>
       <Form
+        disableFields=
         handleSubmit={handleSubmit}
       />
     </>
