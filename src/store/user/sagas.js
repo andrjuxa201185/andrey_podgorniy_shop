@@ -2,6 +2,7 @@
 
 import { takeEvery, put, all } from 'redux-saga/effects';
 import {
+  errorUser,
   setUser,
   SET_USER_ASYNC,
   LOGIN_USER_ASYNC,
@@ -27,11 +28,12 @@ function* fetchUser() {
 }
 
 function* loginUser(action) {
+  yield put(setUserBegin());
   try {
     const user = yield loginUserService(action.data);
     yield put(setUser(user));
   } catch (err) {
-    console.log(err);
+    yield put(errorUser(err));
   }
 }
 

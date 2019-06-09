@@ -6,7 +6,7 @@ import { EditableField } from '../../components/editableField';
 import './products.scss';
 import {
   updateProductAsync,
-  setProductsAsunc,
+  setProductsAsync,
   remProductAsync
 } from '../../store/products';
 import { Modal } from '../../components/modal';
@@ -18,7 +18,7 @@ export const ProductsComponent = ({ products, dispatch, history }) => {
   const [removeId, setRemoveId] = useState('');
 
   useEffect(() => {
-    dispatch(setProductsAsunc()); // <=== add dispatch
+    dispatch(setProductsAsync()); // <=== add dispatch
   }, []);
 
   const setEditTitle = (e, id) => {

@@ -4,9 +4,6 @@ import { loginUserAsync } from '../../store/user';
 import './login.scss';
 
 export const LoginComponent = ({ dispatch, status }) => {
-  // const [loading, setLoadState] = useState(false);
-  // const [error, setError] = useState('');
-
   const onSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -14,9 +11,7 @@ export const LoginComponent = ({ dispatch, status }) => {
       password: e.target.password.value,
     };
 
-    // setLoadState(true);
     dispatch(loginUserAsync(data));
-    // setLoadState(status);
   };
 
   return (
@@ -38,7 +33,7 @@ export const LoginComponent = ({ dispatch, status }) => {
 
         <button type="submit" value="Login">login</button>
       </form>
-      <Loader shown={status} />
+      <Loader shown={status.loading} />
     </>
   );
 };
