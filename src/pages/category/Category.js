@@ -7,7 +7,7 @@ import { ListEdit } from '../../components/listEdit';
 import './category.scss';
 
 export const CategoryComponent = ({
-  match, dispatch, category, products, prodInCategory, user
+  match, dispatch, category, products, user, prodAdded
 }) => {
   useEffect(() => {
     dispatch(setCategoryAsync(match.params.id));
@@ -37,7 +37,7 @@ export const CategoryComponent = ({
       </div>
       <div className="columns">
         <ListEdit
-          items={prodInCategory || []}
+          items={prodAdded}
           hideEdit
           hideDel={!user}
           onDelete={delProduct}
@@ -53,7 +53,7 @@ export const CategoryComponent = ({
 
 const mapStateToProps = state => ({
   category: state.category,
-  prodInCategory: state.category.products,
+  prodAdded: state.category.products || [],
   products: state.products,
   user: state.user.data,
 });

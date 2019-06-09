@@ -32,8 +32,9 @@ function* getCategory(action) {
 
 function* updateCategory(action) {
   try {
-    yield updateCategoryService(action.data.id, action.data.category);
+    const category = yield updateCategoryService(action.data.id, action.data.category);
     const categories = yield getCategoriesService();
+    yield put(setCategory(category));
     yield put(setCategories(categories));
   } catch (error) {
     console.log(error);
