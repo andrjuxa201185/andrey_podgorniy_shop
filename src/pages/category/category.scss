@@ -1,7 +1,28 @@
 .category {
+  .title-columns {
+    display: flex;
+    span {
+      margin: 20px 50px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+  .columns {
+    display: flex;
+    justify-content: space-between;
+    .products-added {
+      margin-right: 100px;
+    }
+    input {
+      padding: 5px;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+  }
   h2 {
     font-size: 28px;
     margin-bottom: 50px;
+    text-align: center;
   }
   ul {
     li {

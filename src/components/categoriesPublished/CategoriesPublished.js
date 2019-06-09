@@ -1,16 +1,19 @@
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { Modal } from '../modal';
+import { EditableField } from '../editableField';
 import './categoriesPunlished.scss';
+import { updateCategoryAsync } from '../../store/categories';
 
 export const CategoriesPublished = ({
+  dispatch,
+  history,
   items,
-  onEdit,
   onDelete,
   hideEdit,
-  onClickHahdler
+  hideDel,
 }) => {
+  const [editId, setEditId] = useState();
   const [categories, setCategories] = useState([]);
   const [warning, setWarning] = useState('');
   const [removeId, setRemoveId] = useState('');
@@ -20,13 +23,28 @@ export const CategoriesPublished = ({
   }, [items]);
 
   const showModal = (removeId, title) => {
-    setWarning(`Are you going to set '${title}' unpupblished`);
+    setWarning(`Are you going to set '${title}' ${removeId} unpupblished`);
     setRemoveId(removeId);
+  };
+
+  const setEditTitle = (e, id) => {
+    e.stopPropagation();
+    editId ? setEditId(undefined) : setEditId(id);
   };
 
   const hideModal = () => {
     setWarning('');
     setRemoveId('');
+  };
+
+  const onBlurHandler = (id, value) => {
+    const category = categories.find(item => item.id === id);
+    category.title = value;
+    dispatch(updateCategoryAsync({ id: category.id, category }));
+  };
+
+  const onClickHandler = (id) => {
+    history.push(`/categories/${id}`);
   };
 
   return (
@@ -43,14 +61,20 @@ export const CategoriesPublished = ({
           categories.map(({ title, id }) => (
             <li
               key={id}
-              onClick={onClickHahdler}
             >
-              <Link to={`/categories/${id}`}>
-                {title}
-              </Link>
+              <EditableField
+                val={title}
+                editState={id === editId}
+                onBlurHandler={title => onBlurHandler(id, title)}
+                onClickHandler={() => onClickHandler(id)}
+              />
               {!hideEdit && (
               <>
-                <FaEdit onClick={onEdit} />
+                <FaEdit onClick={e => setEditTitle(e, id)} />
+              </>
+              )}
+              {!hideDel && (
+              <>
                 <FaRegTrashAlt onClick={() => showModal(id, title)} />
               </>
               )}

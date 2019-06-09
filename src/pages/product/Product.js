@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { EditableField } from '../../components/editableField';
-import { setProduct, setProductAsunc, createProductAsync } from '../../store/products';
+import { setProduct, setProductAsync, createProductAsync } from '../../store/products';
 import './product.scss';
 
 export const ProductComponent = ({
@@ -12,7 +12,7 @@ export const ProductComponent = ({
 }) => {
   useEffect(() => {
     if (match.params.id !== 'new') {
-      dispatch(setProductAsunc(match.params.id)); // <== add dispatch
+      dispatch(setProductAsync(match.params.id)); // <== add dispatch
     } else {
       dispatch(setProduct({ title: 'New Product', price: 0 }));
     }

@@ -1,5 +1,7 @@
 /* eslint-disable arrow-body-style */
 import ReactModal from 'react-modal';
+import { FaWindowClose } from 'react-icons/fa';
+import './modal.scss';
 
 
 export const Modal = ({
@@ -18,16 +20,19 @@ export const Modal = ({
     <ReactModal
       isOpen={open}
       ariaHideApp={false}
+      className="modal"
     >
-      <h2>{title}</h2>
-      <span onClick={close}>x</span>
-      <div>
+      <h2 className="title">{title}</h2>
+      <span onClick={close} className="close">
+        <FaWindowClose />
+      </span>
+      <div className="text">
         {children}
       </div>
 
       <div className="buttons">
-        <button onClick={onOk}>ok</button>
-        <button onClick={close}>Cansel</button>
+        <button className="btn" onClick={onOk}>ok</button>
+        <button className="btn" onClick={close}>Cansel</button>
       </div>
     </ReactModal>
   );

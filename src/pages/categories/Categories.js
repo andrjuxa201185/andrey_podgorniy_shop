@@ -8,7 +8,9 @@ import { CategoriesPublished } from '../../components/categoriesPublished';
 import { CategoriesUnpublished } from '../../components/categoriesUnpublished';
 import './categories.scss';
 
-export const CategoriesComponent = ({ categories, user, dispatch }) => {
+export const CategoriesComponent = ({
+  categories, user, dispatch, history
+}) => {
   useEffect(() => {
     dispatch(setCategoriesAsync());
   }, []);
@@ -16,7 +18,7 @@ export const CategoriesComponent = ({ categories, user, dispatch }) => {
   const changePublished = (id) => {
     const category = categories.find(item => item.id === id);
     category.published = !category.published;
-    dispatch(updateCategoryAsync(category));
+    dispatch(updateCategoryAsync({ id: category.id, category }));
   };
 
   return (
@@ -32,9 +34,12 @@ export const CategoriesComponent = ({ categories, user, dispatch }) => {
       }
       <div className="categories">
         <CategoriesPublished
+          dispatch={dispatch}
           items={categories.filter(({ published }) => published)}
           hideEdit={!user}
+          hideDel={!user}
           onDelete={changePublished}
+          history={history}
         />
         {
           user && (

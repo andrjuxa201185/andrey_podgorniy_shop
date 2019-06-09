@@ -32,7 +32,7 @@ function* getCategory(action) {
 
 function* updateCategory(action) {
   try {
-    yield updateCategoryService(action.data.id, action.data);
+    yield updateCategoryService(action.data.id, action.data.category);
     const categories = yield getCategoriesService();
     yield put(setCategories(categories));
   } catch (error) {
