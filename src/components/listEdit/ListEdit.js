@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { Modal } from '../modal';
 import { EditableField } from '../editableField';
-import './categoriesPunlished.scss';
+import './listEdit.scss';
 import { updateCategoryAsync } from '../../store/categories';
 
-export const CategoriesPublished = ({
+export const ListEdit = ({
   dispatch,
   history,
   items,
@@ -56,7 +56,7 @@ export const CategoriesPublished = ({
       >
         {warning}
       </Modal>
-      <ul className="categories-published">
+      <ul className="list-edit">
         {
           categories.map(({ title, id }) => (
             <li

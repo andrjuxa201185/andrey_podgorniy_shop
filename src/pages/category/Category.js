@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
-import { setCategoryAsync, setCategory, updateCategoryAsync } from '../../store/categories';
+import { setCategoryAsync, updateCategoryAsync } from '../../store/categories';
 import { setProductsAsync } from '../../store/products';
-import { CategoriesUnpublished } from '../../components/categoriesUnpublished';
-import { CategoriesPublished } from '../../components/categoriesPublished';
+import { ListFilter } from '../../components/listFilter';
+import { ListEdit } from '../../components/listEdit';
 import './category.scss';
 
 export const CategoryComponent = ({
-  match, dispatch, category, products, prodInCategory
+  match, dispatch, category, products, prodInCategory, user
 }) => {
   useEffect(() => {
     dispatch(setCategoryAsync(match.params.id));
@@ -16,10 +16,10 @@ export const CategoryComponent = ({
 
   const addProduct = (idProduct) => {
     const product = products.find(item => item.id === idProduct);
-    if (!prodInCategory) {
+    if (!category.products) {
       category.products = [];
     }
-    prodInCategory.push({ id: product.id, title: product.title });
+    category.products.push({ id: product.id, title: product.title });
     dispatch(updateCategoryAsync({ id: match.params.id, category }));
   };
 
@@ -36,12 +36,13 @@ export const CategoryComponent = ({
         <span>Products</span>
       </div>
       <div className="columns">
-        <CategoriesPublished
+        <ListEdit
           items={prodInCategory || []}
           hideEdit
+          hideDel={!user}
           onDelete={delProduct}
         />
-        <CategoriesUnpublished
+        <ListFilter
           items={products}
           onDounleClick={addProduct}
         />
@@ -53,7 +54,8 @@ export const CategoryComponent = ({
 const mapStateToProps = state => ({
   category: state.category,
   prodInCategory: state.category.products,
-  products: state.products
+  products: state.products,
+  user: state.user.data,
 });
 
 export const Category = connect(mapStateToProps)(CategoryComponent);

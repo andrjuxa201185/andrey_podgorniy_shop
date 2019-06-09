@@ -4,8 +4,8 @@ import {
   setCategoriesAsync,
   updateCategoryAsync,
 } from '../../store/categories';
-import { CategoriesPublished } from '../../components/categoriesPublished';
-import { CategoriesUnpublished } from '../../components/categoriesUnpublished';
+import { ListEdit } from '../../components/listEdit';
+import { ListFilter } from '../../components/listFilter';
 import './categories.scss';
 
 export const CategoriesComponent = ({
@@ -33,7 +33,7 @@ export const CategoriesComponent = ({
         )
       }
       <div className="categories">
-        <CategoriesPublished
+        <ListEdit
           dispatch={dispatch}
           items={categories.filter(({ published }) => published)}
           hideEdit={!user}
@@ -43,7 +43,7 @@ export const CategoriesComponent = ({
         />
         {
           user && (
-          <CategoriesUnpublished
+          <ListFilter
             items={categories.filter(({ published }) => !published)}
             onDounleClick={changePublished}
           />

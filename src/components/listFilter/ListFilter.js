@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export const CategoriesUnpublished = ({
+export const ListFilter = ({
   items,
   onDounleClick
 }) => {
@@ -16,7 +16,7 @@ export const CategoriesUnpublished = ({
   };
 
   return (
-    <div className="unpublished">
+    <div className="list-filter">
       <input type="text" placeholder="Search" onChange={filter} />
       <ul>
         {
