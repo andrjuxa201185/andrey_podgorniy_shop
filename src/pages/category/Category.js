@@ -28,6 +28,14 @@ export const CategoryComponent = ({
     dispatch(updateCategoryAsync({ id: match.params.id, category }));
   };
 
+  const ProductNotAdded = () => products.filter((prod) => {
+    for (let i = 0; i < prodAdded.length; i++) {
+      if (prod.id === prodAdded[i].id) return false;
+    }
+
+    return true;
+  });
+
   return (
     <div className="category">
       <h2>Category {category.title}</h2>
@@ -43,7 +51,7 @@ export const CategoryComponent = ({
           onDelete={delProduct}
         />
         <ListFilter
-          items={products}
+          items={ProductNotAdded()}
           onDounleClick={addProduct}
         />
       </div>
