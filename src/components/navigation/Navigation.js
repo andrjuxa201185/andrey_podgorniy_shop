@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable object-curly-newline */
 import { NavLink, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './navigation.scss';
 import { server } from '../../services';
 

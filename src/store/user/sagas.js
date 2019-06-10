@@ -8,7 +8,7 @@ import {
   LOGIN_USER_ASYNC,
   setUserBegin,
   CREATE_USER_ASYNC,
-  removeUser,
+  // removeUser,
 } from './actions';
 import {
   checkUserService,
@@ -41,7 +41,8 @@ function* createUser({ data }) {
   yield put(setUserBegin());
   try {
     yield createUserService(data.info);
-    yield put(removeUser());
+    const user = yield loginUserService(data.info);
+    yield put(setUser(user));
     data.callback();
   } catch (err) {
     yield put(errorUser(err));

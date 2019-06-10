@@ -4,7 +4,6 @@ import { Home } from './home';
 import { Login } from './login';
 import { NewUser } from './newUser';
 import { Categories } from './categories';
-import { Succes } from './succes';
 
 export const Public = [
   <Route
@@ -23,12 +22,6 @@ export const Public = [
   <Route
     path="/newuser"
     component={NewUser}
-    key="newuser"
-  />,
-
-  <Route
-    path="/success"
-    component={Succes}
     key="newuser"
   />,
 
