@@ -4,6 +4,7 @@ import { Home } from './home';
 import { Login } from './login';
 import { NewUser } from './newUser';
 import { Categories } from './categories';
+import { Succes } from './succes';
 
 export const Public = [
   <Route
@@ -27,7 +28,7 @@ export const Public = [
 
   <Route
     path="/success"
-    render={() => (<div>grrdf</div>)}
+    component={Succes}
     key="newuser"
   />,
 

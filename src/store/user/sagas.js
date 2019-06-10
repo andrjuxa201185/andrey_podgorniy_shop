@@ -23,7 +23,7 @@ function* fetchUser() {
     const user = yield checkUserService();
     yield put(setUser(user));
   } catch (err) {
-    console.log(err);
+    yield put(errorUser(err));
   }
 }
 
@@ -44,8 +44,7 @@ function* createUser({ data }) {
     yield put(removeUser());
     data.callback();
   } catch (err) {
-    console.log(err);
-    // yield put(errorUser(err))
+    yield put(errorUser(err));
   }
 }
 
