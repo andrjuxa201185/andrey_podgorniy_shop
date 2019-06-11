@@ -3,23 +3,22 @@ import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { Modal } from '../modal';
 import { EditableField } from '../editableField';
 import './listEdit.scss';
-import { updateCategoryAsync } from '../../store/categories';
 
 export const ListEdit = ({
-  dispatch,
-  history,
   items,
   onDelete,
   hideEdit,
   hideDel,
+  onClickHandler,
+  onBlurHandler,
 }) => {
   const [editId, setEditId] = useState();
-  const [categories, setCategories] = useState([]);
+  const [itemsState, setItemsState] = useState([]);
   const [warning, setWarning] = useState('');
   const [removeId, setRemoveId] = useState('');
 
   useEffect(() => {
-    setCategories(items);
+    setItemsState(items);
   }, [items]);
 
   const showModal = (removeId, title) => {
@@ -37,16 +36,6 @@ export const ListEdit = ({
     setRemoveId('');
   };
 
-  const onBlurHandler = (id, value) => {
-    const category = categories.find(item => item.id === id);
-    category.title = value;
-    dispatch(updateCategoryAsync({ id: category.id, category }));
-  };
-
-  const onClickHandler = (id) => {
-    history.push(`/categories/${id}`);
-  };
-
   return (
     <>
       <Modal
@@ -58,7 +47,7 @@ export const ListEdit = ({
       </Modal>
       <ul className="list-edit">
         {
-          categories.map(({ title, id }) => (
+          itemsState.map(({ title, id }) => (
             <li
               key={id}
             >

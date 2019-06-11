@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './listFilter.scss';
 
 export const ListFilter = ({
   items,
@@ -17,10 +18,10 @@ export const ListFilter = ({
 
   return (
     <div className="list-filter">
-      <input type="text" placeholder="Search" onChange={filter} />
+      <input className="input-filter" type="text" placeholder="Search" onChange={filter} />
       <ul>
         {
-        list.filter(({ title }) => title.includes(filterWord))
+        list.filter(({ title }) => title.toLowerCase().includes(filterWord.toLowerCase()))
           .map(({ title, id }) => (
             <li key={id} onDoubleClick={() => onDounleClick(id)}>
               {title}

@@ -21,6 +21,16 @@ export const CategoriesComponent = ({
     dispatch(updateCategoryAsync({ id: category.id, category }));
   };
 
+  const clickHandler = (id) => {
+    history.push(`/categories/${id}`);
+  };
+
+  const blurHandler = (id, value) => {
+    const category = categories.find(item => item.id === id);
+    category.title = value;
+    dispatch(updateCategoryAsync({ id: category.id, category }));
+  };
+
   return (
     <div className="page-categories">
       <h3>Categories</h3>
@@ -40,6 +50,8 @@ export const CategoriesComponent = ({
           hideDel={!user}
           onDelete={changePublished}
           history={history}
+          onClickHandler={clickHandler}
+          onBlurHandler={blurHandler}
         />
         {
           user && (

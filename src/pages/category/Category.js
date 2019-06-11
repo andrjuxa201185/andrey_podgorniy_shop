@@ -7,7 +7,7 @@ import { ListEdit } from '../../components/listEdit';
 import './category.scss';
 
 export const CategoryComponent = ({
-  match, dispatch, category, products, user, prodAdded
+  match, dispatch, category, products, user, prodAdded, history
 }) => {
   useEffect(() => {
     dispatch(setCategoryAsync(match.params.id));
@@ -36,6 +36,10 @@ export const CategoryComponent = ({
     return true;
   });
 
+  const clickHandler = (id) => {
+    history.push(`/products/${id}`);
+  };
+
   return (
     <div className="category">
       <h2>Category {category.title}</h2>
@@ -49,6 +53,7 @@ export const CategoryComponent = ({
           hideEdit
           hideDel={!user}
           onDelete={delProduct}
+          onClickHandler={clickHandler}
         />
         <ListFilter
           items={ProductNotAdded()}
