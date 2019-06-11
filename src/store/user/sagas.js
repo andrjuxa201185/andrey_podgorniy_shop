@@ -8,13 +8,13 @@ import {
   LOGIN_USER_ASYNC,
   setUserBegin,
   CREATE_USER_ASYNC,
-  // removeUser,
+  UPDATE_USER_ASYNC,
 } from './actions';
 import {
   checkUserService,
   loginUserService,
   createUserService,
-  // updateUserService,
+  updateUserService,
 } from '../../services/userService';
 
 function* fetchUser() {
@@ -49,10 +49,22 @@ function* createUser({ data }) {
   }
 }
 
+function* updateUser({ data }) {
+  yield put(setUserBegin());
+  try {
+    const user = yield updateUserService(data.info);
+    yield put(setUser(user));
+    data.callback();
+  } catch (err) {
+    yield put(errorUser(err));
+  }
+}
+
 export function* userWatcher() {
   yield all([
     takeEvery(SET_USER_ASYNC, fetchUser),
     takeEvery(LOGIN_USER_ASYNC, loginUser),
     takeEvery(CREATE_USER_ASYNC, createUser),
+    takeEvery(UPDATE_USER_ASYNC, updateUser),
   ]);
 }
