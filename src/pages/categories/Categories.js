@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import {
   setCategoriesAsync,
@@ -62,7 +63,7 @@ export const CategoriesComponent = ({
           )
         }
       </div>
-      {user && <button>ADD NEW</button>}
+      {user && <Link to="/categories/new" className="btn">New</Link>}
     </div>
   );
 };

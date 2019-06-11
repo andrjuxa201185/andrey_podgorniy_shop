@@ -8,7 +8,8 @@ export const ProductComponent = ({
   match,
   dispatch,
   history,
-  product
+  product,
+  user,
 }) => {
   useEffect(() => {
     if (match.params.id !== 'new') {
@@ -47,13 +48,18 @@ export const ProductComponent = ({
         <EditableField
           onChangeHandler={newVal => getProductField('title', newVal)}
           val={product.title || 'New Product'}
+          isEdit={user}
         />
       </h3>
 
       <div className="price">
         Price:
         <span>
-          <EditableField onChangeHandler={newVal => getProductField('price', newVal)} val={product.price || 0} />
+          <EditableField
+            onChangeHandler={newVal => getProductField('price', newVal)}
+            val={product.price || 0}
+            isEdit={user}
+          />
         </span>
       </div>
 
@@ -63,6 +69,7 @@ export const ProductComponent = ({
           onChangeHandler={newVal => getProductField('desc', newVal)}
           type="textarea"
           val={product.description}
+          isEdit={user}
         />
       </div>
 
@@ -73,6 +80,9 @@ export const ProductComponent = ({
   );
 };
 
-const mapStateToProps = state => ({ product: state.product });
+const mapStateToProps = state => ({
+  product: state.product,
+  user: state.user.data,
+});
 
 export const Product = connect(mapStateToProps)(ProductComponent);
