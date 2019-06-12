@@ -1,7 +1,12 @@
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { EditableField } from '../../components/editableField';
-import { setProduct, setProductAsync, createProductAsync } from '../../store/products';
+import {
+  setProduct,
+  setProductAsync,
+  createProductAsync,
+  updateProductAsync,
+} from '../../store/products';
 import './product.scss';
 
 export const ProductComponent = ({
@@ -13,7 +18,7 @@ export const ProductComponent = ({
 }) => {
   useEffect(() => {
     if (match.params.id !== 'new') {
-      dispatch(setProductAsync(match.params.id)); // <== add dispatch
+      dispatch(setProductAsync(match.params.id));
     } else {
       dispatch(setProduct({ title: 'New Product', price: 0 }));
     }
@@ -38,8 +43,12 @@ export const ProductComponent = ({
     }
   };
 
-  const saveNewProduct = () => {
+  const createNewProduct = () => {
     dispatch(createProductAsync(product));
+  };
+
+  const saveProduct = () => {
+    dispatch(updateProductAsync(product));
   };
 
   return (
@@ -74,7 +83,9 @@ export const ProductComponent = ({
       </div>
 
       {
-        match.params.id === 'new' && <button onClick={saveNewProduct}>SAVE</button>
+        match.params.id === 'new'
+          ? <button onClick={createNewProduct}>Create</button>
+          : <button onClick={saveProduct}>Save</button>
       }
     </div>
   );
