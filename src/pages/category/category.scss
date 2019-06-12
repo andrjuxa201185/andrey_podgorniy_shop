@@ -1,4 +1,10 @@
 .category {
+  &>.editablefield {
+    span,input {
+      font-size: 28px;
+      font-weight: bold;
+    }
+  }
   .title-columns {
     display: flex;
     span {
@@ -19,7 +25,7 @@
       font-size: 18px;
     }
   }
-  h2 {
+  .title {
     font-size: 28px;
     margin-bottom: 50px;
     text-align: center;

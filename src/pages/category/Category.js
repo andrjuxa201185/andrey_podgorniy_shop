@@ -1,9 +1,14 @@
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { setCategoryAsync, updateCategoryAsync } from '../../store/categories';
+import {
+  setCategoryAsync,
+  updateCategoryAsync,
+  createCategoryAsync,
+} from '../../store/categories';
 import { setProductsAsync } from '../../store/products';
 import { ListFilter } from '../../components/listFilter';
 import { ListEdit } from '../../components/listEdit';
+import { EditableField } from '../../components/editableField';
 import './category.scss';
 
 export const CategoryComponent = ({
@@ -48,13 +53,30 @@ export const CategoryComponent = ({
     return true;
   });
 
-  const clickHandler = (id) => {
+  const historyProdPush = (id) => {
     history.push(`/products/${id}`);
+  };
+
+  const saveNewCategory = () => {
+    const callback = id => history.push(`/categories/${id}`);
+    dispatch(createCategoryAsync({ category: categoryState, callback }));
+  };
+
+  const getProductField = (title = 'New Category') => {
+    setCategoryState({ ...categoryState, title });
   };
 
   return (
     <div className="category">
-      <h2>Category {category.title}</h2>
+      {!newCategory
+        ? <h2 className="title">Category {category.title}</h2>
+        : (
+          <EditableField
+            onBlurHandler={newTitle => getProductField(newTitle)}
+            val={categoryState.title || 'New Category'}
+          />
+        )
+      }
       {
         user && (
         <div className="title-columns">
@@ -68,7 +90,7 @@ export const CategoryComponent = ({
           hideEdit
           hideDel={!user}
           onDelete={delProduct}
-          onClickHandler={clickHandler}
+          onClickHandler={historyProdPush}
         />
         {
           user && (
@@ -79,7 +101,7 @@ export const CategoryComponent = ({
           )
         }
       </div>
-      { newCategory && <button className="btn">Save</button> }
+      { newCategory && <button className="btn" onClick={saveNewCategory}>Save</button> }
     </div>
   );
 };

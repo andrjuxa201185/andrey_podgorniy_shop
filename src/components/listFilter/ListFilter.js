@@ -21,7 +21,7 @@ export const ListFilter = ({
       <input className="input-filter" type="text" placeholder="Search" onChange={filter} />
       <ul>
         {
-        list.filter(({ title }) => title.toLowerCase().includes(filterWord.toLowerCase()))
+        list.filter(({ title = '' }) => title.toLowerCase().includes(filterWord.toLowerCase()))
           .map(({ title, id }) => (
             <li key={id} onDoubleClick={() => onDounleClick(id)}>
               {title}
