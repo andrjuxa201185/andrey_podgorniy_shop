@@ -6,6 +6,7 @@ import { Public } from './Public';
 import { Categories } from './categories';
 import { Category } from './category';
 import { Product } from './product';
+import { Success } from './success';
 
 export const Pages = ({ user }) => (
   <Switch>
@@ -23,6 +24,12 @@ export const Pages = ({ user }) => (
     <Route
       path="/products/:id"
       component={Product}
+    />
+
+    <Route
+      path="/success"
+      component={Success}
+      key="success"
     />
 
     {

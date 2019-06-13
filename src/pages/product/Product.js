@@ -1,18 +1,24 @@
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { EditableField } from '../../components/editableField';
-import { setProduct, setProductAsunc, createProductAsync } from '../../store/products';
+import {
+  setProduct,
+  setProductAsync,
+  createProductAsync,
+  updateProductAsync,
+} from '../../store/products';
 import './product.scss';
 
 export const ProductComponent = ({
   match,
   dispatch,
   history,
-  product
+  product,
+  user,
 }) => {
   useEffect(() => {
     if (match.params.id !== 'new') {
-      dispatch(setProductAsunc(match.params.id)); // <== add dispatch
+      dispatch(setProductAsync(match.params.id));
     } else {
       dispatch(setProduct({ title: 'New Product', price: 0 }));
     }
@@ -37,8 +43,12 @@ export const ProductComponent = ({
     }
   };
 
-  const saveNewProduct = () => {
+  const createNewProduct = () => {
     dispatch(createProductAsync(product));
+  };
+
+  const saveProduct = () => {
+    dispatch(updateProductAsync(product));
   };
 
   return (
@@ -47,13 +57,18 @@ export const ProductComponent = ({
         <EditableField
           onChangeHandler={newVal => getProductField('title', newVal)}
           val={product.title || 'New Product'}
+          isEdit={user}
         />
       </h3>
 
       <div className="price">
         Price:
         <span>
-          <EditableField onChangeHandler={newVal => getProductField('price', newVal)} val={product.price || 0} />
+          <EditableField
+            onChangeHandler={newVal => getProductField('price', newVal)}
+            val={product.price || 0}
+            isEdit={user}
+          />
         </span>
       </div>
 
@@ -63,16 +78,22 @@ export const ProductComponent = ({
           onChangeHandler={newVal => getProductField('desc', newVal)}
           type="textarea"
           val={product.description}
+          isEdit={user}
         />
       </div>
 
       {
-        match.params.id === 'new' && <button onClick={saveNewProduct}>SAVE</button>
+        match.params.id === 'new'
+          ? <button onClick={createNewProduct}>Create</button>
+          : <button onClick={saveProduct}>Save</button>
       }
     </div>
   );
 };
 
-const mapStateToProps = state => ({ product: state.product });
+const mapStateToProps = state => ({
+  product: state.product || {},
+  user: state.user.data,
+});
 
 export const Product = connect(mapStateToProps)(ProductComponent);

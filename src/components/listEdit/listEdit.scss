@@ -1,0 +1,22 @@
+.list-edit {
+  width: 100%;
+  list-style: none;
+  li {
+    display: flex;
+    span,input {
+      font-size: 18px;
+      min-height: auto;
+    }
+    div {
+      cursor: pointer;
+    }
+  }
+  svg {
+    margin-left: 10px;
+    opacity: .5;
+    &:hover {
+      cursor: pointer;
+      opacity: .8;
+    }
+  }
+}

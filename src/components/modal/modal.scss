@@ -1,0 +1,30 @@
+.ReactModal__Overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .modal {
+    position: relative;
+    padding: 50px;
+    background-color: darkslategray;
+    .title {
+      margin-bottom: 20px;
+      text-align: center;
+      color: maroon;
+    }
+    .close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      svg {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}
+

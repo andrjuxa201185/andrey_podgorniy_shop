@@ -1,17 +1,24 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable object-curly-newline */
 import { NavLink, Link } from 'react-router-dom';
+import {
+  FaHouzz,
+  FaAlignJustify,
+  FaShoppingBag,
+  FaMapSigns,
+  FaSignInAlt,
+  FaUserPlus,
+} from 'react-icons/fa';
 import { useState } from 'react';
 import './navigation.scss';
 import { server } from '../../services';
 
 const items = [
-  { label: 'Home', id: '', icon: 'home', auth: false },
-  { label: 'Home', id: '', icon: 'home', auth: true },
-  { label: 'Shop', id: 'categories', icon: 'list-alt', auth: false },
-  { label: 'Categories', id: 'categories', icon: 'list-alt', auth: true },
-  { label: 'Products', id: 'products', icon: 'shopping-bag', auth: true },
-  { label: 'Contacts', id: 'contacts', icon: 'map-signs' }
+  { label: 'Home', id: '', Icon: FaHouzz, auth: false },
+  { label: 'Home', id: '', Icon: FaHouzz, auth: true },
+  { label: 'Shop', id: 'categories', Icon: FaAlignJustify, auth: false },
+  { label: 'Categories', id: 'categories', Icon: FaAlignJustify, auth: true },
+  { label: 'Products', id: 'products', Icon: FaShoppingBag, auth: true },
+  { label: 'Contacts', id: 'contacts', Icon: FaMapSigns }
 ];
 
 export const Navigation = ({ user, info, onLogout }) => {
@@ -46,6 +53,7 @@ export const Navigation = ({ user, info, onLogout }) => {
                   activeClassName="active"
                 >
                   {item.label}
+                  <item.Icon />
                 </NavLink>
               </li>
             ))
@@ -76,9 +84,9 @@ export const Navigation = ({ user, info, onLogout }) => {
             )
             : (
               <>
-                <Link to="/login">Sign in</Link>
+                <Link to="/login">Sign in<FaSignInAlt /></Link>
                 /
-                <a href="/newuser">Sign up</a>
+                <a href="/newuser">Sign up<FaUserPlus /></a>
               </>
             )
         }

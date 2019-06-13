@@ -16,15 +16,9 @@
   .categories {
     display: flex;
     justify-content: space-between;
-    .published {
-      margin-right: 50px;
-    }
-    .unpublished {
-      margin-left: 50px;
-      input {
-        padding: 5px;
-        font-size: 18px;
-      }
+    margin-bottom: 50px;
+    &>ul,div {
+      padding: 0 20px;
     }
   }
 
