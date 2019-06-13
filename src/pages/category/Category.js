@@ -15,21 +15,21 @@ export const CategoryComponent = ({
   match, dispatch, category, products, user, prodAdded, history
 }) => {
   const [categoryState, setCategoryState] = useState({ products: [] });
-  const newCategory = match.params.id === 'new';
+  const isNewCategory = match.params.id === 'new';
+  const items = isNewCategory ? categoryState.products : prodAdded;
 
   useEffect(() => {
-    !newCategory && dispatch(setCategoryAsync(match.params.id));
+    !isNewCategory && dispatch(setCategoryAsync(match.params.id));
     dispatch(setProductsAsync());
   }, []);
 
   const addProduct = (idProduct) => {
     const product = products.find(item => item.id === idProduct);
 
-    if (newCategory) {
-      const arr = categoryState.products;
-      arr.push({ id: product.id, title: product.title });
+    if (isNewCategory) {
+      categoryState.products.push({ id: product.id, title: product.title });
 
-      setCategoryState({ ...categoryState, products: arr });
+      setCategoryState({ ...categoryState });
       return;
     }
 
@@ -41,6 +41,12 @@ export const CategoryComponent = ({
   };
 
   const delProduct = (id) => {
+    if (isNewCategory) {
+      const products = categoryState.products.filter(prod => prod.id !== id);
+      setCategoryState({ ...categoryState, products });
+      return;
+    }
+
     category.products = category.products.filter(prod => prod.id !== id);
     dispatch(updateCategoryAsync({ id: match.params.id, category }));
   };
@@ -62,17 +68,13 @@ export const CategoryComponent = ({
     dispatch(createCategoryAsync({ category: categoryState, callback }));
   };
 
-  const getProductField = (title = 'New Category') => {
-    setCategoryState({ ...categoryState, title });
-  };
-
   return (
     <div className="category">
-      {!newCategory
+      {!isNewCategory
         ? <h2 className="title">Category {category.title}</h2>
         : (
           <EditableField
-            onBlurHandler={newTitle => getProductField(newTitle)}
+            onBlurHandler={title => setCategoryState({ ...categoryState, title })}
             val={categoryState.title || 'New Category'}
           />
         )
@@ -86,7 +88,7 @@ export const CategoryComponent = ({
         )}
       <div className="columns">
         <ListEdit
-          items={newCategory ? categoryState.products : prodAdded}
+          items={items}
           hideEdit
           hideDel={!user}
           onDelete={delProduct}
@@ -95,20 +97,20 @@ export const CategoryComponent = ({
         {
           user && (
           <ListFilter
-            items={setNotAddedProduct(newCategory ? categoryState.products : prodAdded)}
+            items={setNotAddedProduct(items)}
             onDounleClick={addProduct}
           />
           )
         }
       </div>
-      { newCategory && <button className="btn" onClick={saveNewCategory}>Save</button> }
+      { isNewCategory && <button className="btn" onClick={saveNewCategory}>Save</button> }
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  category: state.category,
-  prodAdded: state.category.products || [],
+  category: state.category || {},
+  prodAdded: state.category && state.category.products || [],
   products: state.products,
   user: state.user.data,
 });
