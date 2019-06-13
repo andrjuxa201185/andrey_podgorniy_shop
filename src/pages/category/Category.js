@@ -41,6 +41,12 @@ export const CategoryComponent = ({
   };
 
   const delProduct = (id) => {
+    if (isNewCategory) {
+      const products = categoryState.products.filter(prod => prod.id !== id);
+      setCategoryState({ ...categoryState, products });
+      return;
+    }
+
     category.products = category.products.filter(prod => prod.id !== id);
     dispatch(updateCategoryAsync({ id: match.params.id, category }));
   };
@@ -103,8 +109,8 @@ export const CategoryComponent = ({
 };
 
 const mapStateToProps = state => ({
-  category: state.category || {},
-  prodAdded: state.category ? state.category.products : [],
+  category: state.category,
+  prodAdded: state.category.products || [],
   products: state.products,
   user: state.user.data,
 });
