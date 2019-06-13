@@ -92,7 +92,7 @@ export const ProductComponent = ({
 };
 
 const mapStateToProps = state => ({
-  product: state.product,
+  product: state.product || {},
   user: state.user.data,
 });
 
