@@ -8,8 +8,8 @@ export default {
   },
   info: null,
   categories: [],
-  category: {},
+  category: null,
   products: [],
-  product: {},
+  product: null,
   status: ''
 };

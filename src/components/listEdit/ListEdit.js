@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FaEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { Modal } from '../modal';
 import { EditableField } from '../editableField';
@@ -13,13 +13,8 @@ export const ListEdit = ({
   onBlurHandler,
 }) => {
   const [editId, setEditId] = useState();
-  const [itemsState, setItemsState] = useState([]);
   const [warning, setWarning] = useState('');
   const [removeId, setRemoveId] = useState('');
-
-  useEffect(() => {
-    setItemsState(items);
-  }, [items]);
 
   const showModal = (removeId, title) => {
     setWarning(`Are you going to set '${title}' ${removeId} unpupblished`);
@@ -28,7 +23,8 @@ export const ListEdit = ({
 
   const setEditTitle = (e, id) => {
     e.stopPropagation();
-    editId ? setEditId(undefined) : setEditId(id);
+    if (editId) setEditId(undefined);
+    else setEditId(id);
   };
 
   const hideModal = () => {
@@ -47,7 +43,7 @@ export const ListEdit = ({
       </Modal>
       <ul className="list-edit">
         {
-          itemsState.map(({ title, id }) => (
+          items.map(({ title, id }) => (
             <li
               key={id}
             >

@@ -1,4 +1,3 @@
-/* eslint-disable arrow-body-style */
 import ReactModal from 'react-modal';
 import { FaWindowClose } from 'react-icons/fa';
 import './modal.scss';
