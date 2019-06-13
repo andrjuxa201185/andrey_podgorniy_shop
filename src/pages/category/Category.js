@@ -109,8 +109,8 @@ export const CategoryComponent = ({
 };
 
 const mapStateToProps = state => ({
-  category: state.category,
-  prodAdded: state.category.products || [],
+  category: state.category || {},
+  prodAdded: state.category && state.category.products || [],
   products: state.products,
   user: state.user.data,
 });
