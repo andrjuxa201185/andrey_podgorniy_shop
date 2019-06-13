@@ -1,15 +1,13 @@
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
-import { getCategoriesService } from '../../services/categoriesService';
-import { setCategories } from '../../store/categories';
+import { setCategoriesAsync } from '../../store/categories';
 import { CategoriesPublished } from '../../components/categoriesPublished';
 import { CategoriesUnpublished } from '../../components/categoriesUnpublished';
 import './categories.scss';
 
 export const CategoriesComponent = ({ categories, user, dispatch }) => {
   useEffect(() => {
-    getCategoriesService()
-      .then(resp => dispatch(setCategories(resp)));
+    dispatch(setCategoriesAsync());
   }, []);
 
   return (
@@ -26,7 +24,7 @@ export const CategoriesComponent = ({ categories, user, dispatch }) => {
       <div className="categories">
         <CategoriesPublished items={categories.filter(({ published }) => published)} hideEdit={!user} />
         {
-          user && <CategoriesUnpublished items={categories} />
+          user && <CategoriesUnpublished items={categories.filter(({ published }) => !published)} />
         }
       </div>
       {user && <button>ADD NEW</button>}

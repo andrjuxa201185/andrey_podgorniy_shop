@@ -26,6 +26,12 @@ export const Public = [
   />,
 
   <Route
+    path="/success"
+    render={() => (<div>grrdf</div>)}
+    key="newuser"
+  />,
+
+  <Route
     path="/categories"
     component={Categories}
     key="categories"

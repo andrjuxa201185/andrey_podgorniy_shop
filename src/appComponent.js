@@ -1,13 +1,10 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastr';
 import { connect } from 'react-redux';
-// import { checkUserService } from './services/userService';
 import { Header } from './components/header';
 import { Pages } from './pages';
 import { Main } from './components/main/Main';
 import { Loader } from './components/loader';
-// import { Modal } from './components/modal';
-// import { setUser } from './store/user/actions';
 import { getShopInfoService } from './services/categoriesService';
 import './main.scss';
 import { setInfo } from './store/categories';
@@ -25,7 +22,9 @@ export class AppComponent extends Component {
   }
 
   componentDidUpdate(prevProp) {
-    const { user, history, status, dispatch } = this.props;
+    const {
+      user, history, status, dispatch
+    } = this.props;
 
     if (prevProp.user && !user) {
       history.push('/');
@@ -53,9 +52,6 @@ export class AppComponent extends Component {
 
   checkUser() {
     const { dispatch } = this.props;
-
-    // this.setState({ isLoading: true });
-
     dispatch(setUserAsync());
   }
 
@@ -82,6 +78,6 @@ export class AppComponent extends Component {
   }
 }
 
-const mapState = state => ({ user: state.user.data, status: state.status });
+const mapState = state => ({ user: state.user.data, userStatus: state.user.status, status: state.status });
 
 export const App = connect(mapState)(AppComponent);

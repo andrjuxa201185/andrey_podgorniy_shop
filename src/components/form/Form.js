@@ -1,22 +1,25 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-prototype-builtins */
-/* eslint-disable no-console */
 /* eslint-disable react/destructuring-assignment */
 import './form.scss';
 
 export class Form extends Component {
+  static defaultProps = {
+    data: {},
+    disabledFields: [],
+    ignored: []
+  }
+
   fields = [
     { label: 'email', reg: /^\w+@\w+\.[a-z]{2,}$/ },
-    { label: 'name', reg: /^[^ ]{3,20}$/ },
-    { label: 'surname', reg: /^[^ ]{3,20}$/ },
+    { label: 'firstName', reg: /^[^ ]{3,20}$/ },
+    { label: 'lastName', reg: /^[^ ]{3,20}$/ },
     { label: 'password', reg: /^[^ ]{6,20}$/, secure: true }
   ];
 
   state = this.fields.reduce((acc, item) => ({
     ...acc,
-    [item.label]: { value: '', error: '' }
-  }),
-  {})
+    [item.label]: { value: this.props.data[item.label] || '', error: '' }
+  }), {})
 
   // state = { email: { value: '', error: '' } } }
 
@@ -27,10 +30,15 @@ export class Form extends Component {
   }
 
   validateField = (index) => {
+    const { ignored } = this.props;
+
     const field = this.fields[index];
     const stateField = this.state[field.label];
+    const isEmpty = stateField.value.length === 0;
 
-    if (stateField.value.length === 0) {
+    if (isEmpty && ignored.includes(field.label)) return;
+
+    if (isEmpty) {
       this.setState({
         [field.label]: { ...stateField, error: 'This field is required' }
       });
@@ -46,25 +54,32 @@ export class Form extends Component {
   }
 
   onSubmit = (event) => {
+    const { handleSubmit } = this.props;
+
+    const data = Object
+      .entries(this.state)
+      .reduce((acc, [key, item]) => ({ ...acc, [key]: item.value }), {});
+
     event.preventDefault();
-    console.log(this.state);
+    handleSubmit(data);
   }
 
   getDisabledState() {
-    return Object.values(this.state)
-      .some(state => !state.value || state.error);
+    const { ignored } = this.props;
+
+    return Object.entries(this.state)
+      .filter(([key, item]) => item.value || !ignored.includes(key))
+      .some(([key, item]) => !item.value || item.error);
   }
 
   render() {
-    const { disabledFields = [] } = this.props;
+    const { disabledFields } = this.props;
 
     return (
       <form className="form" onSubmit={this.onSubmit}>
-
         {
           this.fields.map(({ label, secure }, index) => {
             const state = this.state[label];
-
             return (
               <p key={label}>
                 <input
@@ -82,9 +97,7 @@ export class Form extends Component {
             );
           })
         }
-
         <input type="submit" value="Save" disabled={this.getDisabledState()} />
-
       </form>
     );
   }
