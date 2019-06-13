@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-prototype-builtins */
 /* eslint-disable react/destructuring-assignment */
 import './form.scss';
 
@@ -20,17 +18,19 @@ export class Form extends Component {
   state = this.fields.reduce((acc, item) => ({
     ...acc,
     [item.label]: { value: this.props.data[item.label] || '', error: '' }
-  }), {})
+  }),
+  {})
 
   // state = { email: { value: '', error: '' } } }
 
   changeField = ({ target }) => {
+    // eslint-disable-next-line
     const value = target.hasOwnProperty('checked') ? target.checked : target.value;
 
     this.setState({ [target.name]: { value, error: '' } });
   }
 
-  validateField = (index) => {
+  validateField = (e, index) => {
     const { ignored } = this.props;
 
     const field = this.fields[index];
@@ -57,9 +57,7 @@ export class Form extends Component {
   onSubmit = (event) => {
     const { handleSubmit } = this.props;
 
-    const data = Object
-      .entries(this.state)
-      .reduce((acc, [key, item]) => ({ ...acc, [key]: item.value }), {});
+    const data = this.getPureState();
 
     event.preventDefault();
     handleSubmit(data);
@@ -68,9 +66,28 @@ export class Form extends Component {
   getDisabledState() {
     const { ignored } = this.props;
 
+    if (!this.isDataDiffer()) return true;
+
     return Object.entries(this.state)
       .filter(([key, item]) => item.value || !ignored.includes(key))
+      // eslint-disable-next-line no-unused-vars
       .some(([key, item]) => !item.value || item.error);
+  }
+
+  getPureState() {
+    return Object
+      .entries(this.state)
+      .reduce((acc, [key, item]) => ({ ...acc, [key]: item.value }), {});
+  }
+
+  isDataDiffer() {
+    const state = this.getPureState();
+    const { data } = this.props;
+    const stateList = Object.keys(state).filter(key => Boolean(state[key]));
+
+    if (!Object.keys(data).length) return true;
+
+    return stateList.some(key => state[key] !== data[key]);
   }
 
   render() {
@@ -78,9 +95,11 @@ export class Form extends Component {
 
     return (
       <form className="form" onSubmit={this.onSubmit}>
+
         {
           this.fields.map(({ label, secure }, index) => {
             const state = this.state[label];
+
             return (
               <p key={label}>
                 <input
@@ -89,7 +108,7 @@ export class Form extends Component {
                   placeholder={`Enter a ${label}`}
                   value={state.value}
                   onChange={this.changeField}
-                  // onBlur={e => this.validateField(e, index)}
+                  onBlur={e => this.validateField(e, index)}
                   className={state.error ? 'error' : 'correct'}
                   disabled={disabledFields.includes(label)}
                 />
@@ -98,7 +117,9 @@ export class Form extends Component {
             );
           })
         }
+
         <input type="submit" value="Save" disabled={this.getDisabledState()} />
+
       </form>
     );
   }

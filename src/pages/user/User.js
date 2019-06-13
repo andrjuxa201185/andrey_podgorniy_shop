@@ -1,8 +1,5 @@
-/* eslint-disable padded-blocks */
-/* eslint-disable arrow-body-style */
 import { connect } from 'react-redux';
 import { updateUserAsync } from '../../store/user';
-// import { useState, useEffect } from 'react';
 import { Form } from '../../components/form';
 import './user.scss';
 
