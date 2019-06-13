@@ -1,6 +1,11 @@
 import './button.scss';
 
-export const Button = ({ callback, text, disabled, className }) => {
+export const Button = ({
+  callback,
+  text,
+  disabled,
+  className
+}) => {
   const onClick = (e) => {
     e.preventDefault();
     callback();
@@ -8,7 +13,7 @@ export const Button = ({ callback, text, disabled, className }) => {
 
   return (
     <a
-      href="#"
+      href="/"
       className={`button ${disabled ? 'button-disabled' : ''} ${className}`}
       onClick={onClick}
     >
