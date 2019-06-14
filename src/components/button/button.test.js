@@ -13,7 +13,6 @@ describe('<Button />', () => {
     const fakeClick = jest.fn();
     const wrapper = shallow(<Button callback={fakeClick} />);
     const event = {
-      target: { name: { value: '' } },
       preventDefault: _ => _
     };
     wrapper.simulate('click', event);
