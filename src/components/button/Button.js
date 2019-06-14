@@ -1,11 +1,6 @@
 import './button.scss';
 
-export const Button = ({
-  callback,
-  text,
-  disabled,
-  className
-}) => {
+export const Button = ({ callback, text, disabled, className }) => {
   const onClick = (e) => {
     e.preventDefault();
     callback();
